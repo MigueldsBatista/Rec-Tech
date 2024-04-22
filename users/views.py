@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login as django_login  # Importando a função login do Django para evitar conflito
+from django.contrib.auth import authenticate, login as django_login
+from django.contrib.auth.decorators import login_required  # Importando a função login do Django para evitar conflito
 
 # Create your views here.
 
@@ -39,11 +40,19 @@ def login(request):  # Renomeado para evitar conflito
         if user:
             django_login(request, user)  # Use o método 'login' do Django
             
-            return render(request, 'index.html')
+            return render(request, 'lixeiras.html')
         else:
             return HttpResponse('Usuário ou senha inválidos')
+        
+"""
+
+Forma manual de fazer a verificação se o usuario está logado
 
 def plataforma(request):
-    if request.user.is_authenticated:  # Corrigido erro de digitação
+    if request.user.is_authenticated:  
         return HttpResponse('plataforma')
-    return HttpResponse('Você precisa estar logado')
+    return HttpResponse('Você precisa estar logado')"""
+
+@login_required(login_url="/auth/login/")
+def plataforma(request):
+    return HttpResponse('Plataforma')# Forma usando decorators
