@@ -5,12 +5,12 @@ from django.contrib.auth.models import User
 class Lixeira(models.Model):
     domicilio = models.CharField(
         max_length=255,
-        null=False,
+        null=True,
         blank=False,
-        default="Endereço padrão",
-        help_text="Endereço atrelado à lixeira"
+        help_text="Casa, Restaurante, Hospital etc..."
     )
     localizacao = models.CharField(max_length=255, help_text="Localização física da lixeira em coordenadas")
+    email = models.CharField(max_length=255, help_text="Email do proprietário", null=True)
     tipo_residuo = models.CharField(
         max_length=50,
         choices=[("reciclaveis", "Recicláveis"), ("organicos", "Orgânicos"), ("nao_reciclaveis", "Não Recicláveis")],
