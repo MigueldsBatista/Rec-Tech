@@ -123,23 +123,3 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Defina o diretório base do seu projeto
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-# Configuração dos arquivos estáticos
-STATIC_URL = '/static/'
-
-# Caminho para a pasta 'static' dentro do seu aplicativo
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
-
-# Caminho para a pasta onde os arquivos estáticos serão coletados
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# Lista de aplicativos instalados
-INSTALLED_APPS = [
-    ...
-    'django.contrib.staticfiles',
-    ...
-]
