@@ -9,6 +9,12 @@ class Lixeira(models.Model):
         blank=False,
         help_text="Casa, Restaurante, Hospital etc..."
     )
+    bairro = models.CharField(
+        max_length=255,
+        null=True,
+        blank=False,
+        help_text="Bairro onde a lixeira está localizada"
+    )
     localizacao = models.CharField(max_length=255, help_text="Localização física da lixeira em coordenadas")
     email = models.CharField(max_length=255, help_text="Email do proprietário", null=True)
     tipo_residuo = models.CharField(
