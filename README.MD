@@ -14,9 +14,7 @@ Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropoli
 
 ## 🖇️ Links Importantes
 
-- [Link do Jira](https://conecta-cesar.atlassian.net/jira/software/projects/SCRUM/boards/1?atlOrigin=eyJpIjoiZDJlOTY0YzQ0MjY0NGVhMmExYjE3YzE5YzJjYThlODIiLCJwIjoiaiJ9)
-- [Protótipo de Baixa Fidelidade no Figma](https://www.figma.com/file/1bqw5G2PKniOytyCujdKn5/FDS1?type=design&node-id=0%3A1&mode=design&t=68hMQEzQnMPQzem2-1)
-- [Protótipo de Baixa Fidelidade - Screencast](https://youtu.be/zFNmWAJjifI)
+- [Relatório de Pair Programming](https://docs.google.com/document/d/1OPxina02W3SsS_ip94wldSsZ5e1cSyig4VLWCAaXy0I/edit?usp=sharing)
 
 ## 👩‍💻 Membros
 
