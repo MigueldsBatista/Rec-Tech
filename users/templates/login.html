@@ -1,15 +1,24 @@
-﻿<html>
+{% load static %}  
+<!DOCTYPE html>
+<html>
 <head>
-<body>
-<h1>Login<h1>
-<form action="{% url 'login' %}" method="POST">
-    {% csrf_token %}
-<input type="text" placeholder="Username..." name="username">
-<br>
-<input type="password" placeholder="Senha..." name="senha">
-<br>
-<input type="submit" value="Entrar">
-</form>
-</html>
+     <title>Login</title>
+     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
+<body>
+    <div id="div_login">
+    <form action="{% url 'login' %}" method="POST" id="form_login">
+        {% csrf_token %}
+        <h1>Login</h1>
+        <input type="text" placeholder="Username..." name="username"><br>
+        <input type="password" placeholder="Senha..." name="senha"><br>
+        <input type="submit" value="Entrar">
+        <button onclick="window.location.href = 'cadastro.html';">Cadastrar</button>
+        <br>
+        <br>
+        <br>
+    </form>
+    </div>
+    {% block content %}{% endblock %}
 </body>
+</html>
