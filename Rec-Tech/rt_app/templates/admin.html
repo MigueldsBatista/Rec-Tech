@@ -10,11 +10,31 @@
 <body>
 <header>
         <h1>Pagina do Adimin</h1>
-    <div>    
-        <table>
-            
-        </table>
-    </div>
+        <ul>
+            {% for lixeira in lixeiras %}
+                <li>
+                    Localização: {{ lixeira.localizacao }}<br>
+                    Tipo de Resíduo: {{ lixeira.tipo_residuo }}<br>
+                    Capacidade Máxima: {{ lixeira.capacidade_maxima }}<br>
+                    Estado Atual: {{ lixeira.estado_atual }}<br>
+                    Progresso: {{ lixeira.get_progresso }}%<br>
+                    Status de Manutenção: {% if lixeira.status_manutencao %} Sim {% else %} Não {% endif %}<br>
+                </li>
+            {% endfor %}
+        </ul>
+    
+        <h2>Lista de Avisos de Manutenção</h2>
+        <ul>
+            {% for aviso in avisos %}
+                <li>
+                    Lixeira: {{ aviso.lixeira }}<br>
+                    Data e Hora: {{ aviso.data_hora }}<br>
+                    Motivo: {{ aviso.motivo }}<br>
+                    Técnico Responsável: {{ aviso.tecnico_responsavel }}<br>
+                </li>
+            {% endfor %}
+        </ul>
+    
 </header>
 </body>
 </html>

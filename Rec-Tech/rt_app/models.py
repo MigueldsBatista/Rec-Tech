@@ -20,8 +20,6 @@ class Lixeira(models.Model):
     capacidade_maxima = models.IntegerField(help_text="Capacidade máxima da lixeira em quilogramas")
     estado_atual = models.IntegerField(help_text="Estado atual da lixeira em quilogramas")
     data_instalacao = models.DateField(help_text="Data de instalação da lixeira")
-    horario_funcionamento = models.CharField(max_length=50, help_text="Horário de funcionamento da lixeira")
-    responsavel_manutencao = models.CharField(max_length=100, help_text="Responsável pela manutenção")
     status_manutencao = models.BooleanField(default=False, help_text="Indica se a lixeira requer manutenção")
     
 

@@ -6,7 +6,7 @@ from rolepermissions.roles import assign_role
 from rolepermissions.checkers import has_role
 from rt_project.roles import Admin, Cliente, Coletor
 from django.contrib import messages
-  
+from django.views.decorators.csrf import csrf_protect  
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 def cadastro(request):
