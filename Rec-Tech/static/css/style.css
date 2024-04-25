@@ -15,3 +15,59 @@ footer {
     color: black;
     padding: 15px;
 }
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 4%;
+    width: 90%;
+    max-width: 800px;
+    height: auto;
+    max-height: 95vh;
+    margin: 2vh auto;
+  }
+  .header, .photo, .info, .actions {
+    width: 100%;
+  }
+  .info label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+  }
+  .info input, .info textarea {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none; /* Disables resizing for textarea */
+  }
+  .actions button {
+    padding: 1rem 2rem;
+    border: none;
+    background: #ddd;
+    cursor: pointer;
+    margin: 1rem 0.5rem;
+    flex-grow: 1;
+  }
+  .photo input[type="file"] {
+    margin-top: 1rem;
+  }
+  .photo img {
+    max-height: 150px;
+    width: auto;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+
+@media (min-width: 600px) {
+    .card {
+      padding: 2rem;
+    }
+    .info input, .info textarea {
+      padding: 0.75rem;
+    }
+}
+ 
