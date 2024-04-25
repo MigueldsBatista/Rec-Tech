@@ -2,9 +2,9 @@ from django.contrib import admin
 from django.utils.html import format_html
 from rt_app.models import Lixeira
 from django.contrib import admin
-from .models import Aviso
 
-admin.site.register(Aviso)
+
+
 
 class LixeiraAdmin(admin.ModelAdmin):
     list_display = ("localizacao", "tipo_residuo", "mostrar_progresso")

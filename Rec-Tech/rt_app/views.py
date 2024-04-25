@@ -3,39 +3,56 @@ from .models import Lixeira
 from rolepermissions.decorators import has_role_decorator
 from rt_project.roles import Cliente, Admin, Coletor
 from django.views.decorators.csrf import csrf_protect
-from django.http import HttpResponse, JsonResponse
-from django.views import View
-from .models import Lixeira
+
+#----------------------------------------
+
 import datetime
+from django.contrib.auth.models import User
+from django.contrib import messages
 
-class CadastrarLixeiraView(View):
-    def post(self, request, *args, **kwargs):
-        # Pega os dados do request
-        nome = request.POST.get("nome")
+@has_role_decorator(Admin)
+@csrf_protect
+def cadastrar_lixeira(request):
+    if request.method == 'POST':
+        domicilio = request.POST.get("domicilio")
+        localizacao = request.POST.get("localizacao")
         email = request.POST.get("email")
-        cpf = request.POST.get("cpf")
+        tipo_residuo = request.POST.get("tipo_residuo")
+        capacidade_maxima = int(request.POST.get("capacidade_maxima"))
+        estado_atual = int(request.POST.get("estado_atual"))
         senha = request.POST.get("senha")
-        endereco = request.POST.get("endereco")
-        id_lixeira = request.POST.get("id")
 
-        # Valida os dados recebidos (você pode adicionar validações mais detalhadas conforme necessário)
+        # Criar o usuário para o proprietário da lixeira
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "Já existe um usuário com este email.")
+            return redirect("cadastrar_lixeira")
 
-        # Cria uma nova instância do modelo Lixeira
+        user = User.objects.create_user(username=email, email=email, password=senha)
+
+        # Criar uma nova instância da lixeira
         lixeira = Lixeira(
-            localizacao=endereco,
+            domicilio=domicilio,
+            localizacao=localizacao,
             email=email,
-            # Outros campos necessários com valores padrão ou valores do request
-            tipo_residuo="reciclaveis",  # Valor padrão
-            capacidade_maxima=100,  # Valor padrão
-            estado_atual=0,  # Valor padrão
-            data_instalacao=datetime.date.today(),  # Data atual
+            tipo_residuo=tipo_residuo,
+            capacidade_maxima=capacidade_maxima,
+            estado_atual=estado_atual,
+            data_instalacao=datetime.date.today(),
         )
 
-        # Salva a nova instância no banco de dados
         lixeira.save()
 
-        # Retorna uma resposta de sucesso
-        return JsonResponse({"success": "Lixeira cadastrada com sucesso"}, status=201)
+        messages.success(request, "Lixeira cadastrada com sucesso.")
+        return redirect("cadastrar_lixeira")
+
+    return render(request, 'cadastrar_lixeira.html')
+
+
+
+
+
+
+
 
 
 
@@ -51,11 +68,6 @@ def admin(request):
     lixeiras = Lixeira.objects.all()
     # Renderiza o template passando as lixeiras como contexto
     return render(request, 'admin.html', {'lixeiras': lixeiras})
-
-@has_role_decorator(Admin)
-@csrf_protect
-def cadastro_admin(request):
-    return render(request, 'cadastro_admin.html')
 
 
 @csrf_protect
