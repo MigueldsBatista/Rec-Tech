@@ -1,3 +1,5 @@
+import os
+
 
 """
 Django settings for rt_project project.
@@ -12,7 +14,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -104,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = "en-us"
+LANGUAGE_CODE = "en-us" #ta em ingles era bom mudar pra pt se possível
 
 TIME_ZONE = "UTC"
 
@@ -122,4 +123,20 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Defina o diretório base do seu projeto
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Configuração dos arquivos estáticos
+STATIC_URL = '/static/'
+
+# Caminho para a pasta 'static' dentro do seu aplicativo
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+# Caminho para a pasta onde os arquivos estáticos serão coletados
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
 
