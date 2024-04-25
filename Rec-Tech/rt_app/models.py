@@ -28,7 +28,7 @@ class Lixeira(models.Model):
             progresso = (self.estado_atual / self.capacidade_maxima) * 100
         else:
             progresso = 0
-        return progresso
+        return round(progresso, 2)
     
     def save(self, *args, **kwargs):
         if self.estado_atual >= self.capacidade_maxima:
