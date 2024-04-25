@@ -56,12 +56,12 @@ def login(request):
             django_login(request, user)
         
             if has_role(user, Admin):
-                return render(request, "rt_app/admin.html")
+                return render(request, "admin.html")
             
             elif has_role(user, Cliente):
-                return render(request, "rt_app/cliente.html")  
+                return render(request, "cliente.html")  
             elif has_role(user, Coletor):
-                return render(request, "rt_app/coletor.html")  
+                return render(request, "coletor.html")  
             else:
                 messages.error(request, "O usuário não tem um papel definido.")
                 return redirect("login")  # Volta para a página de login
