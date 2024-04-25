@@ -1,58 +1,78 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login as django_login
-from django.contrib.auth.decorators import login_required  # Importando a função login do Django para evitar conflito
-
-# Create your views here.
-
-def index(request):
-    return render(request, 'index.html')
+from django.contrib.auth import authenticate, login as django_login#para evitar conflito
+from rolepermissions.roles import assign_role
+from rolepermissions.checkers import has_role
+from rt_project.roles import Admin, Cliente, Coletor
+from django.contrib import messages
+  
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 def cadastro(request):
-    if request.method == "GET":
+    if request.method == 'GET':
         return render(request, 'cadastro.html')
     else:
-        username = request.POST.get('username')
-        email = request.POST.get('email')
+        user_name = request.POST.get('username')
+        user_email = request.POST.get('email')
         senha = request.POST.get('senha')
+        user_type = request.POST.get('user_type')
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
         # Verifica se já existe um usuário com esse nome
-        user_exists = User.objects.filter(username=username).exists()
-        
-        if user_exists:
-            return HttpResponse("Já existe um usuário com esse nome")
-        
-        # Se não existe, cria o usuário
-        user = User.objects.create_user(username=username, email=email, password=senha)
-        user.save()
-        
-        return HttpResponse("Usuário cadastrado com sucesso")
+        if User.objects.filter(username=user_name).exists():#username(do django)=user_name(nossa variável)
+            messages.error(request, "Já existe um usuário com esse nome")
+            return redirect("cadastro")  # Redireciona para a mesma página
 
-def login(request):  # Renomeado para evitar conflito
+        # Se não existe, cria o usuário
+        user = User.objects.create_user(username=user_name, email=user_email, password=senha)
+
+        if user_type == 'admin':
+            assign_role(user, Admin)
+        elif user_type == 'cliente':
+            assign_role(user, Cliente)
+        elif user_type == 'coletor':
+            assign_role(user, Coletor)
+        else:
+            messages.error(request, "Papel do usuário não especificado. Selecione 'admin', coletor ou 'cliente'.")
+            return redirect("cadastro")
+
+        # Mensagem de sucesso
+        messages.success(request, "Usuário cadastrado com sucesso. Agora faça login.")
+        return redirect("login")  # Redireciona para a página de login
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+# View para o login
+def login(request):
     if request.method == 'GET':
         return render(request, 'login.html')
     else:
-        username = request.POST.get('username')
-        senha = request.POST.get('senha')
-
-        user = authenticate(username=username, password=senha)
-        if user:
-            django_login(request, user)  # Use o método 'login' do Django
-            
-            return render(request, 'lixeiras.html')
-        else:
-            return HttpResponse('Usuário ou senha inválidos')
+        user_name = request.POST.get('username')  # Capturando username
+        senha = request.POST.get('senha')  # Capturando senha
         
-"""
-
-Forma manual de fazer a verificação se o usuario está logado
-
+        user = authenticate(username=user_name, password=senha)#username(do django)=user_name(nossa variável)
+        if user:
+            django_login(request, user)
+        
+            if has_role(user, Admin):
+                return render(request, "rt_app/admin.html")
+            
+            elif has_role(user, Cliente):
+                return render(request, "rt_app/cliente.html")  
+            elif has_role(user, Coletor):
+                return render(request, "rt_app/coletor.html")  
+            else:
+                messages.error(request, "O usuário não tem um papel definido.")
+                return redirect("login")  # Volta para a página de login
+        else:
+            messages.error(request, "Usuário ou senha incorretos. Por favor, tente novamente.")
+            return redirect("login")  # Redireciona para a página de login
+        
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+#TESTE
+    
 def plataforma(request):
-    if request.user.is_authenticated:  
-        return HttpResponse('plataforma')
-    return HttpResponse('Você precisa estar logado')"""
-
-@login_required(login_url="/auth/login/")
-def plataforma(request):
-    return HttpResponse('Plataforma')# Forma usando decorators
+    if request.user.is_authenticated:  # Corrigido erro de digitação
+        return request('content.html')
+    return HttpResponse('Você precisa estar logado')

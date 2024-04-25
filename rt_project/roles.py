@@ -5,3 +5,5 @@ class Admin(AbstractUserRole):
 
 class Cliente(AbstractUserRole):
     available_permissions={'solicitar manutenção': True}
+class Coletor(AbstractUserRole):
+    available_permissions={'vizualizar rotas':True}
