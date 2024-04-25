@@ -1,44 +1,56 @@
 {% extends "main.html" %}
 
-{%block content%}
+{% block content %}
+<form method="POST" action="{% url 'login' %}">
+  {%csrf_token%}
+<div class="container mt-4"> <!-- Adiciona margem superior para espaçamento -->
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center"> <!-- Centraliza os elementos no cabeçalho -->
+      <span>FOTO</span>
+      <span>LOGO</span>
+    </div>
+    <div class="card-body">
+      <div class="d-flex justify-content-center mb-4"> 
+        <div>
+        </div>
+      </div>
+      <div class="row"> <!-- Usa grid do Bootstrap para organizar campos -->
+        <div class="col-md-6"> <!-- Define a primeira coluna -->
+          <div class="mb-3"> <!-- Adiciona margem entre campos -->
+            <label for="nome" class="form-label">Nome do cliente:</label>
+            <input type="text" id="nome" class="form-control" placeholder="Seu nome aqui"> <!-- Adiciona classe para input -->
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email do cliente:</label> <!-- Corrige o label para email -->
+            <input type="email" id="email" class="form-control" placeholder="Seu email aqui">
+          </div>
+          <div class="mb-3">
+            <label for="cpf" class="form-label">CPF:</label> <!-- Corrige a ordem dos campos -->
+            <input type="text" id="cpf" class="form-control" placeholder="Seu CPF aqui">
+          </div>
+        </div>
+        <div class="col-md-6"> <!-- Define a segunda coluna -->
+          <div class="mb-3">
+            <label for="id" class="form-label">ID da Lixeira:</label>
+            <input type="text" id="id" class="form-control" placeholder="Seu ID aqui">
+          </div>
+          <div class="mb-3">
+            <label for="senha" class="form-label">Senha:</label> <!-- Corrige o ID para senha -->
+            <input type="password" id="senha" class="form-control" placeholder="Senha"> <!-- Corrige o tipo para senha -->
+          </div>
+          <div class="mb-3">
+            <label for="endereco" class="form-label">Endereço do cliente:</label> <!-- Corrige o label e usa input de texto -->
+            <input type="text" id="endereco" class="form-control" placeholder="Endereço onde a lixeira vai ser instalada"> 
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-between"> <!-- Usa flex para alinhamento dos botões -->
+        <input class="btn btn-primary" type='submit'>Enviar</input> <!-- Botão estilizado -->
 
-<div class="card">
-  <div class="header">
-    <span>FOTO</span>
-    <span>LOGO</span>
-  </div>
-  <div class="photo">
-    <img id="userPhoto" src="path/to/default/photo" alt="User Photo">
-    <input type="file" id="photoUpload" accept="image/*">
-  </div>
-  <div class="info">
-    <label for="nome">Nome:</label>
-    <input type="text" id="nome" placeholder="Seu nome aqui">
-
-    <label for="cpf">Email:</label>
-    <input type="text" id="cpf" placeholder="Seu CPF aqui">
-
-    <label for="email">Selecionar opção:</label><!--Preciso mudar aqui ainda-->
-    <input type="email" id="email" placeholder="Seu email aqui">
-
-    <label for="id">ID da lixeira:</label>
-    <input type="text" id="id" placeholder="Seu ID aqui">
-
-    <label for="endereco">Senha:</label>
-    <textarea id="endereco" placeholder="Seu endereço aqui"></textarea>
-  </div>
-  <div class="actions">
-    <button>Contato</button>
-    <button>Manutenção</button>
+      </div>
+    </div>
   </div>
 </div>
+</form>
 
-<script>
-  document.getElementById('photoUpload').addEventListener('change', function(event){
-    var output = document.getElementById('userPhoto');
-    output.src = URL.createObjectURL(event.target.files[0]);
-    output.onload = function() {
-      URL.revokeObjectURL(output.src) 
-    }
-  });
-</script>
+{% endblock content %}
