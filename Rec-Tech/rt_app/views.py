@@ -80,4 +80,15 @@ def coletor(request):
 def cliente(request):
     return render(request, "rt_app/cliente.html")
 
+def lixeira_list(request):
+    # Esta é uma lista de dicionários que simulam os dados que você poderia obter de um modelo de banco de dados
+    lixeiras = [
+        {'localizacao': 'rua das graças', 'tipo_residuo': 'recicláveis', 'capacidade_maxima': '1000 kg', 'estado_atual': '240 kg', 'progresso': '24', 'status_manutencao': 'Não'},
+        {'localizacao': 'rua das graças', 'tipo_residuo': 'recicláveis', 'capacidade_maxima': '2000 kg', 'estado_atual': '1000 kg', 'progresso': '50', 'status_manutencao': 'Não'},
+        # Adicione mais dicionários conforme necessário para cada lixeira
+    ]
+    
+    return render(request, 'lixeira_list.html', {'lixeiras': lixeiras})
+
+
 
