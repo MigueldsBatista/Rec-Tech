@@ -3,8 +3,7 @@ import os
 from dotenv import load_dotenv
 
 
-SESSION_COOKIE_AGE = 7200
-SESSION_SAVE_EVERY_REQUEST = True
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -67,12 +66,13 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "rt_project.middlewares.CSRFMiddleware",
+
     "django.middleware.security.SecurityMiddleware",
     # Add whitenoise middleware after the security middleware                             
     'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
-    "django.middleware.csrf.CsrfViewMiddleware",
     
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
