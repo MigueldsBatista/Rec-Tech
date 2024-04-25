@@ -51,15 +51,7 @@ footer {
     margin: 1rem 0.5rem;
     flex-grow: 1;
   }
-  .photo input[type="file"] {
-    margin-top: 1rem;
-  }
-  .photo img {
-    max-height: 150px;
-    width: auto;
-    border-radius: 50%;
-    margin-bottom: 1rem;
-  }
+
 
   @media (min-width: 600px) {
     .card {
@@ -70,7 +62,27 @@ footer {
     }
 }
 
-.container_lixeira {
-  background-color: w;
-}
+
  
+.custom-progress-bar {
+  width: auto;
+  
+}
+.progress {
+  height: 20px; /* Altura da barra de progresso */
+  max-width: 100%; /* Ocupa todo o espaço disponível */
+}
+
+/* Ajusta as propriedades visuais para a barra de progresso */
+.progress-bar {
+  width: auto; /* Começa com a barra vazia */
+  transition: width 0.5s; /* Transição suave para quando a barra se preenche */
+}
+.table { 
+  width: 100%; /* Certifica-se de que a tabela ocupa toda a largura disponível */
+  table-layout: fixed; /* Mantém largura uniforme */
+}
+
+.table th, 
+.table td {
+  padding: 12px; /* Adiciona espaçamento entre as células */}
