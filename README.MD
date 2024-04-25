@@ -20,9 +20,14 @@ Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropoli
 
 ## 👩‍💻 Membros
 
-- [Kauane Melo](https://github.com/KauaneMelo) - kmabm@cesar.school 📩
-- [Maria Fernanda Suruagy](https://github.com/nandaord) - mfso@cesar.school 📩
-- [Miguel Batista](https://github.com/MigueldsBatista) - msb2@cesar.school 📩
-- [Rafael Barros](https://github.com/raf7525) - ralb@cesar.school 📩
-- [Tiago Gurgel](https://github.com/ticogafa) - tgafa@cesar.school 📩
-- [Vinícius Diniz](https://github.com/xTvini) - vdas@cesar.school 📩
+- Beatriz Bogater - btb@cesar.school 📩
+- Eduardo Roma - erca@cesar.school 📩
+- Kauane Melo - kmabm@cesar.school 📩
+- Luanne Montarroyos - lmm4@cesar.school 📩
+- Maria Betânia Sette - mbsraa@cesar.school 📩
+- Maria Fernanda Ordonho - mfso@cesar.school 📩
+- Marina Robalinho - mrcc@cesar.school 📩
+- Miguel Batista - msb2@cesar.school 📩
+- Rafael Barros - ralb@cesar.school 📩
+- Tiago Gurgel - tgafa@cesar.school 📩
+- Vinícius Diniz - vdas@cesar.school 📩
