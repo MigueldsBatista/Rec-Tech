@@ -76,3 +76,7 @@ def plataforma(request):
     if request.user.is_authenticated:  # Corrigido erro de digitação
         return request('content.html')
     return HttpResponse('Você precisa estar logado')
+
+def cadastro_admin(request):
+    # Seu código de visualização aqui
+    return render(request, 'cadastro_admin.html')
