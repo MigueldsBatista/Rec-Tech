@@ -15,6 +15,7 @@ Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropoli
 ## 🖇️ Links Importantes
 
 - [Relatório de Pair Programming](https://docs.google.com/document/d/1OPxina02W3SsS_ip94wldSsZ5e1cSyig4VLWCAaXy0I/edit?usp=sharing)
+- [Link do nosso Miro](https://miro.com/app/board/uXjVNnYqUvs=/?share_link_id=733107696943)
 
 ## 👩‍💻 Membros
 
