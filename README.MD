@@ -17,7 +17,7 @@ Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropoli
 - [Relatório de Pair Programming](https://docs.google.com/document/d/1OPxina02W3SsS_ip94wldSsZ5e1cSyig4VLWCAaXy0I/edit?usp=sharing)
 - [Link do nosso Miro](https://miro.com/app/board/uXjVNnYqUvs=/?share_link_id=733107696943)
 - [Link do Figma](https://www.figma.com/file/3p1WqK2tPZbuOeAHF0nyrV/G5?type=design&node-id=12-82&mode=design&t=sHjEHd3tyCpjLTf5-0)
-
+- [Link do Screencast](https://youtu.be/mOC6_9p8hqs)
 ## 👩‍💻 Membros
 
 - Beatriz Bogater - btb@cesar.school 📩
