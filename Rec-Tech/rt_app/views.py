@@ -59,7 +59,7 @@ def admin(request):
 @csrf_protect
 @has_role_decorator(Coletor)
 def coletor(request):
-    return redirect("coletor.html")
+    return render(request, "coletor.html")
 
 @csrf_protect
 @has_role_decorator(Cliente)
