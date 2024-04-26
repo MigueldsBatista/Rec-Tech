@@ -10,6 +10,11 @@ Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropoli
 4. Eu, como administrador, desejo receber alertas sobre eventos importantes relacionados à coleta.
 5. Eu, como morador da região metropolitana do Recife e cliente, desejo agendar a manutenção domiciliar de resíduos sólidos de forma conveniente pela aplicação web.
 
+### Validações
+
+- História 1: Visualização do Peso
+  - Validação: "Eu, como administrador, irei cadastrar a quantidade de lixo para determinada residência e o sistema deve mostra-la com o identificador e o peso do lixo."
+
 ## 🖇️ Links Importantes
 
 - [Relatório de Pair Programming](https://docs.google.com/document/d/1OPxina02W3SsS_ip94wldSsZ5e1cSyig4VLWCAaXy0I/edit?usp=sharing)
