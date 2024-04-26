@@ -2,15 +2,13 @@
 
 Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropolitana do Recife, fornecendo uma plataforma eficiente e intuitiva para acompanhamento e análise dos dados de coleta de lixo. Abaixo estão as principais funcionalidades e links importantes do projeto.
 
-## ⚙️ Principais Funcionalidades
+## ⚙️ Histórias
 
-- **Visualização em Tempo Real do Peso do Lixo:** Permite aos usuários visualizar o peso atual do lixo de cada domicílio cadastrado.
-- **Análise de Tendências e Padrões de Coleta de Lixo:** Fornece ferramentas para análise dos dados históricos de coleta, identificando tendências e padrões.
-- **Gestão de Rotas de Coleta:** Permite aos motoristas de coleta acessar rotas otimizadas para coleta eficiente de resíduos.
-- **Gestão de Inventário de Lixeiras:** Possibilita a adição de novos pontos de coleta de resíduos sólidos à aplicação.
-- **Visualização de Estatísticas por Bairro:** Permite aos usuários visualizar estatísticas sobre a quantidade de resíduos coletados em cada bairro da região metropolitana do Recife.
-- **Agendamento de Coleta Domiciliar:** Permite aos moradores agendar a coleta domiciliar de resíduos sólidos de forma conveniente pela aplicação web.
-- **Notificações de Coleta e Manutenção:** Envia alertas automáticos para os administradores sobre eventos importantes relacionados à coleta e manutenção de resíduos sólidos.
+1.Eu, como administrador, quero ser capaz de visualizar o peso atual do lixo de cada domicílio cadastrado;
+2.Eu, como administrador do sistema, desejo poder cadastrar novas lixeiras como pontos coleta de resíduos sólidos à nossa aplicação web;
+3.Eu, como motorista de coleta de lixo, quero ter acesso a uma aplicação que me mostre as rotas mais eficientes para coleta.
+4.Eu, como administrador, desejo receber alertas sobre eventos importantes relacionados à coleta.
+5.Eu, como morador da região metropolitana do Recife e cliente, desejo agendar a manutenção domiciliar de resíduos sólidos de forma conveniente pela aplicação web.
 
 ## 🖇️ Links Importantes
 
@@ -21,13 +19,9 @@ Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropoli
 - [Link do Screencast wireframe](https://youtu.be/ZPDNafSxDCE)
 ## 👩‍💻 Membros
 
-- Beatriz Bogater - btb@cesar.school 📩
 - Eduardo Roma - erca@cesar.school 📩
 - Kauane Melo - kmabm@cesar.school 📩
-- Luanne Montarroyos - lmm4@cesar.school 📩
-- Maria Betânia Sette - mbsraa@cesar.school 📩
 - Maria Fernanda Ordonho - mfso@cesar.school 📩
-- Marina Robalinho - mrcc@cesar.school 📩
 - Miguel Batista - msb2@cesar.school 📩
 - Rafael Barros - ralb@cesar.school 📩
 - Tiago Gurgel - tgafa@cesar.school 📩
