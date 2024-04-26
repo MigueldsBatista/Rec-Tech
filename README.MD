@@ -38,7 +38,7 @@ Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropoli
 
 ## Primeira Entrega
 ### Diagrama de Atividades
-![Diagrama de Atividades](Rec-Tech/static/images/diagrama Rec-Tech.png)
+![Diagrama de Atividades](https://github.com/MigueldsBatista/Rec-Tech/blob/main/Rec-Tech/static/images/diagrama%20Rec-Tech.png?raw=true)
 
 ## 👩‍💻 Membros
 
