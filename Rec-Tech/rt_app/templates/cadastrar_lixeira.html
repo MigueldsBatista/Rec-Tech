@@ -1,73 +1,76 @@
-{% extends 'main.html' %}
+{% extends "main.html" %}
 
 {% block content %}
-<div class="container-fluid mt-4"> <!-- Use container-fluid para mais largura -->
-  <div class="card"> <!-- Envolve todo o conteúdo em um card -->
-    <div class="card-header"> <!-- Cabeçalho do card -->
-      <h2>Lixeiras Cadastradas</h2> <!-- Título da seção -->
-    </div>
-    <div class="card-body"> <!-- Corpo do card -->
-      <table class="table table-striped w-100"> <!-- Mesa com listras -->
-        <thead> <!-- Cabeçalho da tabela -->
-          <tr>
-            <th>Email do Proprietário</th>
-            <th>Tipo de Resíduo</th>
-            <th>Localização</th>
-            <th>Capacidade Máxima (kg)</th>
-            <th>Estado Atual (kg)</th>
-            <th>Status de Manutenção</th>
-            <th>Progresso</th> <!-- Progresso sem a porcentagem -->
-          </tr>
-        </thead>
-        <tbody>
-          {% for lixeira in lixeiras %}
-          <tr>
-            <td>{{ lixeira.email }}</td> <!-- Email do proprietário -->
-            <td>{{ lixeira.tipo_residuo }}</td> <!-- Tipo de resíduo -->
-            <td>{{ lixeira.localizacao }}</td> <!-- Localização -->
-            <td>{{ lixeira.capacidade_maxima }}</td> <!-- Capacidade máxima -->
-            <td>{{ lixeira.estado_atual }}</td> <!-- Estado atual -->
-            <td> <!-- Status de Manutenção -->
-              {% if lixeira.status_manutencao %}
-                <span class="text-danger">Sim</span> <!-- Vermelho para manutenção necessária -->
-              {% else %}
-                <span class="text-success">Não</span> <!-- Verde para manutenção não necessária -->
-              {% endif %}
-            </td>
-            <td> <!-- Barra de Progresso mais Comprida e sem Porcentagem -->
-              <div class="progress" style="height: 24px;"> <!-- Aumenta a altura para maior visibilidade -->
-                <div class="progress-bar custom-progress-bar" 
-                     role="progressbar" 
-                     style="width: {{ lixeira.get_progresso }}%;" 
-                     aria-valuenow="{{ lixeira.get_progresso }}" 
-                     aria-valuemin="0" 
-                     aria-valuemax="100"></div> <!-- Sem valor numérico -->
-              </div>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+<!-- Mensagens de sucesso ou erro são exibidas no início do conteúdo -->
+
+<form method="POST" action="{% url 'cadastrar_lixeira' %}"> <!-- URL para processar o formulário -->
+  {% csrf_token %} <!-- Token para segurança contra ataques CSRF -->
+  <div class="container mt-4"> <!-- Espaçamento superior -->
+    <div class="card"> <!-- Uso do card para estrutura -->
+      <div class="card-header"> <!-- Cabeçalho do card -->
+        <h2>Cadastro de Lixeira</h2> <!-- Título -->
+      </div>
+      <div class="card-body"> <!-- Conteúdo do card -->
+        <div class="row"> <!-- Grid para organização responsiva -->
+          <div class="col-md-6"> <!-- Primeira coluna -->
+            <div class="mb-3"> <!-- Espaçamento entre elementos -->
+              <label para="domicilio" class="form-label">Domicílio:</label> 
+              <select name="domicilio" id="domicilio" class="form-select" required>
+                <option value="condominio">Condomínio</option>
+                <option value="hospital">Hospital</option>
+                <option value="escola">Escola/Universidade</option>
+                <option value="restaurante">Restaurante</option>
+              </select>
+            </div>
+            <div class="mb-3"> <!-- Campo para localização -->
+              <label para="localizacao" class="form-label">Localização:</label>
+              <input type="text" name="localizacao" id="localizacao" class="form-control" placeholder="Digite a localização" required>
+            </div>
+            <div class="mb-3"> <!-- Campo para email -->
+              <label para="email" class="form-label">Email do Proprietário:</label>
+              <input type="email" name="email" id="email" class="form-control" placeholder="Digite o email" required>
+            </div>
+          </div>
+          <div class="col-md-6"> <!-- Segunda coluna -->
+            <div class="mb-3"> <!-- Campo para tipo de resíduo -->
+              <label para="tipo_residuo" class="form-label">Tipo de Resíduo:</label>
+              <select name="tipo_residuo" id="tipo_residuo" class="form-select" required>
+                <option value="reciclaveis">Recicláveis</option>
+                <option value="organicos">Orgânicos</option>
+                <option value="nao_reciclaveis">Não Recicláveis</option>
+              </select>
+            </div>
+            <div class="mb-3"> <!-- Campo para capacidade máxima -->
+              <label para="capacidade_maxima" class="form-label">Capacidade Máxima (kg):</label>
+              <input tipo="number" name="capacidade_maxima" id="capacidade_maxima" class="form-control" placeholder="Capacidade máxima em kg" required>
+            </div>
+            <div class="mb-3"> <!-- Campo para estado atual -->
+              <label para="estado_atual" class="form-label">Estado Atual (kg):</label>
+              <input tipo="number" name="estado_atual" id="estado_atual" class="form-control" placeholder="Estado atual em kg" required>
+            </div>
+            <div class="mb-3"> <!-- Campo para senha -->
+              <label para="senha" class="form-label">Senha:</label> 
+              <input tipo="password" name="senha" id="senha" class="form-control" placeholder="Digite a senha" required>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-end mt-4"> <!-- Alinhamento para botão -->
+          <button type="submit" class="btn btn-primary">Cadastrar</button> <!-- Botão para submeter -->
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</form>
+{% if messages %}
+  {% for message in messages %}
+    {% if 'success' in message.tags %}
+      <div class="alert alert-success"> <!-- Para mensagens de sucesso -->
+    {% else %}
+      <div class="alert alert-danger"> <!-- Para mensagens de erro -->
+    {% endif %}
+      {{ message }} <!-- Exibe a mensagem -->
+    </div>
+  {% endfor %}
+{% endif %}
+
 {% endblock content %}
-
-{% block extra_css %}
-<style>
-  .custom-progress-bar {
-    background: linear-gradient(to right, #28a745, #ffc107, #dc3545); /* Gradiente para mudança gradual */
-    transition: width 0.5s; /* Transição suave para a barra */
-  }
-
-  .table { 
-    width: 100%; /* Certifica-se de que a tabela ocupa toda a largura disponível */
-    table-layout: fixed; /* Mantém largura uniforme */
-  }
-
-  .table th, 
-  .table td {
-    padding: 12px; /* Adiciona espaçamento entre as células */
-  }
-</style>
-{% endblock extra_css %}
