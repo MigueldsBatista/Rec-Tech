@@ -4,11 +4,11 @@ Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropoli
 
 ## ⚙️ Histórias
 
-1.Eu, como administrador, quero ser capaz de visualizar o peso atual do lixo de cada domicílio cadastrado;
-2.Eu, como administrador do sistema, desejo poder cadastrar novas lixeiras como pontos coleta de resíduos sólidos à nossa aplicação web;
-3.Eu, como motorista de coleta de lixo, quero ter acesso a uma aplicação que me mostre as rotas mais eficientes para coleta.
-4.Eu, como administrador, desejo receber alertas sobre eventos importantes relacionados à coleta.
-5.Eu, como morador da região metropolitana do Recife e cliente, desejo agendar a manutenção domiciliar de resíduos sólidos de forma conveniente pela aplicação web.
+1. Eu, como administrador, quero ser capaz de visualizar o peso atual do lixo de cada domicílio cadastrado;
+2. Eu, como administrador do sistema, desejo poder cadastrar novas lixeiras como pontos coleta de resíduos sólidos à nossa aplicação web;
+3. Eu, como motorista de coleta de lixo, quero ter acesso a uma aplicação que me mostre as rotas mais eficientes para coleta.
+4. Eu, como administrador, desejo receber alertas sobre eventos importantes relacionados à coleta.
+5. Eu, como morador da região metropolitana do Recife e cliente, desejo agendar a manutenção domiciliar de resíduos sólidos de forma conveniente pela aplicação web.
 
 ## 🖇️ Links Importantes
 
