@@ -29,12 +29,17 @@ Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropoli
 
 ## 🖇️ Links Importantes
 
-- [Link do Site] (https://rec-tech.azurewebsites.net/login/)
+- [Link do Site](https://rec-tech.azurewebsites.net/login/)
 - [Relatório de Pair Programming](https://docs.google.com/document/d/1OPxina02W3SsS_ip94wldSsZ5e1cSyig4VLWCAaXy0I/edit?usp=sharing)
 - [Link do nosso Miro](https://miro.com/app/board/uXjVNnYqUvs=/?share_link_id=733107696943)
 - [Link do Figma](https://www.figma.com/file/3p1WqK2tPZbuOeAHF0nyrV/G5?type=design&node-id=12-82&mode=design&t=sHjEHd3tyCpjLTf5-0)
-- [Link do Screencast deployment](https://youtu.be/mOC6_9p8hqs)
-- [Link do Screencast wireframe](https://youtu.be/ZPDNafSxDCE)
+- [Link do Screencast Deployment](https://youtu.be/mOC6_9p8hqs)
+- [Link do Screencast Wireframe](https://youtu.be/ZPDNafSxDCE)
+
+## Primeira Entrega
+### Diagrama de Atividades
+![Diagrama de Atividades](Rec-Tech/static/images/diagrama Rec-Tech.png)
+
 ## 👩‍💻 Membros
 
 - Eduardo Roma - erca@cesar.school 📩
