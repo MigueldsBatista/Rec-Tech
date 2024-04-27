@@ -18,6 +18,7 @@ class Lixeira(models.Model):
     data_instalacao = models.DateField(help_text="Data de instalação da lixeira")
 
     status_manutencao = models.BooleanField(default=False, help_text="Indica se a lixeira requer manutenção")
+    status_coleta=models.BooleanField(default=False)
     
 
     def __str__(self):
@@ -31,14 +32,13 @@ class Lixeira(models.Model):
         return round(progresso, 2)
     
     def save(self, *args, **kwargs):
-        if self.estado_atual >= self.capacidade_maxima:
-            self.status_manutencao = True
+        if self.estado_atual >= self.capacidade_maxima*0.8:#Se a capacidade máxima for maior que 80% ela é listada como precisando de coleta
+            self.status_coleta = True
         else:
-            self.status_manutencao = False
+            self.status_coleta = False
 
         super().save(*args, **kwargs)
 
         
-        # Se a capacidade estiver em 100%, criar um agendamento para manutenção
     
 

@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 
 
-
+GOOGLE_MAPS_API_KEY = ('AIzaSyBw7zuLJC2b-nX3s1fwY9-Z8QAEdDNrO_8')
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 

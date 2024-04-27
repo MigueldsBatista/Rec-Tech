@@ -61,7 +61,7 @@ def login(request):
             elif has_role(user, Cliente):
                 return render(request, "cliente.html")  
             elif has_role(user, Coletor):
-                return render(request, "coletor.html")  
+                return render(request, "melhor_rota.html")  
             else:
                 messages.error(request, "O usuário não tem um papel definido.")
                 return redirect("login")  # Volta para a página de login
