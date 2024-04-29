@@ -45,8 +45,6 @@ jobs:
       - name: Cleaning testing files
         run: |
           cd Rec-Tech/
-          rm .env
-          rm db.sqlite3
           rm cypress.config.js
           rm package-lock.json
           rm package.json
