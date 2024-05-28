@@ -5,6 +5,7 @@ describe('test suite 1', () => {
   let randomDecimal;
   let sub_randomDecimal;
 
+
   before(() => {
     // Gera um email e um nome aleatórios
     const randomString = Math.random().toString(36).substring(2, 11);
@@ -12,22 +13,27 @@ describe('test suite 1', () => {
     randomName = `Name_${randomString}`;
   });
 
+
   describe('Test Suite for Multiple User Types', () => {
     let randomEmail;
     let randomName;
+
 
     beforeEach(() => {
       // Gera um email e um nome aleatórios
       const randomString = Math.random().toString(36).substring(2, 11);
       const randomNumber = Math.floor(Math.random() * 1000) + 1;
 
+
       randomAdress = `Av 17 de agosto ${randomNumber}`
+
 
       randomEmail = `user_${randomString}@test.com`;
       randomName = `Name_${randomString}`;
       randomDecimal = randomNumber.toFixed(0)
       sub_randomDecimal=randomNumber*0.85.toFixed(0)
     });
+
 
     it('Register as Admin', () => {
       cy.visit('/');
@@ -41,6 +47,7 @@ describe('test suite 1', () => {
       cy.get(':nth-child(3) > .form-control').type('123');
       cy.get('.btn').click();
 
+
       //Dentro da página do admin
       cy.get(':nth-child(1) > .nav-link').click()
       cy.get(':nth-child(2) > .nav-link').click()
@@ -53,6 +60,7 @@ describe('test suite 1', () => {
       cy.get('#senha').type('123')
       cy.get('.btn').click()
     });
+
 
     it('Register as Collector', () => {
       cy.visit('/');
@@ -70,10 +78,12 @@ describe('test suite 1', () => {
       cy.get('p > .btn')
       cy.get('#localizacao_atual').type(randomAdress)
       cy.get('.mt-3 > .btn').click()
-      
-      
+     
+     
+
 
     });
+
 
     it('Register as Client', () => {
       cy.visit('/');
@@ -89,13 +99,19 @@ describe('test suite 1', () => {
       cy.get('.btn').click();
     });
 
+
     it('Scenario 3', () => {
       // Passos para o cenário 3
     });
   });
 
 
+
+
   it('cenario3', () => {
     // Insira os passos para o cenário 3
   });
 });
+
+
+
