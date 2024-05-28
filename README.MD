@@ -6,9 +6,14 @@ Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropoli
 
 1. Eu, como administrador, quero ser capaz de visualizar o peso atual do lixo de cada domicílio cadastrado;
 2. Eu, como administrador do sistema, desejo poder cadastrar novas lixeiras como pontos coleta de resíduos sólidos à nossa aplicação web;
-3. Eu, como motorista de coleta de lixo, quero ter acesso a uma aplicação que me mostre as rotas mais eficientes para coleta.
-4. Eu, como administrador, desejo receber alertas sobre eventos importantes relacionados à coleta.
-5. Eu, como morador da região metropolitana do Recife e cliente, desejo agendar a manutenção domiciliar de resíduos sólidos de forma conveniente pela aplicação web.
+3. Eu, como morador da região metropolitana do Recife e cliente, desejo agendar a manutenção domiciliar de resíduos sólidos de forma conveniente pela aplicação web;
+4. Eu, como administrador, gostaria de vizualizar na aplicação eventos importantes relacionados aos pontos de coleta;
+5. Eu, como coletor, desejo ter acesso a uma aplicação que me mostre a melhor rota de coleta;
+6. Eu, como administrador, gostaria de receber no meu email avisos de manutenção e coleta;
+7. Eu, como administrador, gostaria de vizualizar a quantidade de lixo por bairro;
+8. Eu, como morador, gostaria de avaliar as coletas que ocorreram no meu domicílio;
+9. Eu, como coletor, desejo selecionar os bairro ou tipo de resíduo antes da coleta para otimizar o meu trabalho diário;
+10. Eu, como administrador, desejo aplicar filtros na vizualização das lixeiras.
 
 ### Validações
 
