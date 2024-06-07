@@ -1,6 +1,41 @@
-{%extends "main.html"%}
+{%extends "admin_main.html"%}
 {%load static%}
 {%block content%}
-
+<link rel="stylesheet" type="text/css" href="{% static 'css/admin_bairros.css' %}">
 <h1 class="green-color"> teste vizualizacao peso dos bairros</h1>
+<div>
+    <table id="tabela-bairros">
+        <caption>Lista de Usuários</caption>
+        <thead>
+            <tr>
+                <th>Bairro</th>
+                <th>quantidade</th>
+                <th>mes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Bairro</td>
+                <td>quantidade</td>
+                <td>mes</td>
+            </tr>
+            <tr>
+                <td>Bairro</td>
+                <td>quantidade</td>
+                <td>mes</td>
+            </tr>
+            <tr>
+                <td>Bairro</td>
+                <td>quantidade</td>
+                <td>mes</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Total de lixo:  X</td>
+            </tr>
+        </tfoot>
+    </table>
+    
+</div>
 {%endblock content%}

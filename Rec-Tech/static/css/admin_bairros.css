@@ -1,0 +1,49 @@
+.green-color{
+    text-align: center;
+}
+/* Estilo para a tabela */
+#tabela-bairros {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+/* Estilo para o título da tabela */
+#tabela-bairros caption {
+    caption-side: top;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Estilo para os cabeçalhos */
+#tabela-bairros th, #tabela-bairros td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+/* Estilo para os cabeçalhos */
+#tabela-bairros th {
+    background-color: #f2f2f2;
+    color: #333;
+    text-transform: uppercase;
+}
+
+/* Estilo para as linhas alternadas */
+#tabela-bairros tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Estilo para o rodapé */
+#tabela-bairros tfoot tr {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+/* Estilo adicional */
+#tabela-bairros tbody tr:hover {
+    background-color: #e9e9e9;
+}

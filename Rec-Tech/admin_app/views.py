@@ -26,10 +26,12 @@ def aviso_lixeira(request):
 
 
 @has_role_or_redirect(Admin)
+
 def cadastrar_lixeira(request):
     if request.method == 'POST':
         domicilio = request.POST.get("domicilio")
         localizacao = request.POST.get("localizacao")
+        bairro_id=request.POST.get("bairro")
         email = request.POST.get("email")
         tipo_residuo = request.POST.get("tipo_residuo")
         capacidade_maxima = int(request.POST.get("capacidade_maxima"))
@@ -44,9 +46,12 @@ def cadastrar_lixeira(request):
         user = User.objects.create_user(username=email, email=email, password=senha)
 
         # Criar uma nova instância da lixeira
+        bairro = Bairro.objects.get(id=bairro_id)
+
         lixeira = Lixeira(
             domicilio=domicilio,
             localizacao=localizacao,
+            bairro=bairro,
             email=email,
             tipo_residuo=tipo_residuo,
             capacidade_maxima=capacidade_maxima,
@@ -58,15 +63,37 @@ def cadastrar_lixeira(request):
 
         messages.success(request, "Lixeira cadastrada com sucesso.")
         return redirect("cadastrar_lixeira")
+    bairros = Bairro.objects.all()
 
-    return render(request, 'cadastrar_lixeira.html')
+    return render(request, 'cadastrar_lixeira.html', {"bairros": bairros})
 
 @has_role_or_redirect(Admin)
 def admin_home(request):
-    # Busca todas as lixeiras no banco de dados
     lixeiras = Lixeira.objects.all()
+    bairros = Bairro.objects.all()
+    
+    tipo_residuo = request.GET.get('tipo_residuo')
+    domicilio = request.GET.get('domicilio')
+    bairro_id = request.GET.get('bairro')
+    
+    if tipo_residuo:
+        lixeiras = lixeiras.filter(tipo_residuo=tipo_residuo)
+    
+    if domicilio:
+        lixeiras = lixeiras.filter(domicilio=domicilio)
+    
+    if bairro_id:
+        lixeiras = lixeiras.filter(bairro_id=bairro_id)
+    
+    context = {
+        'lixeiras': lixeiras,
+        'bairros': bairros,
+        'tipo_residuo_selecionado': tipo_residuo,
+        'domicilio_selecionado': domicilio,
+        'bairro_selecionado': bairro_id,
+    }
     # Renderiza o template passando as lixeiras como contexto
-    return render(request, 'admin_home.html', {'lixeiras': lixeiras})
+    return render(request, 'admin_home.html', context)
 
 def filtro_lixeira(request):
     lixeiras = Lixeira.objects.all()

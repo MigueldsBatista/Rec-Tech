@@ -50,19 +50,7 @@ footer {
   color: black;
   padding: 15px;
 }
-.card {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 4%;
-    width: 90%;
-    max-width: 800px;
-    height: auto;
-    max-height: 95vh;
-    margin: 2vh auto;
-  }
+
   .header, .photo, .info, .actions {
     width: 100%;
   }
@@ -87,18 +75,6 @@ footer {
     flex-grow: 1;
   }
 
-
-  @media (min-width: 600px) {
-    .card {
-      padding: 2rem;
-    }
-    .info input, .info textarea {
-      padding: 0.75rem;
-    }
-}
-
-
- 
 .custom-progress-bar {
   width: auto;
   

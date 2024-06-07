@@ -1,0 +1,42 @@
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 50%;
+}
+
+.form-container h2 {
+  text-align: center;
+}
+
+.form-container .form-control,
+.form-container .form-select {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 10px;
+}
+
+.form-container .form-select {
+  margin-bottom: 20px; /* Adiciona mais espaço entre Bairro e Email */
+}
+
+.form-container .btn-primary {
+  width: 100%;
+  max-width: 400px;
+}
+
+#tabela-cadastro {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 4%;
+  width: auto;
+  height: auto;
+  margin: 2vh 100;
+  border-radius: 2%;
+}
