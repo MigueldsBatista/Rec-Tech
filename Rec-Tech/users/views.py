@@ -31,14 +31,14 @@ def cadastro(request):
 
         if user_type == 'admin':
             assign_role(user, Admin)
-            AdminModel.objects.create(usuaior=user, email=user_email)
+            AdminModel.objects.create(usuario=user, email=user_email)
             
         elif user_type == 'cliente':
             assign_role(user, Cliente)
-            ClienteModel.objects.create(usuaior=user, email=user_email)
+            ClienteModel.objects.create(usuario=user, email=user_email)
         elif user_type == 'coletor':
             assign_role(user, Coletor)
-            ColetorModel.objects.create(usuaior=user, email=user_email)
+            ColetorModel.objects.create(usuario=user, email=user_email)
         else:
             messages.error(request, "Papel do usuário não especificado. Selecione 'admin', coletor ou 'cliente'.")
             return redirect("cadastro")
