@@ -2,9 +2,8 @@
 {%load static%}
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/admin_home.css' %}">
-<div id="tabela-filtro">
-  
-<form method="get">
+
+<form method="get" id="tabela-filtro">
   <label for="tipo_residuo">Tipo de Resíduo:</label>
   <select name="tipo_residuo" id="tipo_residuo">
       <option id="todos" value="">Todos</option>
@@ -30,7 +29,7 @@
       {% endfor %}
   </select>
   <button type="submit" id="botao-filtro">Filtrar</button>
-</div> 
+ 
   
 </form>
 <div class="container-fluid mt-4"> <!-- Use container-fluid para mais largura -->
