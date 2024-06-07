@@ -12,8 +12,8 @@ from django.contrib import messages
 
 
 @has_role_or_redirect(Coletor)
-def home_coletor(request):
-    return render(request, "home_coletor.html")
+def coletor_home(request):
+    return redirect(request, "coletor_home.html")
 
 @has_role_or_redirect(Coletor)
 def melhor_rota(request):
