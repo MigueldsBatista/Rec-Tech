@@ -6,7 +6,9 @@ from rolepermissions.roles import assign_role
 from rolepermissions.checkers import has_role
 from rt_project.roles import Admin, Cliente, Coletor
 from django.contrib import messages
-from django.views.decorators.csrf import csrf_protect  
+from admin_app.models import Admin as AdminModel
+from cliente_app.models import Cliente as ClienteModel
+from coletor_app.models import Coletor as ColetorModel
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 def cadastro(request):
@@ -29,10 +31,14 @@ def cadastro(request):
 
         if user_type == 'admin':
             assign_role(user, Admin)
+            AdminModel.objects.create(user=user, email=user_email)
+            
         elif user_type == 'cliente':
             assign_role(user, Cliente)
+            ClienteModel.objects.create(user=user, email=user_email)
         elif user_type == 'coletor':
             assign_role(user, Coletor)
+            ColetorModel.objects.create(user=user, email=user_email)
         else:
             messages.error(request, "Papel do usuário não especificado. Selecione 'admin', coletor ou 'cliente'.")
             return redirect("cadastro")
@@ -56,12 +62,12 @@ def login(request):
             django_login(request, user)
         
             if has_role(user, Admin):
-                return render(request, "admin.html")
+                return render(request, "admin_home.html")
             
             elif has_role(user, Cliente):
-                return render(request, "cliente.html")  
+                return render(request, "cliente_home.html")  
             elif has_role(user, Coletor):
-                return render(request, "melhor_rota.html")  
+                return render(request, "coletor_home.html")  
             else:
                 messages.error(request, "O usuário não tem um papel definido.")
                 return redirect("login")  # Volta para a página de login

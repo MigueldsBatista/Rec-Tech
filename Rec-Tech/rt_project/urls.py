@@ -8,13 +8,10 @@ def homepage(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('admin_app/', 'admin_app.urls'),
-    path('coletor_app/', 'coletor_app.urls'),
-    path('cliente_app/', 'cliente_app.urls'),
+    path('admin_app/', include('admin_app.urls')),
+    path('coletor_app/', include('coletor_app.urls')),
+    path('cliente_app/', include('cliente_app.urls')),
 
-    
-
-    path('rt_app/', include('rt_app.urls')),  # Change from '/' to 'rt_app/'
     path('auth/', include("users.urls")),
     path('', homepage),
 

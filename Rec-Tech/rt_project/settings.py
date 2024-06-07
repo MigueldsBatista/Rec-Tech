@@ -53,7 +53,6 @@ else:
 # Application definition
 
 INSTALLED_APPS = [
-    'rt_app',
     'coletor_app',
     'admin_app',
     'cliente_app',

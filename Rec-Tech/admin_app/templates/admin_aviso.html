@@ -1,0 +1,39 @@
+{%extends "main.html"%}
+
+{%block content%}
+<h1>Avisos sobre as lixeiras</h1>
+
+
+{%if manutencoes %}
+<h2>Pedidos de Manutenção</h2>
+{% for manutencao in manutencoes %}
+<h3>Manutenção necessária!</h3>
+{{manutencao.data_manutencao}}
+<br>
+{{manutencao.tempo_manutencao}}
+<br>
+{{manutencao.motivo_manutencao}}
+<br>
+{{manutencao.cliente}}
+{% endfor %}
+
+{%else%}
+<p>Nenhum pedido de manutencao encontrado</p>
+{% endif %}
+
+{% if lixeiras_lotadas %}
+<h2>Pontos de coleta lotados</h2>
+
+{% for lixeira in lixeiras_lotadas %}
+<h3>Lixo cheio!</h3>
+{{lixeira.lixeira.localizacao}}
+<br>
+{{lixeira.lixeira.progresso_atual}}%
+
+{% endfor %}
+
+{%else %}
+<p> Nenhuma lixeira lotada encontrada</p>
+{%endif%}
+
+{%endblock content%}

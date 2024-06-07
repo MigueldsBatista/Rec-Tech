@@ -1,0 +1,14 @@
+
+
+<form method="POST" id="form">
+{% csrf_token %}
+
+<input type="date"   name="data_manutencao" id="data_manutencao">
+<br>
+<input type="time" name="tempo_manutencao" id="tempo_manutencao">
+<br>
+<textarea type="text" name="motivo_manutencao" placeholder="motivo"></textarea>
+<br>
+<input type="submit" name="Agendar">
+
+</form>

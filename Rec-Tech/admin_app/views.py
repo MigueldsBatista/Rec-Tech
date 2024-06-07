@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from .models import Lixeira
-from rolepermissions.decorators import has_role_decorator
+from rt_project.functions import has_role_or_redirect
 from rt_project.roles import Cliente, Admin, Coletor
-import googlemaps
 from django.conf import settings
+from admin_app.models import Admin as AdminModel, Lotada, Bairro
+from cliente_app.models import Cliente as ClienteModel, Manutencao
+
 #----------------------------------------
 
 import datetime
@@ -11,8 +13,20 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 # Create your views here.
 
+@has_role_or_redirect(Admin)
+def aviso_lixeira(request):
+    manutencoes=Manutencao.objects.all()
+    lixeiras_lotadas=Lotada.objects.all()
+    print(lixeiras_lotadas)
 
-@has_role_decorator(Admin)
+    context={
+        "manutencoes":manutencoes, 
+        "lixeiras_lotadas":lixeiras_lotadas
+    }
+    return render(request, 'admin_aviso.html', context)
+
+
+@has_role_or_redirect(Admin)
 def cadastrar_lixeira(request):
     if request.method == 'POST':
         domicilio = request.POST.get("domicilio")
@@ -48,9 +62,36 @@ def cadastrar_lixeira(request):
 
     return render(request, 'cadastrar_lixeira.html')
 
-@has_role_decorator(Admin)
-def admin(request):
+@has_role_or_redirect(Admin)
+def admin_home(request):
     # Busca todas as lixeiras no banco de dados
     lixeiras = Lixeira.objects.all()
     # Renderiza o template passando as lixeiras como contexto
-    return render(request, 'admin.html', {'lixeiras': lixeiras})
+    return render(request, 'admin_home.html', {'lixeiras': lixeiras})
+
+def filtro_lixeira(request):
+    lixeiras = Lixeira.objects.all()
+    bairros = Bairro.objects.all()
+    
+    tipo_residuo = request.GET.get('tipo_residuo')
+    domicilio = request.GET.get('domicilio')
+    bairro_id = request.GET.get('bairro')
+    
+    if tipo_residuo:
+        lixeiras = lixeiras.filter(tipo_residuo=tipo_residuo)
+    
+    if domicilio:
+        lixeiras = lixeiras.filter(domicilio=domicilio)
+    
+    if bairro_id:
+        lixeiras = lixeiras.filter(bairro_id=bairro_id)
+    
+    context = {
+        'lixeiras': lixeiras,
+        'bairros': bairros,
+        'tipo_residuo_selecionado': tipo_residuo,
+        'domicilio_selecionado': domicilio,
+        'bairro_selecionado': bairro_id,
+    }
+    
+    return render(request, 'admin_filtro.html', context)
