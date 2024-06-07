@@ -13,6 +13,9 @@ body {
   border-bottom: 5px solid black;
 }
 
+.green-color{
+  color: rgb(3, 132, 35) !important;
+}
 .custom-nav-item {
   text-decoration: none;
   color: black;

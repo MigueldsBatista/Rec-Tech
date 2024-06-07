@@ -7,10 +7,19 @@ class Admin(models.Model):
     email = models.EmailField(null=True)
     
 class Bairro(models.Model):
-    nome=models.CharField(max_length=255, null=True)
+    nome = models.CharField(max_length=255, null=True)
+
+    def sum_bairro(self):
+        lixeiras = self.lixeira.all()
+        peso_total = 0
+        for lixeira in lixeiras:
+            peso_total += lixeira.estado_atual
+
+        return peso_total
 
     def __str__(self):
         return f"{self.nome}"
+
 
 
 class Lixeira(models.Model):
@@ -34,7 +43,7 @@ class Lixeira(models.Model):
     estado_atual = models.IntegerField(help_text="Estado atual da lixeira em quilogramas")
     
     data_instalacao = models.DateField(auto_now_add=True, help_text="Data de instalação da lixeira")
-    bairro = models.ForeignKey(Bairro, on_delete=models.CASCADE, null=True, help_text="Bairro que a lixeira pertence")
+    bairro = models.ForeignKey(Bairro, on_delete=models.CASCADE, null=True, help_text="Bairro que a lixeira pertence", related_name="lixeira")
     status_manutencao = models.BooleanField(default=False, help_text="Indica se a lixeira requer manutenção")
     progresso_atual = models.FloatField(null=True, help_text="Indica o progresso da lixeira (em %)")
     

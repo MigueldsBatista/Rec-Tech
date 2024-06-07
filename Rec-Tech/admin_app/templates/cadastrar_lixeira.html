@@ -1,7 +1,10 @@
 {% extends "main.html" %}
+{%load static%}
+
 
 {% block content %}
 <!-- Mensagens de sucesso ou erro são exibidas no início do conteúdo -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/cadastrar_lixeira.css' %}">
 
 <form method="POST" action="{% url 'cadastrar_lixeira' %}"> <!-- URL para processar o formulário -->
   {% csrf_token %} <!-- Token para segurança contra ataques CSRF -->

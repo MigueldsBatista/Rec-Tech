@@ -4,19 +4,19 @@
 <form method="get">
     <label for="tipo_residuo">Tipo de Resíduo:</label>
     <select name="tipo_residuo" id="tipo_residuo">
-        <option value="">Todos</option>
-        <option value="reciclaveis" {% if tipo_residuo_selecionado == 'reciclaveis' %}selected{% endif %}>Recicláveis</option>
-        <option value="organicos" {% if tipo_residuo_selecionado == 'organicos' %}selected{% endif %}>Orgânicos</option>
-        <option value="nao_reciclaveis" {% if tipo_residuo_selecionado == 'nao_reciclaveis' %}selected{% endif %}>Não Recicláveis</option>
+        <option id="todos" value="">Todos</option>
+        <option id="reciclaveis" value="reciclaveis" {% if tipo_residuo_selecionado == 'reciclaveis' %}selected{% endif %}>Recicláveis</option>
+        <option id="organicos" value="organicos" {% if tipo_residuo_selecionado == 'organicos' %}selected{% endif %}>Orgânicos</option>
+        <option id="nao_reciclaveis" value="nao_reciclaveis" {% if tipo_residuo_selecionado == 'nao_reciclaveis' %}selected{% endif %}>Não Recicláveis</option>
     </select>
     
     <label for="domicilio">Domicílio:</label>
     <select name="domicilio" id="domicilio">
-        <option value="">Todos</option>
-        <option value="condomminio" {% if domicilio_selecionado == 'condomminio' %}selected{% endif %}>Condomínio</option>
-        <option value="hospital" {% if domicilio_selecionado == 'hospital' %}selected{% endif %}>Hospital</option>
-        <option value="escola" {% if domicilio_selecionado == 'escola' %}selected{% endif %}>Escola/Universidade</option>
-        <option value="restaurante" {% if domicilio_selecionado == 'restaurante' %}selected{% endif %}>Restaurante</option>
+        <option id="todos" value="">Todos</option>
+        <option id="condominio" value="condomminio" {% if domicilio_selecionado == 'condomminio' %}selected{% endif %}>Condomínio</option>
+        <option id="Hospital" value="hospital" {% if domicilio_selecionado == 'hospital' %}selected{% endif %}>Hospital</option>
+        <option id="escola" value="escola" {% if domicilio_selecionado == 'escola' %}selected{% endif %}>Escola/Universidade</option>
+        <option id="restaurante"value="restaurante" {% if domicilio_selecionado == 'restaurante' %}selected{% endif %}>Restaurante</option>
     </select>
     
     <label for="bairro">Bairro:</label>

@@ -5,7 +5,6 @@ from rt_project.roles import Cliente, Admin, Coletor
 from django.conf import settings
 from admin_app.models import Admin as AdminModel, Lotada, Bairro
 from cliente_app.models import Cliente as ClienteModel, Manutencao
-
 #----------------------------------------
 
 import datetime
@@ -95,3 +94,10 @@ def filtro_lixeira(request):
     }
     
     return render(request, 'admin_filtro.html', context)
+
+def vizualizar_bairro(request):
+    bairros = Bairro.objects.all()
+    for bairro in bairros:
+        peso_bairro=bairro.sum_bairro()
+        print(f"{bairro.nome}-{peso_bairro}")
+    return render(request, 'admin_bairros.html', {'bairros': bairros})
