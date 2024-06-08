@@ -66,7 +66,7 @@
                               {% endif %}
                           </td>
                           <td>
-                                  <div class="barra-progresso" style="width: {{ lixeira.get_progresso }}%">{{ lixeira.get_progresso }}%</div>
+                                  <div class="barra-progresso">{{ lixeira.get_progresso }}%</div>
                           </td>
                       </tr>
                       {% endfor %}
@@ -77,14 +77,5 @@
   </div>
 
   <!-- JavaScript para atualizar a barra de progresso -->
-  <script>
-      document.addEventListener("DOMContentLoaded", function () {
-          const barrasProgresso = document.querySelectorAll('.barra-progresso');
 
-          barrasProgresso.forEach(barra => {
-              const progresso = barra.style.width;
-              barra.innerText = `${progresso}`;
-          });
-      });
-  </script>
   {% endblock content %}

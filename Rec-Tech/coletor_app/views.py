@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from admin_app.models import Lixeira, Lotada
+from admin_app.models import Lixeira, Lotada, Bairro
 from rt_project.functions import has_role_or_redirect
 from rt_project.roles import Cliente, Admin, Coletor
 import googlemaps
@@ -16,33 +16,29 @@ def coletor_home(request):
 
     return render(request, "coletor_home.html")
 
-def filtrar_lixeiras(request):
-    lixeiras = Lixeira.objects.all()
+
+
+@has_role_or_redirect(Coletor)
+def melhor_rota(request):
+    # Carregar endereços que necessitam de coleta
+    lixeiras_lotadas = Lotada.objects.all()
+    bairros = Bairro.objects.all()
     
     tipo_residuo = request.GET.get('tipo_residuo')
     domicilio = request.GET.get('domicilio')
     bairro_id = request.GET.get('bairro')
     
     if tipo_residuo:
-        lixeiras = lixeiras.filter(tipo_residuo=tipo_residuo)
+        lixeiras_lotadas = lixeiras_lotadas.filter(lixeira__tipo_residuo=tipo_residuo)
     
     if domicilio:
-        lixeiras = lixeiras.filter(domicilio=domicilio)
+        lixeiras_lotadas = lixeiras_lotadas.filter(lixeira__domicilio=domicilio)
     
     if bairro_id:
-        lixeiras = lixeiras.filter(bairro_id=bairro_id)
-    print(lixeiras)
-    return lixeiras
+        lixeiras_lotadas = lixeiras_lotadas.filter(lixeira__bairro_id=bairro_id)
+    
+    enderecos_brutos = [(lixeira.lixeira.localizacao, lixeira.lixeira.bairro.nome) for lixeira in lixeiras_lotadas]
 
-@has_role_or_redirect(Coletor)
-def melhor_rota(request):
-    enderecos_brutos = filtrar_lixeiras(request).values_list('localizacao', flat=True)
-    # Carregar endereços que necessitam de coleta
-    # Retorna todas as instâncias de objeto Lotada
-
-
-    lixeiras_lotadas = Lotada.objects.all()
-    enderecos_brutos = [lixeira.lixeira.localizacao for lixeira in lixeiras_lotadas]
 
     if request.method == "POST":
         api_key = settings.GOOGLE_MAPS_API_KEY
@@ -60,7 +56,7 @@ def melhor_rota(request):
             })
 
         # Substitui a vírgula por uma barra para que o endereço seja reconhecido corretamente pelo Google Maps
-        enderecos = [endereco.replace(",", "/") for endereco in enderecos_brutos]
+        enderecos = [endereco[0].replace(",", "/") for endereco in enderecos_brutos]
 
         # Função para calcular a distância entre dois endereços
         # Faz uma requisição ao Google Maps para calcular a distância entre dois endereços
@@ -99,7 +95,8 @@ def melhor_rota(request):
         })
 
     # Se a requisição não for via POST, retorna uma página com a lista de endereços que precisam de coleta
-    return render(request, 'melhor_rota.html', {'enderecos_brutos': enderecos_brutos})
+    return render(request, 'melhor_rota.html', {'enderecos_brutos': enderecos_brutos, 'bairros': bairros})#bairros aqui é pro filtro e nao pro endereço
+
 
 @has_role_or_redirect(Coletor)
 def esvaziar_lixeiras(request):

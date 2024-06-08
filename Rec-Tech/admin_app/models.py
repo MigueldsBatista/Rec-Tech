@@ -16,7 +16,20 @@ class Bairro(models.Model):
             peso_total += lixeira.estado_atual
 
         return peso_total
+    def sum_reciclaveis(self):
+        lixeiras = self.lixeira.filter(tipo_residuo="reciclaveis")
+        peso_total = sum(lixeira.estado_atual for lixeira in lixeiras)
+        return peso_total
 
+    def sum_organicos(self):
+        lixeiras = self.lixeira.filter(tipo_residuo="organicos")
+        peso_total = sum(lixeira.estado_atual for lixeira in lixeiras)
+        return peso_total
+
+    def sum_nao_reciclaveis(self):
+        lixeiras = self.lixeira.filter(tipo_residuo="nao_reciclaveis")
+        peso_total = sum(lixeira.estado_atual for lixeira in lixeiras)
+        return peso_total
     def __str__(self):
         return f"{self.nome}"
 

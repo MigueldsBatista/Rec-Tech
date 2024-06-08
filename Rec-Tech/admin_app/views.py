@@ -26,7 +26,6 @@ def aviso_lixeira(request):
 
 
 @has_role_or_redirect(Admin)
-
 def cadastrar_lixeira(request):
     if request.method == 'POST':
         domicilio = request.POST.get("domicilio")
@@ -96,6 +95,7 @@ def admin_home(request):
     # Renderiza o template passando as lixeiras como contexto
     return render(request, 'admin_home.html', context)
 
+
 def filtro_lixeira(request):
     lixeiras = Lixeira.objects.all()
     bairros = Bairro.objects.all()
@@ -125,7 +125,17 @@ def filtro_lixeira(request):
 
 def vizualizar_bairro(request):
     bairros = Bairro.objects.all()
+    bairro_data = []
+
     for bairro in bairros:
-        peso_bairro=bairro.sum_bairro()
-        print(f"{bairro.nome}-{peso_bairro}")
-    return render(request, 'admin_bairros.html', {'bairros': bairros})
+        bairro_data.append({
+            'nome': bairro.nome,
+            'sum_reciclaveis': bairro.sum_reciclaveis(),
+            'sum_organicos': bairro.sum_organicos(),
+            'sum_nao_reciclaveis': bairro.sum_nao_reciclaveis(),
+        })
+
+    context = {
+        'bairros': bairro_data
+    }
+    return render(request, 'admin_bairros.html', context)

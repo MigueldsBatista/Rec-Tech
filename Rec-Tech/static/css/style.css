@@ -1,5 +1,5 @@
 .custom-bg {
-  background-color: #afafaf;
+  background-color: #fff;
 }
 
 body {
@@ -12,6 +12,12 @@ body {
   padding: 10px 0;
   border-bottom: 5px solid black;
 }
+.custom-navbar img{
+width: 120px;
+height: 30px;
+border-radius: none !important;
+}
+
 .bold-text{
   font-weight: bold !important;
 }
@@ -32,8 +38,7 @@ body {
 }
 
 .custom-nav-item.custom-active {
-  background-color: #4CAF50; /* Cor verde para a página selecionada */
-  color: white;
+  color: #4CAF50;
 }
 
 
