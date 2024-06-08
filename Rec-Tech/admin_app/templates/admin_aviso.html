@@ -1,39 +1,56 @@
-{%extends "admin_main.html"%}
+{% extends "admin_main.html" %}
+{%load static%}
+{% block content %}
 
-{%block content%}
-<h1>Avisos sobre as lixeiras</h1>
+<link rel="stylesheet" href="{% static 'css/admin_aviso.css' %}" type="text/css">
+<div class="container">
+    <h1>Avisos sobre as lixeiras</h1>
 
+    {% if manutencoes %}
+    <h2>Pedidos de Manutenção</h2>
+    <div class="row">
+        {% for manutencao in manutencoes %}
+        <div class="custom-card">
+            <svg class="custom-icon custom-icon-maintenance" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <!-- Ícone de manutenção -->
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 16H9v-2h2v2zm0-4H9V7h2v7zm4 4h-2v-2h2v2zm0-4h-2V7h2v7z"/>
+            </svg>
+            <strong>Manutenção necessária!</strong>
+            <p>Data: {{ manutencao.data_manutencao }}</p>
+            <p>Horário: {{ manutencao.tempo_manutencao }}</p>
+            <p>Motivo: {{ manutencao.motivo_manutencao }}</p>
+            <p>Cliente: {{ manutencao.cliente }}</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="custom-card">
+        <p>Nenhum pedido de manutenção encontrado</p>
+    </div>
+    {% endif %}
 
-{%if manutencoes %}
-<h2>Pedidos de Manutenção</h2>
-{% for manutencao in manutencoes %}
-<h3>Manutenção necessária!</h3>
-{{manutencao.data_manutencao}}
-<br>
-{{manutencao.tempo_manutencao}}
-<br>
-{{manutencao.motivo_manutencao}}
-<br>
-{{manutencao.cliente}}
-{% endfor %}
+    {% if lixeiras_lotadas %}
+    <h2>Pontos de coleta lotados</h2>
+    <div class="row">
+        {% for lixeira in lixeiras_lotadas %}
+        <div class="custom-card">
+            <svg class="custom-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <!-- Ícone de lixeira cheia -->
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 16H9v-2h2v2zm0-4H9V7h2v7zm4 4h-2v-2h2v2zm0-4h-2V7h2v7z"/>
+            </svg>
+            <strong>Lixo cheio!</strong>
+            <p>Localização: {{ lixeira.lixeira.localizacao }}</p>
+            <p>Progresso: {{ lixeira.lixeira.progresso_atual }}%</p>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="custom-card">
+        <p>Nenhuma lixeira lotada encontrada</p>
+    </div>
+    {% endif %}
+</div>
 
-{%else%}
-<p>Nenhum pedido de manutencao encontrado</p>
-{% endif %}
-
-{% if lixeiras_lotadas %}
-<h2>Pontos de coleta lotados</h2>
-
-{% for lixeira in lixeiras_lotadas %}
-<h3>Lixo cheio!</h3>
-{{lixeira.lixeira.localizacao}}
-<br>
-{{lixeira.lixeira.progresso_atual}}%
-
-{% endfor %}
-
-{%else %}
-<p> Nenhuma lixeira lotada encontrada</p>
-{%endif%}
-
-{%endblock content%}
+{% endblock content %}

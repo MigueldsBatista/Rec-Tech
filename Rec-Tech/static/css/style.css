@@ -12,7 +12,9 @@ body {
   padding: 10px 0;
   border-bottom: 5px solid black;
 }
-
+.bold-text{
+  font-weight: bold !important;
+}
 .green-color{
   color: rgb(3, 132, 35) !important;
 }

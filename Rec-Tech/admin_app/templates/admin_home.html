@@ -1,87 +1,90 @@
-{%extends "admin_main.html"%}
-{%load static%}
-{% block content %}
-<link rel="stylesheet" type="text/css" href="{% static 'css/admin_home.css' %}">
+  {% extends "admin_main.html" %}
+  {% load static %}
 
-<form method="get" id="tabela-filtro">
-  <label for="tipo_residuo">Tipo de Resíduo:</label>
-  <select name="tipo_residuo" id="tipo_residuo">
-      <option id="todos" value="">Todos</option>
-      <option id="reciclaveis" value="reciclaveis" {% if tipo_residuo_selecionado == 'reciclaveis' %}selected{% endif %}>Recicláveis</option>
-      <option id="organicos" value="organicos" {% if tipo_residuo_selecionado == 'organicos' %}selected{% endif %}>Orgânicos</option>
-      <option id="nao_reciclaveis" value="nao_reciclaveis" {% if tipo_residuo_selecionado == 'nao_reciclaveis' %}selected{% endif %}>Não Recicláveis</option>
-  </select>
-  
-  <label for="domicilio">Domicílio:</label>
-  <select name="domicilio" id="domicilio">
-      <option id="todos" value="">Todos</option>
-      <option id="condominio" value="condomminio" {% if domicilio_selecionado == 'condomminio' %}selected{% endif %}>Condomínio</option>
-      <option id="Hospital" value="hospital" {% if domicilio_selecionado == 'hospital' %}selected{% endif %}>Hospital</option>
-      <option id="escola" value="escola" {% if domicilio_selecionado == 'escola' %}selected{% endif %}>Escola/Universidade</option>
-      <option id="restaurante"value="restaurante" {% if domicilio_selecionado == 'restaurante' %}selected{% endif %}>Restaurante</option>
-  </select>
-  
-  <label for="bairro">Bairro:</label>
-  <select name="bairro" id="bairro">
-      <option value="">Todos</option>
-      {% for bairro in bairros %}
-          <option value="{{ bairro.id }}" {% if bairro_selecionado == bairro.id|stringformat:"s" %}selected{% endif %}>{{ bairro.nome }}</option>
-      {% endfor %}
-  </select>
-  <button type="submit" id="botao-filtro">Filtrar</button>
- 
-  
-</form>
-<div class="container-fluid mt-4"> <!-- Use container-fluid para mais largura -->
-  <div class="card"> <!-- Envolve todo o conteúdo em um card -->
-    <div class="card-header"> <!-- Cabeçalho do card -->
-      <h2>Lixeiras Cadastradas</h2> <!-- Título da seção -->
-    </div>
-    <div class="card-body"> <!-- Corpo do card -->
-      <table class="table table-striped w-100"> <!-- Remove table-responsive -->
-        <thead> <!-- Cabeçalho da tabela -->
-          <tr>
-            <th>Email do Proprietário</th>
-            <th>Tipo de Resíduo</th>
-            <th>Localização</th>
-            <th>Capacidade Máxima (kg)</th>
-           
-            <th>Status de Manutenção</th>
-            <th>Progresso (%)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for lixeira in lixeiras %}
-          <tr>
-            <td>{{ lixeira.email }}</td> <!-- Email do proprietário -->
-            <td>{{ lixeira.tipo_residuo }}</td> <!-- Tipo de resíduo -->
-            <td>{{ lixeira.localizacao }}</td> <!-- Localização -->
-            <td>{{ lixeira.capacidade_maxima }}</td> <!-- Capacidade máxima -->
-            
-            <td> <!-- Status de Manutenção -->
-              {% if lixeira.status_manutencao %}
-                <span class="text-danger">Sim</span> <!-- Vermelho para manutenção necessária -->
-              {% else %}
-                <span class="text-success">Não</span> <!-- Verde para manutenção não necessária -->
-              {% endif %}
-            </td>
-            <td> <!-- Barra de Progresso com Gradiente -->
-              <div class="progress">
-                <div class="progress-bar custom-progress-bar" 
-                     role="progressbar" 
-                     aria-valuenow="{{lixeira.get_progresso }}" 
-                     aria-valuemin="0" 
-                     aria-valuemax="100">
-                  {{ lixeira.get_progresso }}% <!-- Valor do progresso -->
-                </div>
-              </div>
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
+  {% block content %}
+  <link rel="stylesheet" type="text/css" href="{% static 'css/admin_home.css' %}">
+  <div class="home-filtro">
+      <form method="get" id="tabela-filtro">
+          <label for="tipo_residuo">Tipo de Resíduo:</label>
+          <select name="tipo_residuo" id="tipo_residuo">
+              <option id="todos" value="">Todos</option>
+              <option id="reciclaveis" value="reciclaveis" {% if tipo_residuo_selecionado == 'reciclaveis' %}selected{% endif %}>Recicláveis</option>
+              <option id="organicos" value="organicos" {% if tipo_residuo_selecionado == 'organicos' %}selected{% endif %}>Orgânicos</option>
+              <option id="nao_reciclaveis" value="nao_reciclaveis" {% if tipo_residuo_selecionado == 'nao_reciclaveis' %}selected{% endif %}>Não Recicláveis</option>
+          </select>
+          
+          <label for="domicilio">Domicílio:</label>
+          <select name="domicilio" id="domicilio">
+              <option id="todos" value="">Todos</option>
+              <option id="condominio" value="condomminio" {% if domicilio_selecionado == 'condomminio' %}selected{% endif %}>Condomínio</option>
+              <option id="hospital" value="hospital" {% if domicilio_selecionado == 'hospital' %}selected{% endif %}>Hospital</option>
+              <option id="escola" value="escola" {% if domicilio_selecionado == 'escola' %}selected{% endif %}>Escola/Universidade</option>
+              <option id="restaurante"value="restaurante" {% if domicilio_selecionado == 'restaurante' %}selected{% endif %}>Restaurante</option>
+          </select>
+          
+          <label for="bairro">Bairro:</label>
+          <select name="bairro" id="bairro">
+              <option value="">Todos</option>
+              {% for bairro in bairros %}
+                  <option value="{{ bairro.id }}" {% if bairro_selecionado == bairro.id|stringformat:"s" %}selected{% endif %}>{{ bairro.nome }}</option>
+              {% endfor %}
+          </select>
+          <button type="submit" id="botao-filtro">Filtrar</button>
+        
+        
+      </form>
   </div>
-</div>
-{% endblock content %}
+  <div class="container-fluid mt-4">
+      <div class="card">
+          <div class="card-header">
+              <h2>Lixeiras Cadastradas</h2>
+          </div>
+          <div class="card-body">
+              <table class="table table-striped w-100">
+                  <thead>
+                      <tr>
+                          <th>Email do Proprietário</th>
+                          <th>Tipo de Resíduo</th>
+                          <th>Localização</th>
+                          <th>Capacidade Máxima (kg)</th>
+                          <th>Status de Manutenção</th>
+                          <th>Progresso (%)</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {% for lixeira in lixeiras %}
+                      <tr>
+                          <td>{{ lixeira.email }}</td>
+                          <td>{{ lixeira.tipo_residuo }}</td>
+                          <td>{{ lixeira.localizacao }}</td>
+                          <td>{{ lixeira.capacidade_maxima }}</td>
+                          <td>
+                              {% if lixeira.status_manutencao %}
+                              <span class="text-danger">Sim</span>
+                              {% else %}
+                              <span class="text-success">Não</span>
+                              {% endif %}
+                          </td>
+                          <td>
+                                  <div class="barra-progresso" style="width: {{ lixeira.get_progresso }}%">{{ lixeira.get_progresso }}%</div>
+                          </td>
+                      </tr>
+                      {% endfor %}
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
 
+  <!-- JavaScript para atualizar a barra de progresso -->
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          const barrasProgresso = document.querySelectorAll('.barra-progresso');
+
+          barrasProgresso.forEach(barra => {
+              const progresso = barra.style.width;
+              barra.innerText = `${progresso}`;
+          });
+      });
+  </script>
+  {% endblock content %}

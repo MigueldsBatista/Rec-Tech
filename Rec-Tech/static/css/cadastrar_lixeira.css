@@ -1,42 +1,72 @@
-
-.form-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+/* Estilização geral para o container do formulário */
+.cadastro-container {
+  width: 30%;
   margin: 0 auto;
-  width: 50%;
+  padding: 20px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
-.form-container h2 {
+/* Estilização para o título do formulário */
+.cadastro-container h2 {
   text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+  font-size: 24px;
 }
 
-.form-container .form-control,
-.form-container .form-select {
+/* Estilização para os rótulos dos campos */
+.cadastro-container label {
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Estilização para os campos de entrada */
+.cadastro-container input[type="text"],
+.cadastro-container input[type="email"],
+.cadastro-container input[type="number"],
+.cadastro-container input[type="password"],
+.cadastro-container select {
   width: 100%;
-  max-width: 400px;
-  margin-bottom: 10px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 14px;
 }
 
-.form-container .form-select {
-  margin-bottom: 20px; /* Adiciona mais espaço entre Bairro e Email */
+/* Estilização para o botão de enviar */
+.cadastro-container .custom-button {
+  width: 20%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.form-container .btn-primary {
-  width: 100%;
-  max-width: 400px;
+.cadastro-container .custom-button:hover {
+  background-color: #0056b3;
 }
 
-#tabela-cadastro {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 4%;
-  width: auto;
-  height: auto;
-  margin: 2vh 100;
-  border-radius: 2%;
+/* Estilização para dispositivos móveis */
+@media (max-width: 600px) {
+  .cadastro-container {
+      padding: 10px;
+  }
+  
+  .cadastro-container h2 {
+      font-size: 20px;
+  }
+  
+  .cadastro-container .custom-button {
+      font-size: 14px;
+  }
 }
+

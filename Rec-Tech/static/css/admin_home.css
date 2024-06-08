@@ -1,16 +1,18 @@
-#tabela-filtro {
+.home-filtro {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 4%;
-    width: 90%;
     max-width: 800px;
     height: auto;
-    max-height: 95vh;
     margin: 2vh auto;
   }
-  
+  .home-filtro select{
+    padding: 3px;
+    border-radius: 10px;
+  }
+  #botao-filtro{
+    border-radius:10px ;
+  }
   @media (min-width: 600px) {
     .card {
       padding: 2rem;
@@ -30,4 +32,8 @@
   width: 90%;
   height: auto;
   margin: 2vh auto;
+}
+
+.barra-progresso{
+  background-color: forestgreen;
 }
