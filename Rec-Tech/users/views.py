@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as django_login#para evitar conflito
@@ -62,12 +63,13 @@ def login(request):
             django_login(request, user)
         
             if has_role(user, Admin):
-                return render(request, "admin_home.html")
+                return redirect("admin_home")
             
             elif has_role(user, Cliente):
-                return render(request, "cliente_home.html")  
+                return redirect("cliente_home")  
+            
             elif has_role(user, Coletor):
-                return render(request, "coletor_home.html")  
+                return redirect('coletor_home')
             else:
                 messages.error(request, "O usuário não tem um papel definido.")
                 return redirect("login")  # Volta para a página de login

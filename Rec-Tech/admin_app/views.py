@@ -71,6 +71,7 @@ def cadastrar_lixeira(request):
 def admin_home(request):
     lixeiras = Lixeira.objects.all()
     bairros = Bairro.objects.all()
+    print(bairros)
     
     tipo_residuo = request.GET.get('tipo_residuo')
     domicilio = request.GET.get('domicilio')

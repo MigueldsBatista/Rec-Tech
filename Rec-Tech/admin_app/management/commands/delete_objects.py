@@ -7,5 +7,5 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         #Lixeira.objects.all().delete()
         Bairro.objects.all().delete()
-        
+        Lixeira.objects.all().delete()
         self.stdout.write(self.style.SUCCESS('Todos os bairros e lixeiras foram deletados!'))
