@@ -1,10 +1,16 @@
 from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
+from cliente_app.models import Cliente
+from django.db.models import Sum
+from django.db.models import Avg
 
 class Admin(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name="admin", null=True)
     email = models.EmailField(null=True)
+
+    def __str__(self):
+        return f"{self.usuario} - {self.email}"
     
 class Bairro(models.Model):
     nome = models.CharField(max_length=255, null=True)
@@ -44,7 +50,7 @@ class Lixeira(models.Model):
     ], null=True, help_text="Casa, Restaurante, Hospital etc...")
     
     localizacao = models.CharField(max_length=255, help_text="Localização física da lixeira em coordenadas")
-    email = models.CharField(max_length=255, help_text="Email do proprietário", null=True)
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, null=True, help_text="Email do proprietário")
     
     tipo_residuo = models.CharField(max_length=50, choices=[
         ("reciclaveis", "Recicláveis"),
@@ -59,7 +65,7 @@ class Lixeira(models.Model):
     bairro = models.ForeignKey(Bairro, on_delete=models.CASCADE, null=True, help_text="Bairro que a lixeira pertence", related_name="lixeira")
     status_manutencao = models.BooleanField(default=False, help_text="Indica se a lixeira requer manutenção")
     progresso_atual = models.FloatField(null=True, help_text="Indica o progresso da lixeira (em %)")
-    
+    coleta_realizada = models.BooleanField(default=False, help_text="Indica se a lixeira foi coletada")
     def __str__(self):
         return f"Lixeira em {self.localizacao} - {self.tipo_residuo}"
     
@@ -86,3 +92,42 @@ class Lotada(models.Model):
 
         return f"{self.lixeira.localizacao} - {porcentagem}%"
 
+class Manutencao(models.Model):
+    lixeira = models.ForeignKey(Lixeira, on_delete=models.CASCADE, related_name="manutencao", null=True)
+    data_manutencao = models.DateField()
+    tempo_manutencao = models.TimeField()
+    motivo_manutencao = models.CharField(max_length=255, null=True)
+    def __str__(self):
+        return f"{self.data_manutencao} - {self.tempo_manutencao}"
+    
+
+class AvaliacaoColeta(models.Model):
+    lixeira = models.ForeignKey(Lixeira, on_delete=models.CASCADE, related_name='avaliacoes')
+    cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name='avaliacoes')
+    data_avaliacao = models.DateField(auto_now_add=True)
+    nota = models.IntegerField(choices=[(i, i) for i in range(1, 6)], help_text="Nota de 1 a 5")
+    comentario = models.TextField(null=True, blank=True)
+
+    @classmethod
+    def media_avaliacao_geral(cls):
+        return cls.objects.all().aggregate(media_geral=Avg('nota'))['media_geral']
+    
+    @classmethod
+    def count_nota1(cls):
+        return cls.objects.filter(nota=1).count()
+
+    @classmethod
+    def count_nota2(cls):
+        return cls.objects.filter(nota=2).count()
+
+    @classmethod
+    def count_nota3(cls):
+        return cls.objects.filter(nota=3).count()
+
+    @classmethod
+    def count_nota4(cls):
+        return cls.objects.filter(nota=4).count()
+
+    @classmethod
+    def count_nota5(cls):
+        return cls.objects.filter(nota=5).count()

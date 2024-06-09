@@ -3,7 +3,8 @@
 }
 
 body {
-  font-family: Arial, sans-serif;
+
+      font-family: 'Inter';font-size: 22px;
 }
 
 .custom-navbar {

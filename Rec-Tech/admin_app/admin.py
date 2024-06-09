@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
-from admin_app.models import Lixeira, Bairro, Lotada
+from admin_app.models import Lixeira, Bairro, Lotada, Manutencao, AvaliacaoColeta
 from django.contrib import admin
 
 
@@ -28,3 +28,5 @@ class LixeiraAdmin(admin.ModelAdmin):
 admin.site.register(Lixeira, LixeiraAdmin)
 admin.site.register(Bairro)
 admin.site.register(Lotada)
+admin.site.register(Manutencao)
+admin.site.register(AvaliacaoColeta)

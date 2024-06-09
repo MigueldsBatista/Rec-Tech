@@ -1,0 +1,53 @@
+{% extends 'admin_main.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/admin_avaliacao.css' %}" type="text/css">
+<h1>Avaliação Geral das coletas</h1>
+<div class="avaliacao">
+    <h2>{{ media_geral }}</h2>
+    <canvas id="myChart" width="300" height="150"></canvas>
+</div>
+
+<!-- Adicionando o script do Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Obtendo os dados das notas do template Django
+    var notas = {
+        nota1: {{ contagem_notas.nota1 }},
+        nota2: {{ contagem_notas.nota2 }},
+        nota3: {{ contagem_notas.nota3 }},
+        nota4: {{ contagem_notas.nota4 }},
+        nota5: {{ contagem_notas.nota5 }}
+    };
+
+    // Configurando os dados para o gráfico
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Nota 1', 'Nota 2', 'Nota 3', 'Nota 4', 'Nota 5'],
+            datasets: [{
+                label: 'Contagem de Notas',
+                data: [notas.nota1, notas.nota2, notas.nota3, notas.nota4, notas.nota5],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)'
+                ],
+
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+{% endblock %}

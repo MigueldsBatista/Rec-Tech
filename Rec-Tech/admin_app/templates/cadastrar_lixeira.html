@@ -35,9 +35,12 @@
       {%endif%}
     </select>
 
-    <label for="email">Email do Proprietário:</label>
-    <input type="email" name="email" id="email" placeholder="Digite o email" required>
-
+    <label for="email">Selecione o proprietário</label><!--Atualizei, agora primeiro é preciso cadastrar o cliente no sistema para depois criar uma lixeira para ele-->
+    <select name="cliente" id="cliente-lixeira">
+    {%for cliente in clientes%}
+<option value={{cliente.id}}>{{cliente.usuario}}
+    {%endfor%}
+    </select>
     <label for="tipo_residuo">Tipo de Resíduo:</label>
     <select name="tipo_residuo" id="tipo_residuo" required>
       <option value="reciclaveis">Reciclável</option>
@@ -51,8 +54,7 @@
     <label for="estado_atual">Estado Atual (kg):</label>
     <input type="number" name="estado_atual" id="estado_atual" placeholder="Estado atual em kg" required>
 
-    <label for="senha">Senha do cliente:</label>
-    <input type="password" name="senha" id="senha"placeholder="Digite a senha" required>
+    
 
     <button type="submit" class="custom-button">Cadastrar</button>
   </form>

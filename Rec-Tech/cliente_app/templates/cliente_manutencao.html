@@ -9,9 +9,25 @@
 <br>
 <input type="time" name="tempo_manutencao" id="tempo_manutencao">
 <br>
-<textarea type="text" name="motivo_manutencao" placeholder="motivo"></textarea>
+<select name="lixeira">
+{%for lixeira in lixeiras%}
+<option value="{{lixeira.id}}">{{lixeira.localizacao}}</option>
+{%endfor%}
+
+</select>    
+<textarea type="text" id="motivo-manutencao"name="motivo_manutencao" placeholder="motivo"></textarea>
 <br>
 <input type="submit" name="Agendar">
 
 </form>
+{% if messages %}
+{% for message in messages %}
+  {% if message.tags == 'success' %}
+    <div class="alert alert-success" role="alert">{{ message }}</div> <!-- Exibe alerta verde -->
+  {% else %}
+    <div class="alert alert-danger" role="alert">{{ message }}</div> <!-- Exibe alerta vermelho -->
+
+  {% endif %}
+{% endfor %}
+{% endif %}
 {%endblock content%}

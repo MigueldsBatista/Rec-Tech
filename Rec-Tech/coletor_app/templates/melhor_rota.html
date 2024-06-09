@@ -1,15 +1,11 @@
-{%extends "coletor_main.html" %}
-    {%load static%}
-    {%block content%}
+{% extends "coletor_main.html" %}
+{% load static %}
+{% block content %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'css/melhor_rota.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'css/melhor_rota.css' %}">
 
-    <h1 class="display-4">Calcular Melhor Rota</h1> 
+<h1 class="">Calcular Melhor Rota</h1>
 
-
-            <p>
-                <a href="{% url 'melhor_rota' %}" class="btn btn-primary">Endereços precisando de coleta</a>
-            </p>
 <form method="get">
     <label for="tipo_residuo">Tipo de Resíduo:</label>
     <select name="tipo_residuo" id="tipo_residuo">
@@ -38,49 +34,46 @@
     
     <button type="submit">Filtrar</button>
 </form>
-         
-                {% for endereco in enderecos_brutos %}
-                    <p>{{ endereco }}</p>
-                {% endfor %}
 
-            <form method="POST" action="{% url 'melhor_rota' %}" class="mt-3"> 
-                {% csrf_token %}
+{% for endereco in enderecos_brutos %}
+    <p>{{ endereco }}</p>
+{% endfor %}
 
-            
-                    <label for="localizacao_atual">Localização Atual:</label>
-                    <input type="text" name="localizacao_atual" id="localizacao_atual" required class="form-control" />
+<form method="POST" action="{% url 'melhor_rota' %}" class="mt-3">
+    {% csrf_token %}
+    <input type="hidden" name="tipo_residuo" value="{{ tipo_residuo_selecionado }}">
+    <input type="hidden" name="domicilio" value="{{ domicilio_selecionado }}">
+    <input type="hidden" name="bairro" value="{{ bairro_selecionado }}">
 
-                <input type="submit" value="Calcular Rota" class="btn btn-success" /> 
-            </form>
+    <label for="localizacao_atual">Localização Atual:</label>
+    <input type="text" name="localizacao_atual" id="localizacao_atual" required class="form-control" />
 
-            {% if rota_url %}
-                <h2>Melhor Rota</h2>
-                <p>A melhor rota para percorrer todos os endereços é:</p>
-                <a href="{{ rota_url }}" target="_blank" class="btn btn-info">Abrir Rota no Google Maps</a>
-                <ul class="list-group"> 
-                    {% for endereco in melhor_permutacao %}
-                    <li class="list-group-item">{{ endereco }}</li>
-                    {% endfor %}
-                </ul>
+    <input type="submit" value="Calcular Rota" class="btn btn-success" />
+</form>
 
-        <form method="POST" action="{% url 'esvaziar_lixeiras' %}">
-            {% csrf_token %}
-            {% for endereco in melhor_permutacao %}
-                <input type="hidden" name="enderecos" value="{{ endereco }}">
-            {% endfor %}
-            <input type="submit" value="Esvaziar Lixeiras">
-        </form>
-            {% endif %}
+{% if rota_url %}
+    <h2>Melhor Rota</h2>
+    <p>A melhor rota para percorrer todos os endereços é:</p>
+    <a href="{{ rota_url }}" target="_blank" class="btn btn-info">Abrir Rota no Google Maps</a>
+    <ul class="list-group">
+        {% for endereco in melhor_permutacao %}
+        <li class="list-group-item">{{ endereco }}</li>
+        {% endfor %}
+    </ul>
 
+    <form method="POST" action="{% url 'esvaziar_lixeiras' %}">
+        {% csrf_token %}
+        {% for endereco in melhor_permutacao %}
+            <input type="hidden" name="enderecos" value="{{ endereco }}">
+        {% endfor %}
+        <input type="submit" value="Esvaziar Lixeiras">
+    </form>
+{% endif %}
 
+{% if error %}
+    <div class="alert alert-danger mt-4">
+        {{ error }}
+    </div>
+{% endif %}
 
-            {% if error %}
-       
-            <div class="alert alert-danger mt-4"> 
-                {{ error }}
-            </div>
-            {% endif %}
- 
-
-  
-{%endblock content%}
+{% endblock content %}

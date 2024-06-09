@@ -1,6 +1,9 @@
 from django.core.management.base import BaseCommand
 from admin_app.models import Lixeira, Bairro
 from django.contrib.auth.models import User
+from cliente_app.models import Cliente as ClienteModel
+from rt_project.roles import Cliente
+from rolepermissions.roles import assign_role
 
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
@@ -10,8 +13,15 @@ class Command(BaseCommand):
             "Afogados", "Madalena", "Recife Antigo"
         ]
         i = 0
+ 
         for nome in bairros:
             bairro, created = Bairro.objects.get_or_create(nome=nome)
+            user = User.objects.create_user(username=f'cliente{i}', password='123')
+            cliente = ClienteModel.objects.create(
+                usuario=user,
+                email=f"cliente{i}@test.com",
+            )
+            assign_role(cliente.usuario, Cliente)
             
             # Verifica se as lixeiras já existem
             lixeira1_exists = Lixeira.objects.filter(
@@ -20,8 +30,7 @@ class Command(BaseCommand):
                 tipo_residuo="organicos",
                 capacidade_maxima=1000,
                 estado_atual=750,
-                email=f"adm{i}@test.com"
-
+                cliente=cliente
             ).exists()
             
             lixeira2_exists = Lixeira.objects.filter(
@@ -30,7 +39,7 @@ class Command(BaseCommand):
                 tipo_residuo="organicos",
                 capacidade_maxima=1000,
                 estado_atual=850,
-                email=f"adm{i}@test.com"
+                cliente=cliente
             ).exists()
 
             # Primeira lixeira (capacidade abaixo de 80%)
@@ -42,7 +51,7 @@ class Command(BaseCommand):
                     tipo_residuo="organicos",
                     capacidade_maxima=1000,
                     estado_atual=750,
-                    email=f"adm{i}@test.com"
+                    cliente=cliente
                 )
             else:
                 self.stdout.write(self.style.WARNING(f'Lixeira em {bairro.nome} (endereco{i}) já existe.'))
@@ -56,7 +65,7 @@ class Command(BaseCommand):
                     tipo_residuo="organicos",
                     capacidade_maxima=1000,
                     estado_atual=850,
-                    email=f"adm{i}@test.com",
+                    cliente=cliente
                 )
             else:
                 self.stdout.write(self.style.WARNING(f'Lixeira em {bairro.nome} (av 17 de agosto 25{i+1}) já existe.'))

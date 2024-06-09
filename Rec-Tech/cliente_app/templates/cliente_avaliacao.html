@@ -1,0 +1,38 @@
+{% extends "cliente_main.html" %}
+
+{% block content %}
+  <h2>Avaliar Coletas</h2>
+  {%if lixeiras %}
+  {% for lixeira in lixeiras %}
+    <h3>Lixeira em {{ lixeira.localizacao }}</h3>
+    <form method="post">
+      {% csrf_token %}
+      <input type="hidden" name="lixeira" value="{{ lixeira.id }}">
+      <label for="nota">Nota:</label>
+      <select name="nota" id="nota">
+        {% for i in "12345" %}
+          <option id="avaliacao-nota" value="{{ i }}">{{ i }}</option>
+        {% endfor %}
+      </select>
+      <br>
+      
+      <label for="comentario">Comentário:</label>
+      <textarea name="comentario" id="avaliacao-comentario" rows="4"></textarea>
+      <br>
+      <button id="botao" type="submit">Enviar Avaliação</button>
+    </form>
+  {% endfor %}
+  {%else%}
+  <h2>Não houve nenhuma coleta recente entre as suas lixeiras</h2>
+  {% endif %}
+  {% if messages %}
+{% for message in messages %}
+  {% if message.tags == 'success' %}
+    <div class="alert alert-success" role="alert">{{ message }}</div> <!-- Exibe alerta verde -->
+  {% else %}
+    <div class="alert alert-danger" role="alert">{{ message }}</div> <!-- Exibe alerta vermelho -->
+
+  {% endif %}
+{% endfor %}
+{% endif %}
+{% endblock %}

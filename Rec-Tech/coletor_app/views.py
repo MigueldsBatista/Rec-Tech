@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from admin_app.models import Lixeira, Lotada, Bairro
+from admin_app.models import Lixeira, Lotada, Bairro, AvaliacaoColeta
 from rt_project.functions import has_role_or_redirect
 from rt_project.roles import Cliente, Admin, Coletor
 import googlemaps
@@ -103,9 +103,9 @@ def esvaziar_lixeiras(request):
     if request.method == "POST":
         enderecos = request.POST.getlist('enderecos')
         lixeiras = Lixeira.objects.filter(localizacao__in=enderecos)
-
         for lixeira in lixeiras:
             lixeira.estado_atual = 0
+            lixeira.coleta_realizada=True
             lixeira.save()
             Lotada.objects.filter(lixeira=lixeira).delete()
 
