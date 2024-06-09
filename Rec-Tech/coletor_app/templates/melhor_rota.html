@@ -4,31 +4,31 @@
 
 <link rel="stylesheet" type="text/css" href="{% static 'css/melhor_rota.css' %}">
 
-<h1 class="">Calcular Melhor Rota</h1>
+<h1>Calcular Melhor Rota</h1>
 
 <form method="get">
     <label for="tipo_residuo">Tipo de Resíduo:</label>
     <select name="tipo_residuo" id="tipo_residuo">
         <option value="">Todos</option>
-        <option value="reciclaveis" {% if tipo_residuo_selecionado == 'reciclaveis' %}selected{% endif %}>Recicláveis</option>
-        <option value="organicos" {% if tipo_residuo_selecionado == 'organicos' %}selected{% endif %}>Orgânicos</option>
-        <option value="nao_reciclaveis" {% if tipo_residuo_selecionado == 'nao_reciclaveis' %}selected{% endif %}>Não Recicláveis</option>
+        <option value="reciclaveis" {% if request.GET.tipo_residuo == 'reciclaveis' %}selected{% endif %}>Recicláveis</option>
+        <option value="organicos" {% if request.GET.tipo_residuo == 'organicos' %}selected{% endif %}>Orgânicos</option>
+        <option value="nao_reciclaveis" {% if request.GET.tipo_residuo == 'nao_reciclaveis' %}selected{% endif %}>Não Recicláveis</option>
     </select>
 
     <label for="domicilio">Domicílio:</label>
     <select name="domicilio" id="domicilio">
         <option value="">Todos</option>
-        <option value="condomminio" {% if domicilio_selecionado == 'condomminio' %}selected{% endif %}>Condomínio</option>
-        <option value="hospital" {% if domicilio_selecionado == 'hospital' %}selected{% endif %}>Hospital</option>
-        <option value="escola" {% if domicilio_selecionado == 'escola' %}selected{% endif %}>Escola/Universidade</option>
-        <option value="restaurante" {% if domicilio_selecionado == 'restaurante' %}selected{% endif %}>Restaurante</option>
+        <option value="condominio" {% if request.GET.domicilio == 'condominio' %}selected{% endif %}>Condomínio</option>
+        <option value="hospital" {% if request.GET.domicilio == 'hospital' %}selected{% endif %}>Hospital</option>
+        <option value="escola" {% if request.GET.domicilio == 'escola' %}selected{% endif %}>Escola/Universidade</option>
+        <option value="restaurante" {% if request.GET.domicilio == 'restaurante' %}selected{% endif %}>Restaurante</option>
     </select>
 
     <label for="bairro">Bairro:</label>
     <select name="bairro" id="bairro">
         <option value="">Todos</option>
         {% for bairro in bairros %}
-            <option value="{{ bairro.id }}" {% if bairro_selecionado == bairro.id|stringformat:"s" %}selected{% endif %}>{{ bairro.nome }}</option>
+            <option value="{{ bairro.id }}" {% if request.GET.bairro == bairro.id|stringformat:"s" %}selected{% endif %}>{{ bairro.nome }}</option>
         {% endfor %}
     </select>
     
@@ -41,9 +41,9 @@
 
 <form method="POST" action="{% url 'melhor_rota' %}" class="mt-3">
     {% csrf_token %}
-    <input type="hidden" name="tipo_residuo" value="{{ tipo_residuo_selecionado }}">
-    <input type="hidden" name="domicilio" value="{{ domicilio_selecionado }}">
-    <input type="hidden" name="bairro" value="{{ bairro_selecionado }}">
+    <input type="hidden" name="tipo_residuo" value="{{ request.GET.tipo_residuo }}">
+    <input type="hidden" name="domicilio" value="{{ request.GET.domicilio }}">
+    <input type="hidden" name="bairro" value="{{ request.GET.bairro }}">
 
     <label for="localizacao_atual">Localização Atual:</label>
     <input type="text" name="localizacao_atual" id="localizacao_atual" required class="form-control" />
