@@ -43,30 +43,31 @@
               <table class="table table-striped w-100">
                   <thead>
                       <tr>
-                          <th>Email do Proprietário</th>
-                          <th>Tipo de Resíduo</th>
-                          <th>Localização</th>
-                          <th>Capacidade Máxima (kg)</th>
-                          <th>Status de Manutenção</th>
-                          <th>Progresso (%)</th>
+                          <th class="text-center">Email do Proprietário</th>
+                          <th class="text-center">Tipo de Resíduo</th>
+                          <th class="text-center">Localização</th>
+                          <th class="text-center">Capacidade Máxima (kg)</th>
+                          <th class="text-center">Status de Manutenção</th>
+                          <th class="text-center">Progresso (%)</th>
                       </tr>
                   </thead>
                   <tbody>
                       {% for lixeira in lixeiras %}
                       <tr>
-                          <td>{{ lixeira.email }}</td>
-                          <td>{{ lixeira.tipo_residuo }}</td>
-                          <td>{{ lixeira.localizacao }}</td>
-                          <td>{{ lixeira.capacidade_maxima }}</td>
-                          <td>
+                          <td>{{ lixeira.cliente.email }}</td>
+                          <td class="text-center">{{ lixeira.tipo_residuo }}</td>
+                          <td class="text-center">{{ lixeira.localizacao }}</td>
+                          <td class="text-center">{{ lixeira.capacidade_maxima }}</td>
+                          <td class="text-center">
                               {% if lixeira.status_manutencao %}
                               <span class="text-danger">Sim</span>
                               {% else %}
                               <span class="text-success">Não</span>
                               {% endif %}
                           </td>
+
                           <td>
-                                  <div class="barra-progresso">{{ lixeira.get_progresso }}%</div>
+                                  <div class="barra-progresso text-white text-center">{{ lixeira.get_progresso }}%</div>
                           </td>
                       </tr>
                       {% endfor %}

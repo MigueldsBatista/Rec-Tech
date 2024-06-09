@@ -35,5 +35,10 @@
 }
 
 .barra-progresso{
+  text-align: center;
+  color: white !important;
   background-color: forestgreen;
+}
+.text-center{
+  text-align: center;
 }

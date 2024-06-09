@@ -70,3 +70,12 @@ def cliente_avaliacao(request):
         'lixeiras': lixeiras,
     }
     return render(request, 'cliente_avaliacao.html', context)
+
+def cliente_perfil(request):
+
+    cliente = ClienteModel.objects.get(usuario=request.user)
+    print
+    context={
+        'cliente':cliente
+    }
+    return render(request, 'cliente_perfil.html', context)

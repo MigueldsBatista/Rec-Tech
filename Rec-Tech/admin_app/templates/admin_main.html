@@ -24,8 +24,9 @@
   <nav class="custom-navbar">
     
     <a href="{% url 'admin_home' %}" id="logo-lixeira">
-    <img src="{%static 'images/text-logo.png' %}"></a>
+    <img class="logotexto" src="{%static 'images/text-logo.png' %}"></a>
 
+    <a href="{% url 'admin_perfil' %}" class="custom-nav-item bold-text" id="admin-perfil">Perfil</a>
     <a href="{% url 'admin_home' %}" class="custom-nav-item bold-text" id="vizualizar_lixeira"> Vizualizar lixeiras</a>
     <a href="{% url 'cadastrar_lixeira' %}" class="custom-nav-item bold-text" id="cadastrar_lixeira">Cadastrar lixeiras</a>
     <a href="{% url 'aviso_lixeira' %}" class="custom-nav-item bold-text" id="aviso_lixeira">Avisos</a>
@@ -42,7 +43,10 @@
         }
     });
 </script>
-  {% block content %}{% endblock content %}
+
+  {% block content %}
+  <!--Conteudo da pagina aqui-->
+  {% endblock content %}
 
 </body>
 </html>

@@ -3,6 +3,8 @@ from admin_app.models import Lixeira, Lotada, Bairro, AvaliacaoColeta
 from rt_project.functions import has_role_or_redirect
 from rt_project.roles import Cliente, Admin, Coletor
 import googlemaps
+from cliente_app.models import Cliente as ClienteModel
+from coletor_app.models import Coletor as ColetorModel
 from django.conf import settings
 
 #----------------------------------------
@@ -114,3 +116,14 @@ def esvaziar_lixeiras(request):
 
     messages.error(request, "Nenhuma lixeira foi selecionada para esvaziar.")
     return render(request, 'melhor_rota.html')
+
+@has_role_or_redirect(Coletor)
+def coletor_perfil(request): 
+    coletor=ColetorModel.objects.get(usuario=request.user)
+
+    context={
+        "coletor":coletor
+    }
+    print(coletor)
+
+    return render(request, 'coletor_perfil.html', context)

@@ -143,3 +143,13 @@ def admin_avaliacao(request):
     }
 
     return render(request, 'admin_avaliacao.html', context)
+
+def admin_perfil(request):
+    admin=AdminModel.objects.get(usuario=request.user)
+
+    context={
+        "admin":admin
+    }
+    print(admin)
+
+    return render(request, 'admin_perfil.html', context)

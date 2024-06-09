@@ -22,7 +22,7 @@
   <!-- Historia 4 "Como aluno gostaria de receber avisos importantes pelo site -->
 
   <nav class="custom-navbar">
-    <a href="#" class="custom-nav-item" id="perfil">Perfil</a>
+    <a href="{% url 'cliente_perfil' %}" class="custom-nav-item bold-text" id="cliente-perfil">Perfil</a>
        <a href="{%url 'cliente_manutencao'%}" class="custom-nav-item" id="filtro_lixeira">Manutenção</a>
  
     <a href="{% url 'cliente_avaliacao' %}" class="custom-nav-item" id="avaliar_coleta">Avaliar coleta</a>

@@ -105,3 +105,7 @@ footer {
 .table th, 
 .table td {
   padding: 12px; /* Adiciona espaçamento entre as células */}
+
+.logotexto{
+  border-radius: 0% !important;
+}
