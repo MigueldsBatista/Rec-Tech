@@ -1,11 +1,16 @@
-{%extends "cliente_main.html" %}
+{% extends "cliente_main.html" %}
+{% load static %}
 
-{%block content%}
-
-<img src="#" alt="foto de perfil" width="20px" height="20px">
-<br>
-Nome de usuario:{{cliente.usuario}}
-<br>
-Email: {{cliente.email}}
-
-{%endblock content%}
+{% block content %}
+<div class="container mt-5">
+    <div class="profile-card">
+        <div class="profile-header text-center">
+            <img src="{{ cliente.foto_url }}" alt="Foto de perfil" class="profile-img">
+        </div>
+        <div class="profile-body text-center">
+            <p><strong>Nome de usuário:</strong> {{ cliente.usuario.username }}</p>
+            <p><strong>Email:</strong> {{ cliente.usuario.email }}</p>
+        </div>
+    </div>
+</div>
+{% endblock content %}

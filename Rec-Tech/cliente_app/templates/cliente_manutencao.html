@@ -1,33 +1,42 @@
 {% extends "cliente_main.html" %}
-{%load static%}
+{% load static %}
 
-{%block content%}
-<form method="POST" id="form">
-{% csrf_token %}
-
-<input type="date"   name="data_manutencao" id="data_manutencao">
-<br>
-<input type="time" name="tempo_manutencao" id="tempo_manutencao">
-<br>
-<select name="lixeira">
-{%for lixeira in lixeiras%}
-<option value="{{lixeira.id}}">{{lixeira.localizacao}}</option>
-{%endfor%}
-
-</select>    
-<textarea type="text" id="motivo-manutencao"name="motivo_manutencao" placeholder="motivo"></textarea>
-<br>
-<input type="submit" name="Agendar">
-
-</form>
-{% if messages %}
-{% for message in messages %}
-  {% if message.tags == 'success' %}
-    <div class="alert alert-success" role="alert">{{ message }}</div> <!-- Exibe alerta verde -->
-  {% else %}
-    <div class="alert alert-danger" role="alert">{{ message }}</div> <!-- Exibe alerta vermelho -->
-
-  {% endif %}
-{% endfor %}
-{% endif %}
-{%endblock content%}
+{% block content %}
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header text-center">
+            <h3>AJUDA COM A LIXEIRA</h3>
+        </div>
+        <div class="card-body">
+            <form method="POST" id="form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="data_manutencao">Data:</label>
+                    <input type="date" name="data_manutencao" id="data_manutencao" class="form-control custom-border" required>
+                </div>
+                <div class="form-group">
+                    <label for="tempo_manutencao">Horário:</label>
+                    <input type="time" name="tempo_manutencao" id="tempo_manutencao" class="form-control custom-border" required>
+                </div>
+                <div class="form-group">
+                    <label for="motivo_manutencao">Motivo:</label>
+                    <textarea id="motivo_manutencao" name="motivo_manutencao" class="form-control custom-border" placeholder="Motivo" required></textarea>
+                </div>
+                <div class="form-group text-center">
+                    <button type="submit" class="btn btn-success">CADASTRAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    {% if messages %}
+        <div class="mt-3">
+            {% for message in messages %}
+                <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-danger{% endif %}" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock content %}
