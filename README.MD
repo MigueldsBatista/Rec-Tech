@@ -29,6 +29,15 @@
 
 Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropolitana do Recife, fornecendo uma plataforma eficiente e intuitiva para acompanhamento e análise dos dados de coleta de lixo. Abaixo estão as principais funcionalidades e links importantes do projeto.
 
+## ⚙️ Principais Funcionalidades
+
+## ⚙ Tecnologias Utilizadas
+
+- **Linguagem de Programação:** O aplicativo é desenvolvido usando o Python, HMTL e CSS.
+- **Banco de Dados:** Utilizamos um banco de dados para armazenar informações de usuários, produtos, transações e outros dados relevante, usando o padrão do Django o SQLite no repositório local. Para o de deploy ultilizamos PostgressSQL 
+- **Framework de Desenvolvimento:** Utilizamos o Django, para acelerar o desenvolvimento e Boostrap na parte do frontend.
+- **Frontend:** A interface do usuário é desenvolvida utilizando tecnologias como HTML, CSS e o framework mencionando anteriormente, o Boostrap.
+- **Organização:** Para nos organizarmos e seguirmos os principios de desenvolvimento de software ultilizamos o jira
 
 ## 🖇️ Links Importantes
 
@@ -53,6 +62,21 @@ Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropoli
     <a href="https://youtu.be/mOC6_9p8hqs">Screencast Deployment</a>
   </li>
 </ul>
+<summary>Entrega 2</summary>
+<ul>
+  <li>
+    <a href="">Relatório de Programação em Par</a>
+  </li>
+  <li>
+    <a href="">Protótipo de Media</a>
+  </li>
+  <li>
+    <a href="">Screencast Protótipo</a>
+  </li>
+  <li>
+    <a href="">Screencast Testes</a>
+  </li>
+  
 </details>
 
 ## 👩‍💻 Membros
