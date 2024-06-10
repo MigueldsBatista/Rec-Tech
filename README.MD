@@ -62,13 +62,15 @@ Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropoli
     <a href="https://youtu.be/mOC6_9p8hqs">Screencast Deployment</a>
   </li>
 </ul>
+</details>
+<details>
 <summary>Entrega 2</summary>
 <ul>
   <li>
-    <a href="">Relatório de Programação em Par</a>
+    <a href="https://docs.google.com/document/d/1OPxina02W3SsS_ip94wldSsZ5e1cSyig4VLWCAaXy0I/edit?usp=sharing">Relatório de Programação em Par</a>
   </li>
   <li>
-    <a href="">Protótipo de Media</a>
+    <a href="https://www.figma.com/design/3p1WqK2tPZbuOeAHF0nyrV/G5?node-id=361-541&t=fu7SRq64kTerCE9c-0">Protótipo de Media</a>
   </li>
   <li>
     <a href="">Screencast Protótipo</a>
