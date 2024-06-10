@@ -133,7 +133,6 @@ def esvaziar_lixeiras(request):
         enderecos = request.POST.getlist('enderecos')
         coletor=ColetorModel.objects.get(usuario=request.user)
         coletor.coletas_realizadas+=1
-
         lixeiras = Lixeira.objects.filter(localizacao__in=enderecos)
         for lixeira in lixeiras:
             peso_coletado=+lixeira.estado_atual
@@ -141,7 +140,7 @@ def esvaziar_lixeiras(request):
             lixeira.coleta_realizada=True
             lixeira.save()
             Lotada.objects.filter(lixeira=lixeira).delete()
-        coletor.peso_coletado=peso_coletado
+        coletor.peso_coletado+=peso_coletado
         coletor.save()
 
 
