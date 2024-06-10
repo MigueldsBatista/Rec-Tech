@@ -35,13 +35,19 @@ Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropoli
 - [Link do Site](https://rec-tech.azurewebsites.net/login/)
 - [Relatório de Pair Programming](https://docs.google.com/document/d/1OPxina02W3SsS_ip94wldSsZ5e1cSyig4VLWCAaXy0I/edit?usp=sharing)
 - [Link do nosso Miro](https://miro.com/app/board/uXjVNnYqUvs=/?share_link_id=733107696943)
-- [Link do Figma](https://www.figma.com/file/3p1WqK2tPZbuOeAHF0nyrV/G5?type=design&node-id=12-82&mode=design&t=sHjEHd3tyCpjLTf5-0)
-- [Link do Screencast Deployment](https://youtu.be/mOC6_9p8hqs)
-- [Link do Screencast Wireframe](https://youtu.be/ZPDNafSxDCE)
 
-## Primeira Entrega
-### Diagrama de Atividades
-![Diagrama de Atividades](https://github.com/MigueldsBatista/Rec-Tech/blob/main/Rec-Tech/static/images/diagrama%20Rec-Tech.png?raw=true)
+<details>
+<summary>Entrega 1</summary>
+<ul>
+  <li>
+<a href="">Diagrama de Atividades</a>
+<a href="https://www.figma.com/file/3p1WqK2tPZbuOeAHF0nyrV/G5?type=design&node-id=12-82&mode=design&t=sHjEHd3tyCpjLTf5-0">Protótipo de Baixa Fidelidade</a>
+<a href="https://youtu.be/ZPDNafSxDCE">Screencast Wireframe</a>
+<a href="https://youtu.be/mOC6_9p8hqs">Screencast Deployment</a>
+
+  </li>
+</ul>
+</details>
 
 ## 👩‍💻 Membros
 
