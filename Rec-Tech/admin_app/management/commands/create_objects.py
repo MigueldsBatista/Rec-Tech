@@ -7,6 +7,9 @@ from rt_project.roles import Cliente, Admin, Coletor
 from rolepermissions.roles import assign_role
 from django.db import IntegrityError
 
+from django.utils import timezone
+from admin_app.models import Manutencao
+
 
 class Command(BaseCommand):
     
@@ -22,11 +25,7 @@ class Command(BaseCommand):
             #Criar coletor padrão, admin padrão e cliente padrão pra facilitar testes
             coletor=User.objects.create_user(username='coletor', password='123')
             admin=User.objects.create_user(username='admin', password='123')
-            cliente=User.objects.create_user(username='cliente', password='123')
-            cliente = ClienteModel.objects.create(
-                    usuario=cliente,
-                    email="cliente@test.com",
-                )
+           
             admin=AdminModel.objects.create(
                 usuario=admin,
                 email="admin@test.com",
@@ -95,7 +94,14 @@ class Command(BaseCommand):
                     self.stdout.write(self.style.WARNING(f'Lixeira em {bairro.nome} (av 17 de agosto 25{i+1}) já existe.'))
                 
                 i += 2  # Incrementa em 2 para manter as localizações únicas
-
+            lixeiras=Lixeira.objects.filter(cliente=cliente)
+            for lixeira in lixeiras:
+                Manutencao.objects.create(
+                    lixeira=lixeira,
+                    data_manutencao=timezone.now().date(),
+                    tempo_manutencao=timezone.now().time(),
+                    motivo_manutencao='Manutenção preventiva'
+        )
 
           
             # Cria um superusuário se ele não existir
@@ -106,6 +112,16 @@ class Command(BaseCommand):
                 self.stdout.write(self.style.SUCCESS('Superusuário criado com sucesso.'))
             else:
                 self.stdout.write(self.style.WARNING('Superusuário "adm" já existe.'))
+
+            #Simular coleta
+            cliente=User.objects.create_user(username='cliente', password='123')
+            cliente = ClienteModel.objects.create(
+                    usuario=cliente.username,
+                    email="cliente@test.com",
+                )
+            lixeiras=Lixeira.objects.filter(cliente=cliente)
+            for lixeira in lixeiras:
+                lixeira.coleta_realizada = True
 
         except IntegrityError as e:
             self.stdout.write(self.style.ERROR(f'Erro ao criar bairros e lixeiras: {e}'))
