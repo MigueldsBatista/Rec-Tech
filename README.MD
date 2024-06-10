@@ -1,3 +1,30 @@
+<p align="center">
+  <img
+    src="https://img.shields.io/github/last-commit/MigueldsBatista/conecta-cesar"
+    alt="Last commit"
+  />
+</p>
+
+<p align="center">
+  <img
+    src="https://img.shields.io/github/repo-size/MigueldsBatista/Rec-Tech"
+    alt="Repository Size"
+  />
+  <img
+    src="https://img.shields.io/github/languages/count/MigueldsBatista/Rec-Tech"
+    alt="Language Count"
+  />
+  <img
+    src="https://img.shields.io/github/commit-activity/t/MigueldsBatista/Rec-Tech"
+    alt="Commit Activity"
+  />
+  <a href="LICENSE"
+    ><img
+      src="https://img.shields.io/github/license/MigueldsBatista/Rec-Tech"
+      alt="License"
+  /></a>
+</p>
+
 # Plataforma de Gestão de Resíduos Sólidos
 
 Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropolitana do Recife, fornecendo uma plataforma eficiente e intuitiva para acompanhamento e análise dos dados de coleta de lixo. Abaixo estão as principais funcionalidades e links importantes do projeto.
