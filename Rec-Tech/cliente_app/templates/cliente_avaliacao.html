@@ -1,7 +1,7 @@
 {% extends "cliente_main.html" %}
 
 {% block content %}
-  <h2>Avaliar Coletas</h2>
+  <h2 class="text-center green-text">Avaliar Coletas</h2>
   {%if lixeiras %}
   {% for lixeira in lixeiras %}
     <h3>Lixeira em {{ lixeira.localizacao }}</h3>
@@ -23,7 +23,7 @@
     </form>
   {% endfor %}
   {%else%}
-  <h2>Não houve nenhuma coleta recente entre as suas lixeiras</h2>
+  <h2 class="text-center">Não houve nenhuma coleta recente entre as suas lixeiras</h2>
   {% endif %}
   {% if messages %}
 {% for message in messages %}

@@ -5,10 +5,28 @@ from rt_project.functions import has_role_or_redirect
 from rt_project.roles import Cliente
 # Create your views here.
 from django.contrib import messages
+from django_user_agents.utils import get_user_agent
+
 
 @has_role_or_redirect(Cliente)
 def cliente_home(request):
-    return render(request, 'cliente_home.html')
+    cliente = ClienteModel.objects.get(usuario=request.user)
+    lixeiras = Lixeira.objects.filter(cliente=cliente)
+    dados_lixeiras = []
+
+    for lixeira in lixeiras:
+            dados_lixeiras.append({
+                'progresso': lixeira.progresso_atual,
+                'localizacao': lixeira.localizacao,
+                'residuo':lixeira.tipo_residuo
+        })
+    context={
+        'cliente':cliente,
+        "lixeiras":dados_lixeiras,
+        "user_agent":get_user_agent(request)
+    }
+    print(lixeiras)
+    return render(request, 'cliente_home.html',context)
 
 @has_role_or_redirect(Cliente)
 def cliente_coleta(request):
@@ -38,7 +56,8 @@ def cliente_manutencao(request):
         print(motivo_manutencao)
         messages.success(request, 'Pedido enviado com sucesso!')
     context={
-        'lixeiras':lixeiras
+        'lixeiras':lixeiras,
+        "user_agent":get_user_agent(request)
     }
     return render(request, 'cliente_manutencao.html', context)
 
@@ -68,14 +87,7 @@ def cliente_avaliacao(request):
 
     context = {
         'lixeiras': lixeiras,
+        "user_agent":get_user_agent(request)
     }
     return render(request, 'cliente_avaliacao.html', context)
 
-def cliente_perfil(request):
-
-    cliente = ClienteModel.objects.get(usuario=request.user)
-    print
-    context={
-        'cliente':cliente
-    }
-    return render(request, 'cliente_perfil.html', context)

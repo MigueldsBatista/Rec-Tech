@@ -1,7 +1,19 @@
-{%extends "coletor_main.html" %}
+{% extends "coletor_main.html" %}
+{% load static %}
 
-{%block content%}
-
-<a href="{%url 'melhor_rota'%}">Melhor rota</a>
-
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/coletor_home.css' %}" type="text/css">
+<div class="container mt-5">
+    <div class="custom-profile-card">
+        <div class="custom-profile-header text-center">
+            <img src="{% static "images/profilepic.webp" %}" alt="Foto de perfil" class="custom-profile-img">
+        </div>
+        <div class="custom-profile-body text-center">
+            <p><span class="bold-text">NOME DE USUÁRIO:</span> {{ coletor.usuario.username }}</p>
+            <p><span class="bold-text">EMAIL:</span> {{ coletor.usuario.email }}</p>
+            <p><span class="bold-text">COLETAS REALIZADAS:</span>{{coletor.coletas_realizadas}}</p>
+            <p><span class="bold-text">PESO COLETADO:</span> {{coletor.peso_coletado}} kg</p>
+        </div>
+    </div>
+</div>
 {%endblock content%}

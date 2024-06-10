@@ -1,12 +1,26 @@
 {% extends 'admin_main.html' %}
+
 {% load static %}
+
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/admin_avaliacao.css' %}" type="text/css">
-<h1>Avaliação Geral das coletas</h1>
-<div class="avaliacao">
-    <h2>{{ media_geral }}</h2>
-    <canvas id="myChart"   width="250" height="100"></canvas>
+    
+{% if user_agent.is_mobile%}
+
+<div class="text-center" style="margin-top: 50% !important;">
+<h2>{{ media_geral }}</h2>
+
+<h1 >Avaliação Geral das coletas</h1>
+<canvas class="bairroChart" id="bairroChart" width="300" height="200" ></canvas>
 </div>
+{%else%}
+<div class="text-center">
+<h2>{{ media_geral }}</h2>
+
+<h1>Avaliação Geral das coletas</h1>
+<canvas class="bairroChart" id="bairroChart" width="400" height="150"></canvas>
+</div>
+{%endif%}
 
 <!-- Adicionando o script do Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

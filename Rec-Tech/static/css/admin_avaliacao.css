@@ -1,33 +1,4 @@
-.avaliacao {
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-}
 
-.notas ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.notas li {
-    margin-bottom: 5px;
-}
-
-/* Estrelas */
-.stars {
-    display: inline-block;
-    font-size: 20px;
-}
-
-.stars i {
-    color: #ffd700;
-}
-
-/* Estilo para notas específicas */
-.nota-1 .stars i:nth-child(n+2),
-.nota-2 .stars i:nth-child(n+3),
-.nota-3 .stars i:nth-child(n+4),
-.nota-4 .stars i:nth-child(n+5) {
-    color: #d3d3d3;
-}
+.mobile-class{
+    margin-top: 50% !important;
+   }

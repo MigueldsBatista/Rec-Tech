@@ -2,11 +2,22 @@
 {% load static %}
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/admin_bairros.css' %}">
-<h1 class="green-color">LIXO POR BAIRRO</h1>
 
-<canvas id="bairroChart" width="400" height="150"></canvas>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% if user_agent.is_mobile%}
+<div class="mobile-class">
+<h1 class="green-color">LIXO POR BAIRRO</h1>
+
+<canvas class="bairroChart" id="bairroChart" width="300" height="200"></canvas>
+</div>
+{%else%}
+<h1 class="green-color">LIXO POR BAIRRO</h1>
+
+<canvas class="bairroChart" id="bairroChart" width="400" height="150"></canvas>
+
+{%endif%}
+<!-- O seu script JavaScript para gerar os gráficos de rosca para cada bairro -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var ctx = document.getElementById('bairroChart').getContext('2d');
@@ -67,5 +78,4 @@
         });
     });
 </script>
-
 {% endblock content %}

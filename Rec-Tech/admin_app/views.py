@@ -6,6 +6,7 @@ from django.conf import settings
 from admin_app.models import Admin as AdminModel, Lotada, Bairro, Manutencao, AvaliacaoColeta as Avaliacao
 from cliente_app.models import Cliente as ClienteModel
 #----------------------------------------
+from django_user_agents.utils import get_user_agent
 
 import datetime
 from django.contrib.auth.models import User
@@ -14,19 +15,24 @@ from django.contrib import messages
 
 @has_role_or_redirect(Admin)
 def aviso_lixeira(request):
+    user_agent = get_user_agent(request)
+
     manutencoes=Manutencao.objects.all()
     lixeiras_lotadas=Lotada.objects.all()
     print(lixeiras_lotadas)
 
     context={
         "manutencoes":manutencoes, 
-        "lixeiras_lotadas":lixeiras_lotadas
+        "lixeiras_lotadas":lixeiras_lotadas,
+        "user_agent": user_agent
     }
     return render(request, 'admin_aviso.html', context)
 
 
 @has_role_or_redirect(Admin)
 def cadastrar_lixeira(request):
+    user_agent = get_user_agent(request)
+
     if request.method == 'POST':
         domicilio = request.POST.get("domicilio")
         localizacao = request.POST.get("localizacao")
@@ -60,12 +66,15 @@ def cadastrar_lixeira(request):
 
     context={
         "clientes":clientes,
-        "bairros":bairros
+        "bairros":bairros,
+        'user_agent':user_agent
     }
     return render(request, 'cadastrar_lixeira.html', context)
 
 @has_role_or_redirect(Admin)
 def admin_home(request):
+    user_agent = get_user_agent(request)
+
     lixeiras = Lixeira.objects.all()
     bairros = Bairro.objects.all()
     print(bairros)
@@ -89,12 +98,16 @@ def admin_home(request):
         'tipo_residuo_selecionado': tipo_residuo,
         'domicilio_selecionado': domicilio,
         'bairro_selecionado': bairro_id,
+        'user_agent': user_agent
     }
     # Renderiza o template passando as lixeiras como contexto
+
     return render(request, 'admin_home.html', context)
 
 
 def vizualizar_bairro(request):
+    user_agent = get_user_agent(request)
+
     bairros = Bairro.objects.all()
     bairro_data = []
 
@@ -107,7 +120,8 @@ def vizualizar_bairro(request):
         })
 
     context = {
-        'bairros': bairro_data
+        'bairros': bairro_data,
+        'user_agent': user_agent
     }
     return render(request, 'admin_bairros.html', context)
 
@@ -116,6 +130,8 @@ from .models import AvaliacaoColeta
 
 @has_role_or_redirect(Admin)
 def admin_avaliacao(request):
+    user_agent = get_user_agent(request)
+
     # Obtendo a média geral de avaliação
     media_geral = AvaliacaoColeta.media_avaliacao_geral()
 
@@ -140,15 +156,18 @@ def admin_avaliacao(request):
     context = {
         'media_geral': media_geral,
         'contagem_notas': contagem_notas,
+        "user_agent":user_agent
     }
 
     return render(request, 'admin_avaliacao.html', context)
 
 def admin_perfil(request):
+    user_agent=get_user_agent(request)
     admin=AdminModel.objects.get(usuario=request.user)
 
     context={
-        "admin":admin
+        "admin":admin,
+        "user_agent":user_agent
     }
     print(admin)
 

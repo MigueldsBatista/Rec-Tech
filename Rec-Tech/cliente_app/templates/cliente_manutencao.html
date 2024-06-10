@@ -2,50 +2,35 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-5">
-    <div class="card">
-        <div class="card-header text-center">
-            <h3>AJUDA COM A LIXEIRA</h3>
-        </div>
-        <div class="card-body">
-            <form method="POST" id="form">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="data_manutencao">Data:</label>
-                    <input type="date" name="data_manutencao" id="data_manutencao" class="form-control custom-border" required>
-                </div>
-                <div class="form-group">
-                    <label for="tempo_manutencao">Horário:</label>
-                    <input type="time" name="tempo_manutencao" id="tempo_manutencao" class="form-control custom-border" required>
-                </div>
-                <div class="form-group">
-                    <label for="lixeira">Lixeira:</label>
-                    <select name="lixeira">
-                        {%for lixeira in lixeiras%}
-                        <option value="{{lixeira.id}}">{{lixeira.localizacao}}</option>
-                        {%endfor%}
-                        
-                        </select>  
-                </div>
-                <div class="form-group">
-                    <label for="motivo_manutencao">Motivo:</label>
-                    <textarea id="motivo_manutencao" name="motivo_manutencao" class="form-control custom-border" placeholder="Motivo" required></textarea>
-                </div>
-                <div class="form-group text-center">
-                    <button type="submit" class="btn btn-success">CADASTRAR</button>
-                </div>
-            </form>
-        </div>
-    </div>
-    
-    {% if messages %}
-        <div class="mt-3">
+<link rel="stylesheet" href="{% static "css/cliente_manutencao.css" %}">
+    <div class="custom-help-container">
+        <h3>AJUDA COM A LIXEIRA</h3>
+        <form method="POST" id="form">
+            {% csrf_token %}
+            <label for="data_manutencao">Data:</label>
+            <input type="date" name="data_manutencao" id="data_manutencao" required>
+            <label for="tempo_manutencao">Horário:</label>
+            <input type="time" name="tempo_manutencao" id="tempo_manutencao" required>
+            <label for="lixeira">Lixeira:</label>
+            <select name="lixeira" class="custom-select">
+                {% for lixeira in lixeiras %}
+                <option value="{{lixeira.id}}">{{lixeira.localizacao}}</option>
+                {% endfor %}
+            </select>
+            <label for="motivo_manutencao">Motivo:</label>
+            <input id="motivo_manutencao" name="motivo_manutencao" placeholder="Motivo" required></input>
+            <button type="submit" class="custom-button">ENVIAR</button>
+        </form>
+
+        {% if messages %}
+        <div class="custom-alert-container">
             {% for message in messages %}
-                <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-danger{% endif %}" role="alert">
-                    {{ message }}
-                </div>
+            <div class="custom-alert {% if message.tags == 'success' %}custom-alert-success{% else %}custom-alert-danger{% endif %}"
+                role="alert">
+                {{ message }}
+            </div>
             {% endfor %}
         </div>
-    {% endif %}
-</div>
+        {% endif %}
+    </div>
 {% endblock content %}

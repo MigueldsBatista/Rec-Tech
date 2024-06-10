@@ -1,39 +1,73 @@
 
-.container {
+  .custom-help-container {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     max-width: 600px;
-    margin: 0 auto;
-}
-.card {
-    border: 2px solid #a3d392;
-    border-radius: 15px;
-}
-.card-header h3 {
-    color: green ;
-    font-size: 24px;
-}
-.form-group label {
-    font-size: 18px;
-}
-.form-control {
-    border-radius: 10px;
-}
-.custom-border {
-    border: 2px solid #a3d392 !important;
-}
-.form-group {
-    position: relative;
-}
-.form-group:last-of-type {
-    margin-bottom: 40px; /* Ajuste conforme necessário para espaçamento */
-}
-.btn {
-    background-color: #a3d392;
-    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .custom-help-container h3 {
+    text-align: center;
+    color: #518C55;
+  }
+  
+  .custom-help-container label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .custom-help-container select,
+  .custom-help-container input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px !important;
+    margin-bottom: 15px;
+    border: 2px solid #518C55;
+    border-radius: 5px;
+    background-color: #fff;
+    box-sizing: border-box;
+  }
+  
+  .custom-help-container button {
+    background-color: #ADE25A;
+    font-weight: bold;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
     border-radius: 20px;
     padding: 10px 20px;
-    font-size: 16px;
-}
-.btn:hover {
-    background-color: #8ebd7f;
-}
-
+    width: 50%;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  .custom-help-container button:hover {
+    background-color: #8eb450;
+  }
+  
+  /* Alerta de mensagem */
+  .custom-alert {
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    text-align: center;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .custom-help-container {
+      width: 90%;
+    }
+  
+    .custom-help-container button {
+      width: 70%;
+    }
+  }
+  

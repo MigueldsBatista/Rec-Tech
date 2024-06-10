@@ -1,14 +1,16 @@
 .green-color{
     text-align: center;
 }
-#bairroChart{
-    width: 400;
-    height: 150;
-}
 
-@media only screen and (max-width: 768px) {
-    #bairroChart{
-        width: 200;
-        height: 300px !important;
+
+
+
+@media (max-width: 768px) {
+    .bairroChart {
+        width: 100%; /* Largura reduzida para telas menores */
+        height: 150%; /* Altura reduzida para telas menores */
     }
-}   
+}
+.mobile-class{
+    margin-top: 50% !important;
+   }

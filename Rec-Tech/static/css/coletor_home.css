@@ -31,15 +31,4 @@
     justify-content: center;
     align-items: center;
 }
-@media screen and (max-width: 768px) {
-    .lixeira-chart-container{
-flex-direction: column;
-    }
 
-
-}
-  .lixeiraChart{
-    
-    width: 300px !important;
-    height: 300px !important;
-  }

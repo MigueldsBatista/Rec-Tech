@@ -17,17 +17,50 @@
 
 </head>
 <body>
-  <!-- Example Code -->
-  <!-- Historia 4 "Como aluno gostaria de receber avisos importantes pelo site -->
 
+{%if user_agent.is_mobile%}
+  <nav class="navbar fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'admin_home' %}"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
+        <a class="navbar-toggler" href="#offcanvasNavbar" data-bs-toggle="offcanvas" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <span id="navbar-link" class="navbar-toggler-icon"></span>
+        </a>
+        <div class="offcanvas offcanvas-end"  tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel"><img width="4%" src="{% static 'images/logo.png' %}" alt="logo">Rec & Tech</h5>
+                <a class="btn-close" href="#" data-bs-dismiss="offcanvas" aria-label="Close"></a>
+            </div>
+            <div class="offcanvas-body" >
+
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+
+                    <li class="nav-item">
+                        <a href="{% url 'login' %}" class="custom-nav-item bold-text" id="cliente-perfil">PERFIL</a>
+                      </li>
+                    <li class="nav-item">
+                      <a href="{%url 'cliente_manutencao'%}" class="custom-nav-item bold-text" id="filtro_lixeira">MANUTENÇÃO</a>
+                    </li>
+                    <li class="nav-item">
+                      <a href="{% url 'cliente_avaliacao' %}" class="custom-nav-item bold-text" id="avaliar_coleta">AVALIAR COLETA</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'login' %}" class="custom-nav-item bold-text" id="sair">SAIR</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+  {%else%}
   <nav class="custom-navbar">
-    <a href="{% url 'cliente_perfil' %}" class="custom-nav-item bold-text" id="cliente-perfil">Perfil</a>
-       <a href="{%url 'cliente_manutencao'%}" class="custom-nav-item" id="filtro_lixeira">Manutenção</a>
+   <a href="{% url 'cliente_home' %}" class="custom-nav-item bold-text" id="cliente-perfil">PERFIL</a>
+       <a href="{%url 'cliente_manutencao'%}" class="custom-nav-item bold-text" id="filtro_lixeira">MANUTENÇÃO</a>
  
-    <a href="{% url 'cliente_avaliacao' %}" class="custom-nav-item" id="avaliar_coleta">Avaliar coleta</a>
+    <a href="{% url 'cliente_avaliacao' %}" class="custom-nav-item bold-text" id="avaliar_coleta">AVALIAR COLETA</a>
 
-    <a href="{% url 'login' %}" class="custom-nav-item" id="sair">Sair</a>
+    <a href="{% url 'login' %}" class="custom-nav-item bold-text" id="sair">SAIR</a>
   </nav>
+  {%endif%}
 <script>
     // Highlight the current page
     document.querySelectorAll('.custom-nav-item').forEach(item => {

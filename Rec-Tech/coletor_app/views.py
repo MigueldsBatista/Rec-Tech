@@ -6,6 +6,7 @@ import googlemaps
 from cliente_app.models import Cliente as ClienteModel
 from coletor_app.models import Coletor as ColetorModel
 from django.conf import settings
+from django_user_agents.utils import get_user_agent
 
 #----------------------------------------
 
@@ -15,8 +16,14 @@ from django.contrib import messages
 
 @has_role_or_redirect(Coletor)
 def coletor_home(request):
+    coletor=ColetorModel.objects.get(usuario=request.user)
 
-    return render(request, "coletor_home.html")
+    context={
+        "coletor":coletor,
+        "user_agent":get_user_agent(request)
+    }
+    print(coletor)
+    return render(request, "coletor_home.html", context)
 
 
 
@@ -40,9 +47,7 @@ def melhor_rota(request):
     if bairro_id:
         lixeiras_lotadas = lixeiras_lotadas.filter(lixeira__bairro_id=bairro_id)
 
-    enderecos_brutos = [lixeira.lixeira.localizacao for lixeira in lixeiras_lotadas]
-
-    # Armazena os endereços filtrados na sessão
+    enderecos_brutos = [f"{lixeira.lixeira.localizacao}, {lixeira.lixeira.bairro}, {lixeira.lixeira.tipo_residuo}" for lixeira in lixeiras_lotadas]
 
     if request.method == "POST":
         api_key = settings.GOOGLE_MAPS_API_KEY
@@ -64,56 +69,63 @@ def melhor_rota(request):
         if bairro_id:
             lixeiras_lotadas = lixeiras_lotadas.filter(lixeira__bairro_id=bairro_id)
 
-        enderecos_brutos = [lixeira.lixeira.localizacao for lixeira in lixeiras_lotadas]
+        enderecos_brutos = [f"{lixeira.lixeira.localizacao}, {lixeira.lixeira.bairro}, {lixeira.lixeira.tipo_residuo}" for lixeira in lixeiras_lotadas]
         
+        # Extração de localizações (apenas a primeira parte antes da primeira vírgula)
+        localizacoes = [endereco.split(",")[0].strip().lower() for endereco in enderecos_brutos]
+
         # Verifica se o endereço atual e pelo menos um endereço precisam de coleta
-        if not localizacao_atual or not enderecos_brutos:
-            return render(request, 'melhor_rota.html', {
+        if not localizacao_atual or not localizacoes:
+            context = {
+                "user_agent": get_user_agent(request),
                 'error': "Localização atual e pelo menos um endereço são necessários.",
                 'enderecos_brutos': enderecos_brutos,
                 'bairros': bairros,
                 'tipo_residuo_selecionado': tipo_residuo,
                 'domicilio_selecionado': domicilio,
                 'bairro_selecionado': bairro_id,
-            })
-
-        enderecos = [endereco.replace(",", "/") for endereco in enderecos_brutos]
+            }
+            return render(request, 'melhor_rota.html', context)
 
         def calcular_distancia(origem, destino):
             directions = gmaps.directions(origin=origem, destination=destino, mode='driving')
             return directions[0]['legs'][0]['duration']['value'] if directions else float('inf')
 
         rota = [localizacao_atual]
-        while enderecos:
+        while localizacoes:
             ultimo = rota[-1]
-            proximo = min(enderecos, key=lambda x: calcular_distancia(ultimo, x))
+            proximo = min(localizacoes, key=lambda x: calcular_distancia(ultimo, x))
             rota.append(proximo)
-            enderecos.remove(proximo)
+            localizacoes.remove(proximo)
 
         # Remover a última ocorrência de localizacao_atual se ela for igual ao primeiro endereço
         if rota[-1] == rota[0]:
             rota.pop()
+        
 
         base_url = "https://www.google.com/maps/dir/"
         rota_url = base_url + "/".join(rota)
-
-        return render(request, 'melhor_rota.html', {
+        print(rota_url)
+        context = {
+            "user_agent": get_user_agent(request),
             'rota_url': rota_url,
             'melhor_permutacao': rota,
             'enderecos_brutos': enderecos_brutos,
             'bairros': bairros,
             'tipo_residuo_selecionado': tipo_residuo,
             'domicilio_selecionado': domicilio,
-            'bairro_selecionado': bairro_id,
-        })
-
-    return render(request, 'melhor_rota.html', {
+            'bairro_selecionado': bairro_id,            
+        }
+        return render(request, 'melhor_rota.html', context)
+    context = {
+        "user_agent": get_user_agent(request),
         'enderecos_brutos': enderecos_brutos,
         'bairros': bairros,
         'tipo_residuo_selecionado': tipo_residuo,
         'domicilio_selecionado': domicilio,
         'bairro_selecionado': bairro_id,
-    })
+    }
+    return render(request, 'melhor_rota.html', context)
 
 @has_role_or_redirect(Coletor)
 def esvaziar_lixeiras(request):
@@ -136,18 +148,8 @@ def esvaziar_lixeiras(request):
 
 
         messages.success(request, "Lixeiras esvaziadas com sucesso.")
-        return render(request, 'coletor_home.html')
+        return render(request, 'coletor_home.html', {"user_agent":get_user_agent(request)})
 
     messages.error(request, "Nenhuma lixeira foi selecionada para esvaziar.")
-    return render(request, 'melhor_rota.html')
+    return render(request, 'melhor_rota.html', {"user_agent":get_user_agent(request)})
 
-@has_role_or_redirect(Coletor)
-def coletor_perfil(request): 
-    coletor=ColetorModel.objects.get(usuario=request.user)
-
-    context={
-        "coletor":coletor
-    }
-    print(coletor)
-
-    return render(request, 'coletor_perfil.html', context)
