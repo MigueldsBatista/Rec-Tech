@@ -36,6 +36,7 @@
       </form>
 
     </div>
+    <br>
 
   {% endfor %}
 {% else %}
@@ -52,23 +53,22 @@
   {% endfor %}
 {% endif %}
 
-<script>document.addEventListener("DOMContentLoaded", function () {
+<script>  document.addEventListener("DOMContentLoaded", function () {
   const stars = document.querySelectorAll(".star");
 
   stars.forEach((star, index) => {
     star.addEventListener("click", () => {
-      const selectedStars = Array.from(stars).slice(0, index + 1);
-      
-      // Marca todas as estrelas até a estrela clicada
-      selectedStars.forEach((selectedStar) => {
-        selectedStar.style.fill = "gold";
-      });
+      // Marca a estrela clicada e as anteriores
+      for (let i = 0; i <= index; i++) {
+        stars[i].style.fill = "gold";
+        stars[i].setAttribute("data-index", i + 1);
+      }
 
-      // Desmarca todas as estrelas à direita da estrela clicada
-      const unselectedStars = Array.from(stars).slice(index + 1);
-      unselectedStars.forEach((unselectedStar) => {
-        unselectedStar.style.fill = "gray";
-      });
+      // Desmarca as estrelas após a estrela clicada
+      for (let i = index + 1; i < stars.length; i++) {
+        stars[i].style.fill = "gray";
+        stars[i].removeAttribute("data-index");
+      }
 
       const select = document.getElementById("nota");
       select.value = index + 1;

@@ -53,10 +53,24 @@
             {% endif %}<br>
             <span>Progresso:</span>
             <div class="progress-bar">
-                <div class="progress" style="width: {{ lixeira.get_progresso }}%;"> {{ lixeira.get_progresso }}%</div>
+                <div class="progress" id="progress-bar" style="width: 0%;"><strong>{{lixeira.get_progresso}}%</strong></div>
             </div>
         </div>
     {% endfor %}
 </div>
+<script>document.addEventListener("DOMContentLoaded", function () {
+    const lixeiras = document.querySelectorAll(".lixeira-card");
 
+    lixeiras.forEach(lixeira => {
+        const progressBar = lixeira.querySelector(".progress");
+        const progresso = parseInt(progressBar.textContent); // Obtém o progresso como um número inteiro
+        const larguraMaxima = progressBar.parentElement.offsetWidth; // Obtém a largura máxima da barra de progresso
+
+        // Calcula a largura da barra de progresso com base no progresso
+        const larguraAtual = (progresso / 100) * larguraMaxima;
+
+        // Define a largura da barra de progresso
+        progressBar.style.width = larguraAtual + "px";
+    });
+}); </script>
 {% endblock content %}

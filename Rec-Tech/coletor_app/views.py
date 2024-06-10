@@ -140,11 +140,19 @@ def esvaziar_lixeiras(request):
 
         # Filtrar lixeiras com localizações em minúsculas
         lixeiras = Lixeira.objects.annotate(localizacao_lower=Lower('localizacao')).filter(localizacao_lower__in=enderecos)
+        peso_total=0
+        coletor=ColetorModel.objects.get(usuario=request.user)
+
         for lixeira in lixeiras:
+            peso_total=peso_total+lixeira.estado_atual
             lixeira.estado_atual = 0
             lixeira.coleta_realizada = True
             lixeira.save()
             Lotada.objects.filter(lixeira=lixeira).delete()
+            
+        coletor.coletas_realizadas=coletor.coletas_realizadas+1
+        coletor.peso_coletado=coletor.peso_coletado+peso_total
+        coletor.save()
 
         messages.success(request, "Lixeiras esvaziadas com sucesso.")
         return redirect('melhor_rota')
