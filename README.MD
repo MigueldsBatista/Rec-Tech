@@ -40,11 +40,16 @@ Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropoli
 <summary>Entrega 1</summary>
 <ul>
   <li>
-<a href="">Diagrama de Atividades</a>
-<a href="https://www.figma.com/file/3p1WqK2tPZbuOeAHF0nyrV/G5?type=design&node-id=12-82&mode=design&t=sHjEHd3tyCpjLTf5-0">Protótipo de Baixa Fidelidade</a>
-<a href="https://youtu.be/ZPDNafSxDCE">Screencast Wireframe</a>
-<a href="https://youtu.be/mOC6_9p8hqs">Screencast Deployment</a>
-
+    <a href="">Diagrama de Atividades</a>
+  </li>
+  <li>
+    <a href="https://www.figma.com/file/3p1WqK2tPZbuOeAHF0nyrV/G5?type=design&node-id=12-82&mode=design&t=sHjEHd3tyCpjLTf5-      0">Protótipo de Baixa Fidelidade</a>
+  </li>
+  <li>
+    <a href="https://youtu.be/ZPDNafSxDCE">Screencast Wireframe</a>
+  </li>
+  <li>
+    <a href="https://youtu.be/mOC6_9p8hqs">Screencast Deployment</a>
   </li>
 </ul>
 </details>
