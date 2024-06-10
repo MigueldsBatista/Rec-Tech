@@ -1,72 +1,72 @@
-/* Estilização geral para o container do formulário */
-.cadastro-container {
-  width: 30%;
-  margin: 0 auto;
+.custom-form-container {
+  background-color: #fff;
   padding: 20px;
-  background-color: #f9f9f9;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-/* Estilização para o título do formulário */
-.cadastro-container h2 {
+.custom-form-container h2 {
   text-align: center;
-  margin-bottom: 20px;
-  color: #333;
-  font-size: 24px;
+  color: #518C55;
 }
 
-/* Estilização para os rótulos dos campos */
-.cadastro-container label {
-  display: block;
+.custom-form-container label {
+  font-weight: bold;
   margin-bottom: 5px;
   color: #333;
-  font-weight: bold;
 }
 
-/* Estilização para os campos de entrada */
-.cadastro-container input[type="text"],
-.cadastro-container input[type="email"],
-.cadastro-container input[type="number"],
-.cadastro-container input[type="password"],
-.cadastro-container select {
+.custom-form-container select,
+.custom-form-container input {
   width: 100%;
   padding: 10px;
+  border-radius: 20px !important;
   margin-bottom: 15px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 14px;
-}
-
-/* Estilização para o botão de enviar */
-.cadastro-container .custom-button {
-  width: 20%;
-  padding: 10px;
-  background-color: #007bff;
-  border: none;
+  border: 2px solid #518C55;
   border-radius: 5px;
-  color: white;
-  font-size: 16px;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.custom-form-container button {
+  background-color: #ADE25A;
+  font-weight: bold;
+  color: #000;
+  border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s;
+  border-radius: 20px;
+  padding: 10px 20px;
+  width: 50%;
+  margin: 0 auto;
+  display: block;
 }
 
-.cadastro-container .custom-button:hover {
-  background-color: #0056b3;
+.custom-form-container button:hover {
+  background-color: #8eb450;
 }
 
-/* Estilização para dispositivos móveis */
-@media (max-width: 600px) {
-  .cadastro-container {
-      padding: 10px;
-  }
-  
-  .cadastro-container h2 {
-      font-size: 20px;
-  }
-  
-  .cadastro-container .custom-button {
-      font-size: 14px;
-  }
+/* Alerta de mensagem */
+.alert {
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 5px;
+  text-align: center;
 }
 
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .custom-form-container {
+    width: 90%;
+  }
+
+  .custom-form-container button {
+    width: 70%;
+  }
+}

@@ -4,83 +4,59 @@
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/admin_home.css' %}">
 
-<div class="container mt-4">
-    <form method="get" id="tabela-filtro" class="row g-3">
-        <div class="col-md-4 col-sm-6">
-            <label for="tipo_residuo" class="form-label">Tipo de Resíduo:</label>
-            <select name="tipo_residuo" id="tipo_residuo" class="form-select">
-                <option id="todos" value="">Todos</option>
-                <option id="reciclaveis" value="reciclaveis" {% if tipo_residuo_selecionado == 'reciclaveis' %}selected{% endif %}>Recicláveis</option>
-                <option id="organicos" value="organicos" {% if tipo_residuo_selecionado == 'organicos' %}selected{% endif %}>Orgânicos</option>
-                <option id="nao_reciclaveis" value="nao_reciclaveis" {% if tipo_residuo_selecionado == 'nao_reciclaveis' %}selected{% endif %}>Não Recicláveis</option>
-            </select>
-        </div>
-        <div class="col-md-4 col-sm-6">
-            <label for="domicilio" class="form-label">Domicílio:</label>
-            <select name="domicilio" id="domicilio" class="form-select">
-                <option id="todos" value="">Todos</option>
-                <option id="condominio" value="condomminio" {% if domicilio_selecionado == 'condomminio' %}selected{% endif %}>Condomínio</option>
-                <option id="hospital" value="hospital" {% if domicilio_selecionado == 'hospital' %}selected{% endif %}>Hospital</option>
-                <option id="escola" value="escola" {% if domicilio_selecionado == 'escola' %}selected{% endif %}>Escola/Universidade</option>
-                <option id="restaurante" value="restaurante" {% if domicilio_selecionado == 'restaurante' %}selected{% endif %}>Restaurante</option>
-            </select>
-        </div>
-        <div class="col-md-4 col-sm-12">
-            <label for="bairro" class="form-label">Bairro:</label>
-            <select name="bairro" id="bairro" class="form-select">
-                <option value="">Todos</option>
-                {% for bairro in bairros %}
-                    <option value="{{ bairro.id }}" {% if bairro_selecionado == bairro.id|stringformat:"s" %}selected{% endif %}>{{ bairro.nome }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="col-12">
-            <button type="submit" id="botao-filtro" class="btn btn-primary w-100">Filtrar</button>
-        </div>
-    </form>
-</div>
+<form method="get" id="tabela-filtro">
 
-<div class="container-fluid mt-4">
-    <div class="card">
-        <div class="card-header">
-            <h2 class="text-center">Lixeiras Cadastradas</h2>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th class="text-center">Email do Proprietário</th>
-                            <th class="text-center">Tipo de Resíduo</th>
-                            <th class="text-center">Localização</th>
-                            <th class="text-center">Capacidade Máxima (kg)</th>
-                            <th class="text-center">Status de Manutenção</th>
-                            <th class="text-center">Progresso (%)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for lixeira in lixeiras %}
-                        <tr>
-                            <td class="text-center">{{ lixeira.cliente.email }}</td>
-                            <td class="text-center">{{ lixeira.tipo_residuo }}</td>
-                            <td class="text-center">{{ lixeira.localizacao }}</td>
-                            <td class="text-center">{{ lixeira.capacidade_maxima }}</td>
-                            <td class="text-center">
-                                {% if lixeira.status_manutencao %}
-                                <span class="text-danger">Sim</span>
-                                {% else %}
-                                <span class="text-success">Não</span>
-                                {% endif %}
-                            </td>
-                            <td class="text-center">
-                                <div class="barra-progresso text-white text-center">{{ lixeira.get_progresso }}%</div>
-                            </td>
-                        </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
+    <label for="tipo_residuo">Tipo de Resíduo:</label>
+    <select name="tipo_residuo" id="tipo_residuo">
+        <option id="todos" value="">Todos</option>
+        <option id="reciclaveis" value="reciclaveis" {% if tipo_residuo_selecionado == 'reciclaveis' %}selected{% endif %}>Recicláveis</option>
+        <option id="organicos" value="organicos" {% if tipo_residuo_selecionado == 'organicos' %}selected{% endif %}>Orgânicos</option>
+        <option id="nao_reciclaveis" value="nao_reciclaveis" {% if tipo_residuo_selecionado == 'nao_reciclaveis' %}selected{% endif %}>Não Recicláveis</option>
+    </select>
+
+    <label for="domicilio">Domicílio:</label>
+    <select name="domicilio" id="domicilio">
+        <option id="todos" value="">Todos</option>
+        <option id="condominio" value="condominio" {% if domicilio_selecionado == 'condominio' %}selected{% endif %}>Condomínio</option>
+        <option id="hospital" value="hospital" {% if domicilio_selecionado == 'hospital' %}selected{% endif %}>Hospital</option>
+        <option id="escola" value="escola" {% if domicilio_selecionado == 'escola' %}selected{% endif %}>Escola/Universidade</option>
+        <option id="restaurante" value="restaurante" {% if domicilio_selecionado == 'restaurante' %}selected{% endif %}>Restaurante</option>
+    </select>
+
+    <label for="bairro">Bairro:</label>
+    <select name="bairro" id="bairro">
+        <option value="">Todos</option>
+        {% for bairro in bairros %}
+            <option value="{{ bairro.id }}" {% if bairro_selecionado == bairro.id|stringformat:"s" %}selected{% endif %}>{{ bairro.nome }}</option>
+        {% endfor %}
+    </select>
+
+    <div id="botao-filtro-container"><button type="submit" id="botao-filtro">Filtrar</button></div>
+</form>
+
+<h2 class="text-center green-text">LIXEIRAS CADASTRADAS</h2>
+
+<div class="lixeiras-container">
+    {% for lixeira in lixeiras %}
+        <div class="lixeira-card">
+            <span>EMAIL:</span> {{ lixeira.cliente.email }}<br>
+            <span>TIPO DE RESÍDUO:</span> {{ lixeira.tipo_residuo }}<br>
+            <span>DOMICÍLIO:</span> {{ lixeira.domicilio }}<br>
+            <span>LOCALIZAÇÃO:</span> {{ lixeira.localizacao }}<br>
+            <span>BAIRRO:</span> {{ lixeira.bairro }}<br>
+            <span>CAPACIDADE MÁXIMA(KG):</span> {{ lixeira.capacidade_maxima }}<br>
+            <span>Status de Manutenção:</span>
+            {% if lixeira.status_manutencao %}
+                <span class="text-danger">Sim</span>
+            {% else %}
+                <span class="text-success">Não</span>
+            {% endif %}<br>
+            <span>Progresso:</span>
+            <div class="progress-bar">
+                <div class="progress" style="width: {{ lixeira.get_progresso }}%;"> {{ lixeira.get_progresso }}%</div>
             </div>
         </div>
-    </div>
+    {% endfor %}
 </div>
+
 {% endblock content %}

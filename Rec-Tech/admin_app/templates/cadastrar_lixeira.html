@@ -4,70 +4,56 @@
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/cadastrar_lixeira.css' %}">
 
-<div class="container mt-4">
+<div class="custom-form-container">
   <form method="POST" action="{% url 'cadastrar_lixeira' %}">
     {% csrf_token %}
 
     <h2>Cadastro de Lixeira</h2>
-    
-    <div class="mb-3">
-      <label for="domicilio" class="form-label">Estabelecimento:</label>
-      <select name="domicilio" id="domicilio" class="form-select" required>
-        <option value="condominio" id="condominio">Condomínio</option>
-        <option value="hospital" id="hospital">Hospital</option>
-        <option value="escola" id="escola">Escola/Universidade</option>
-        <option value="restaurante" id="restaurante">Restaurante</option>
-      </select>
-    </div>
 
-    <div class="mb-3">
-      <label for="localizacao" class="form-label">Localização:</label>
-      <input type="text" name="localizacao" id="localizacao" class="form-control" placeholder="Digite a localização" required>
-    </div>
+    <label for="domicilio">Estabelecimento:</label>
+    <select name="domicilio" id="domicilio" required>
+      <option value="condominio" id="condominio">Condomínio</option>
+      <option value="hospital" id="hospital">Hospital</option>
+      <option value="escola" id="escola">Escola/Universidade</option>
+      <option value="restaurante" id="restaurante">Restaurante</option>
+    </select>
 
-    <div class="mb-3">
-      <label for="bairro" class="form-label">Bairro:</label>
-      <select name="bairro" id="bairro" class="form-select" required>
-        <option value="">Selecione</option>
-        {% if bairros %}
-          {% for bairro in bairros %}
-            <option value="{{ bairro.id }}" {% if bairro_selecionado == bairro.id|stringformat:"s" %}selected{% endif %}>{{ bairro.nome }}</option>
-          {% endfor %}
-        {% else %}
-          <option value="">Nenhum bairro encontrado</option>
-        {% endif %}
-      </select>
-    </div>
+    <label for="localizacao">Localização:</label>
+    <input type="text" name="localizacao" id="localizacao" placeholder="Digite a localização" required>
 
-    <div class="mb-3">
-      <label for="email" class="form-label">Selecione o proprietário</label>
-      <select name="cliente" id="cliente-lixeira" class="form-select" required>
-        {% for cliente in clientes %}
-          <option value="{{ cliente.id }}">{{ cliente.usuario }}</option>
+    <label for="bairro">Bairro:</label>
+    <select name="bairro" id="bairro" required>
+      <option value="">Selecione</option>
+      {% if bairros %}
+        {% for bairro in bairros %}
+          <option value="{{ bairro.id }}" {% if bairro_selecionado == bairro.id|stringformat:"s" %}selected{% endif %}>{{ bairro.nome }}</option>
         {% endfor %}
-      </select>
-    </div>
+      {% else %}
+        <option value="">Nenhum bairro encontrado</option>
+      {% endif %}
+    </select>
 
-    <div class="mb-3">
-      <label for="tipo_residuo" class="form-label">Tipo de Resíduo:</label>
-      <select name="tipo_residuo" id="tipo_residuo" class="form-select" required>
-        <option value="reciclaveis">Reciclável</option>
-        <option value="organicos">Orgânico</option>
-        <option value="nao_reciclaveis">Não Reciclável</option>
-      </select>
-    </div>
+    <label for="email">Selecione o proprietário</label>
+    <select name="cliente" id="cliente-lixeira" required>
+      {% for cliente in clientes %}
+        <option value="{{ cliente.id }}">{{ cliente.usuario }}</option>
+      {% endfor %}
+    </select>
 
-    <div class="mb-3">
-      <label for="capacidade_maxima" class="form-label">Capacidade Máxima (kg):</label>
-      <input type="number" name="capacidade_maxima" id="capacidade_maxima" class="form-control" placeholder="Capacidade máxima em kg" required>
-    </div>
+    <label for="tipo_residuo">Tipo de Resíduo:</label>
+    <select name="tipo_residuo" id="tipo_residuo" required>
+      <option value="reciclaveis">Reciclável</option>
+      <option value="organicos">Orgânico</option>
+      <option value="nao_reciclaveis">Não Reciclável</option>
+    </select>
 
-    <div class="mb-3">
-      <label for="estado_atual" class="form-label">Estado Atual (kg):</label>
-      <input type="number" name="estado_atual" id="estado_atual" class="form-control" placeholder="Estado atual em kg" required>
-    </div>
+    <label for="capacidade_maxima">Capacidade Máxima (kg):</label>
+    <input type="number" name="capacidade_maxima" id="capacidade_maxima" placeholder="Capacidade máxima em kg" required>
 
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
+    <label for="estado_atual">Estado Atual (kg):</label>
+    <input type="number" name="estado_atual" id="estado_atual" placeholder="Estado atual em kg" required>
+
+    <button type="submit">Cadastrar</button>
   </form>
 
   {% if messages %}

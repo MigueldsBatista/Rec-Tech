@@ -19,6 +19,15 @@
                     <input type="time" name="tempo_manutencao" id="tempo_manutencao" class="form-control custom-border" required>
                 </div>
                 <div class="form-group">
+                    <label for="lixeira">Lixeira:</label>
+                    <select name="lixeira">
+                        {%for lixeira in lixeiras%}
+                        <option value="{{lixeira.id}}">{{lixeira.localizacao}}</option>
+                        {%endfor%}
+                        
+                        </select>  
+                </div>
+                <div class="form-group">
                     <label for="motivo_manutencao">Motivo:</label>
                     <textarea id="motivo_manutencao" name="motivo_manutencao" class="form-control custom-border" placeholder="Motivo" required></textarea>
                 </div>

@@ -1,12 +1,21 @@
-.custom-bg {
-  background-color: #fff;
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZJhiI2B.woff2) format('woff2');
 }
 
 body {
+  font-family: 'Inter', sans-serif !important;
+      background-color: #fff;
+      margin: 0;
+      padding: 0;
 
-      font-family: 'Inter';font-size: 22px;
 }
-
+.green-text{
+  color: #518C55;
+}
 .custom-navbar {
   display: flex;
   justify-content: center;
@@ -83,28 +92,6 @@ footer {
     flex-grow: 1;
   }
 
-.custom-progress-bar {
-  width: auto;
-  
-}
-.progress {
-  height: 20px; /* Altura da barra de progresso */
-  max-width: 100%; /* Ocupa todo o espaço disponível */
-}
-
-/* Ajusta as propriedades visuais para a barra de progresso */
-.progress-bar {
-  width: auto; /* Começa com a barra vazia */
-  transition: width 0.5s; /* Transição suave para quando a barra se preenche */
-}
-.table { 
-  width: 100%; /* Certifica-se de que a tabela ocupa toda a largura disponível */
-  table-layout: fixed; /* Mantém largura uniforme */
-}
-
-.table th, 
-.table td {
-  padding: 12px; /* Adiciona espaçamento entre as células */}
 
 .logotexto{
   border-radius: 0% !important;

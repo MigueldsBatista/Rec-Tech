@@ -1,44 +1,103 @@
-.home-filtro {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    max-width: 800px;
-    height: auto;
-    margin: 2vh auto;
-  }
-  .home-filtro select{
-    padding: 3px;
-    border-radius: 10px;
-  }
-  #botao-filtro{
-    border-radius:10px ;
-  }
-  @media (min-width: 600px) {
-    .card {
-      padding: 2rem;
-    }
-    .info input, .info textarea {
-      padding: 0.75rem;
-    }
+
+#container {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
 }
 
-.card {
+#tabela-filtro {
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  background: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 4%;
-  width: 90%;
-  height: auto;
-  margin: 2vh auto;
+  gap: 10px;
 }
 
-.barra-progresso{
+#tabela-filtro label {
+  flex-basis: 100%;
   text-align: center;
-  color: white !important;
-  background-color: forestgreen;
 }
-.text-center{
+
+#tabela-filtro select{
+  flex-basis: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 2px solid #518C55;
+  border-radius: 20px;
+  background-color: #fff;
   text-align: center;
+}
+
+#botao-filtro-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+#botao-filtro {
+  background-color: #ADE25A !important;
+  font-weight: bold;
+  color: #000000;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  border-radius: 20px;
+  padding: 10px 20px;
+  width: 20%; /* Ajuste a largura do botão conforme desejado */
+  margin: 0 auto; /* Centraliza o botão */
+}
+
+#botao-filtro:hover {
+  background-color: #8eb450 !important;
+}
+
+/* Estilos para os cartões de lixeira */
+.lixeira-card {
+  background-color: #D1EFA2;
+  padding: 25px; /* Diminui a altura do cartão */
+  margin: 10px auto; /* Reduz o espaçamento entre cartões */
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px; /* Reduz o espaçamento interno */
+}
+
+.lixeira-card span {
+  font-weight: bold;
+}
+
+.lixeira-card .progress-bar {
+  height: 15px; /* Diminui a altura da barra de progresso */
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.lixeira-card .progress {
+  height: 100%;
+  background-color: #28a745;
+  border-radius: 10px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  #container {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  #tabela-filtro, 
+  .lixeiras-container {
+      max-width: 90%;
+  }
+
+  #tabela-filtro button{
+      width: 30%;
+  }
 }

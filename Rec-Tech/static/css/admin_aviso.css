@@ -5,30 +5,28 @@
         margin: 5px;
         margin-bottom: 20px;
         background-color: #f9f9f9;
-        width: calc(50% - 20px); /* Definindo o tamanho das colunas */
         display: inline-block;
         vertical-align: top; /* Alinhamento ao topo */
         box-sizing: border-box;
+        background-color: #D1EFA2;
     }
 
     /* Estilos para os ícones SVG */
-    .custom-icon {
-        width: 30px;
-        height: 30px;
-        fill: #ff0000; /* Cor vermelha para indicar urgência */
-        margin-right: 10px;
-    }
 
-    .custom-icon-maintenance {
-        fill: #007bff; /* Cor azul para indicar manutenção */
-    }
 
+    .lixo-cheio-icon {
+        fill: red; /* Cor azul para indicar manutenção */
+    }
+.manutencao-icon{
+    fill: red;
+}
 
     /* Centralizar conteúdo */
     .container {
         max-width: 1200px;
         margin: 0 auto;
         padding: 20px;
+        max-width: 600px;
     }
 
     /* Estilos para os títulos */
