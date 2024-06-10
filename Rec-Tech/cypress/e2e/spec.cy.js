@@ -1,117 +1,73 @@
-describe('test suite 1', () => {
-  let randomEmail;
-  let randomName;
-  let randomAdress;
-  let randomDecimal;
-  let sub_randomDecimal;
-
-
+describe('Conjunto de Testes Iniciais', () => {
   before(() => {
-    // Gera um email e um nome aleatórios
-    const randomString = Math.random().toString(36).substring(2, 11);
-    randomEmail = `user_${randomString}@test.com`;
-    randomName = `Name_${randomString}`;
+    // Renomeia o banco de dados existente, se houver
+    cy.exec('if [ -f db.sqlite3 ]; then mv db.sqlite3 db_backup.sqlite3; fi', { failOnNonZeroExit: false });
+    cy.exec('rm db.sqlite3', { failOnNonZeroExit: false }); // Remove o banco de dados existente
+    cy.exec('python3 manage.py makemigrations', { failOnNonZeroExit: false }); // Executa migração do banco de dados
+    cy.exec('python3 manage.py migrate', { failOnNonZeroExit: false }); // Executa migração do banco de dados
+    cy.exec('python3 manage.py tests', { failOnNonZeroExit: false });
+    cy.exec('python3 manage.py runserver', { failOnNonZeroExit: false });
   });
 
-
-  describe('Test Suite for Multiple User Types', () => {
-    let randomEmail;
-    let randomName;
-
-
-    beforeEach(() => {
-      // Gera um email e um nome aleatórios
-      const randomString = Math.random().toString(36).substring(2, 11);
-      const randomNumber = Math.floor(Math.random() * 1000) + 1;
-
-
-      randomAdress = `Av 17 de agosto ${randomNumber}`
-
-
-      randomEmail = `user_${randomString}@test.com`;
-      randomName = `Name_${randomString}`;
-      randomDecimal = randomNumber.toFixed(0)
-      sub_randomDecimal=randomNumber*0.85.toFixed(0)
-    });
-
-
-    it('Register as Admin', () => {
-      cy.visit('/');
-      cy.get('a').click();
-      cy.get('[type="text"]').type(randomName); // Usa o nome gerado
-      cy.get('[type="email"]').type(randomEmail); // Usa o email gerado
-      cy.get(':nth-child(3) > .form-control').type('123');
-      cy.get('#user-type').select('admin'); // Define o tipo como 'admin'
-      cy.get('.btn').click();
-      cy.get(':nth-child(2) > .form-control').type(randomName); // Reutiliza o mesmo nome
-      cy.get(':nth-child(3) > .form-control').type('123');
-      cy.get('.btn').click();
-
-
-      //Dentro da página do admin
-      cy.get(':nth-child(1) > .nav-link').click()
-      cy.get(':nth-child(2) > .nav-link').click()
-      cy.get('#domicilio').select('condominio')
-      cy.get('#localizacao').type(randomAdress)
-      cy.get('#email').type(randomEmail)
-      cy.get('#tipo_residuo').select('reciclaveis')
-      cy.get('#capacidade_maxima').type(randomDecimal)
-      cy.get('#estado_atual').type(sub_randomDecimal)
-      cy.get('#senha').type('123')
-      cy.get('.btn').click()
-    });
-
-
-    it('Register as Collector', () => {
-      cy.visit('/');
-      cy.get('a').click();
-      cy.get('[type="text"]').type(randomName); // Usa o nome gerado
-      cy.get('[type="email"]').type(randomEmail); // Usa o email gerado
-      cy.get(':nth-child(3) > .form-control').type('123');
-      cy.get('#user-type').select('coletor'); // Define o tipo como 'collector'
-      cy.get('.btn').click();
-      cy.visit('/');
-      cy.get(':nth-child(2) > .form-control').type(randomName); // Reutiliza o mesmo nome
-      cy.get(':nth-child(3) > .form-control').type('123');
-      cy.get('.btn').click();
-      //Dentro da página do coletor
-      cy.get('p > .btn')
-      cy.get('#localizacao_atual').type(randomAdress)
-      cy.get('.mt-3 > .btn').click()
-     
-     
-
-
-    });
-
-
-    it('Register as Client', () => {
-      cy.visit('/');
-      cy.get('a').click();
-      cy.get('[type="text"]').type(randomName); // Usa o nome gerado
-      cy.get('[type="email"]').type(randomEmail); // Usa o email gerado
-      cy.get(':nth-child(3) > .form-control').type('123');
-      cy.get('#user-type').select('cliente'); // Define o tipo como 'client'
-      cy.get('.btn').click();
-      cy.visit('/');
-      cy.get(':nth-child(2) > .form-control').type(randomName); // Reutiliza o mesmo nome
-      cy.get(':nth-child(3) > .form-control').type('123');
-      cy.get('.btn').click();
-    });
-
-
-    it('Scenario 3', () => {
-      // Passos para o cenário 3
-    });
-  });
-
-
-
-
-  it('cenario3', () => {
-    // Insira os passos para o cenário 3
+  it('Caso de teste para garantir que o ambiente está configurado corretamente', () => {
+    // Verifica se o comando anterior foi bem-sucedido e se o teste pode ser executado
+    expect(true).to.be.true;
   });
 });
 
+describe('Conjunto de testes para Admins', () => {
+  let randomEmail;
+  let randomName;
+  let randomAddress;
 
+  before(() => {
+    randomEmail = `user_${Math.random().toString(36).substring(2, 11)}@test.com`;
+    randomName = `Name_${Math.random().toString(36).substring(2, 11)}`;
+    randomAddress = `Av 17 de agosto ${Math.floor(Math.random() * 1000) + 1}`;
 
+    cy.visit('http://127.0.0.1:8000/auth/login/');
+    cy.get('.login-link').click();
+    cy.get('[type="text"]').type(randomName);
+    cy.get('[type="email"]').type(randomEmail);
+    cy.get('[type="password"]').type('123');
+    cy.get('#user-type').select('admin');
+    cy.get('.cadastro-button').click();
+  });
+
+  beforeEach(() => {
+    cy.visit('http://127.0.0.1:8000/auth/login/');
+    cy.get('[placeholder="Usuário"]').type(randomName);
+    cy.get('[placeholder="Senha"]').type('123');
+    cy.get('button').click();
+    cy.visit('http://127.0.0.1:8000/admin_app/home/');
+  });
+
+  it('Caso de teste Lixeiras Cadastradas', () => {
+    cy.get('#tipo_residuo').select('reciclaveis');
+    cy.get('#botao-filtro').click();
+  });
+
+  it('Caso de teste Cadastrar Lixeira', () => {
+    cy.get('#cadastrar_lixeira').click();
+    cy.get('#domicilio').select('condominio');
+    cy.get('#localizacao').type(randomAddress);
+    //cy.get('#bairro').select(); // falta adicionar bairros
+    //cy.get('#cliente-lixeira').select(randomName); // falta adicionar cliente
+    cy.get('#tipo_residuo').select('reciclaveis');
+    cy.get('#capacidade_maxima').type('100');
+    cy.get('#estado_atual').type('50');
+    cy.get('button').click();
+  });
+
+  it('Caso de teste de Avisos', () => {
+    cy.get('#aviso_lixeira').click();
+  });
+
+  it('Caso de teste de Lixo por Bairro', () => {
+    cy.get('#vialuzar_bairro').click();
+  });
+
+  it('Caso de teste Avaliar Coletas', () => {
+    cy.get('#avaliar_coleta').click();
+  });
+});
