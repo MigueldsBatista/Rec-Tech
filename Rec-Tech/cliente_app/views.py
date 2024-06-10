@@ -69,6 +69,7 @@ def cliente_avaliacao(request):
     if request.method == 'POST':
         lixeira_id = request.POST.get('lixeira')
         nota = request.POST.get('nota')
+        print(nota)
         comentario = request.POST.get('comentario')
 
         if lixeira_id and nota:

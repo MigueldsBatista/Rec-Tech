@@ -20,7 +20,9 @@ crossorigin="anonymous"></script>
 </head>
 <!------------------------------------------------------------------------------------------------------------------------>
 
-<body>
+<body> 
+  
+  
   <div class="login-img-container">
   <img src="{% static 'images/login-logo.png' %}"  alt="logo cesar"></div>
   <div class="login-form">
@@ -39,14 +41,7 @@ crossorigin="anonymous"></script>
 <span class="login-link-container">Ainda não tem uma conta? <a class="login-link" href="{% url 'cadastro' %}">Registre-se</a></span>
 <br>
 <br>
-      <button type="submit">Entrar</button>
-<!---------------------------------------------------------------------------------------------------------------------------------------->        
-
-
-<!---------------------------------------------------------------------------------------------------------------------------------------->        
-    </form>
-  </div>
-        {% if messages %}
+{% if messages %}
         {% for message in messages %}
           {% if message.tags == 'success' %}
             <div class="alert alert-success" role="alert">{{ message }}</div> <!-- Exibe alerta verde -->
@@ -56,10 +51,14 @@ crossorigin="anonymous"></script>
           {% endif %}
         {% endfor %}
       {% endif %}
+      <button type="submit">Entrar</button>
+<!---------------------------------------------------------------------------------------------------------------------------------------->        
+
+
   
-  <footer>
-    <p>&copy; 2024 RecTech. Todos os direitos reservados.</p>
-  </footer>
+<!---------------------------------------------------------------------------------------------------------------------------------------->        
+    </form>
+  </div>
 
 </body>
 

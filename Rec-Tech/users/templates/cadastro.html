@@ -29,8 +29,6 @@
         <option value="cliente">Cliente</option>
         <option value="coletor">Coletor</option>
       </select>
-      <button type="submit" class="cadastro-button">Cadastrar</button>
-      <span class="login-link-container">Já tem uma conta? <a class="login-link" href="{% url 'login' %}">Faça Login</a></span>
       {% if messages %}
       {% for message in messages %}
       <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-danger{% endif %}" role="alert">
@@ -39,10 +37,10 @@
       {% endfor %}
       {% endif %}
     </form>
+      <button type="submit" class="cadastro-button">Cadastrar</button>
+      <span class="login-link-container">Já tem uma conta? <a class="login-link" href="{% url 'login' %}">Faça Login</a></span>
+
   </div>
-  <footer>
-    <p>&copy; 2024 RecTech. Todos os direitos reservados.</p>
-  </footer>
 </body>
 
 </html>

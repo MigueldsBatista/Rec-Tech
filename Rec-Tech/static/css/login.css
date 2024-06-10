@@ -1,6 +1,11 @@
-body{
-    padding-top: 8%;
-}
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    padding-top: 5%;
+  }
 
 .login-form{
     
@@ -35,6 +40,8 @@ body{
     width: 40%;
     margin: 0 auto;
     display: block;
+    box-shadow: 0 4px 6px #807f7f; /* Ajuste do box-shadow */
+
 }
 
 .login-img-container{
@@ -54,7 +61,7 @@ body{
   
   @media (max-width: 768px) {
     body {
-        padding-top: 5%;
+        padding-top: 8%;
     }
     
     .login-form {
@@ -70,3 +77,9 @@ body{
         width: 70%;
     }
 }
+
+.alert{
+    padding: 10px !important;
+    border-radius: 20px !important;
+}
+

@@ -7,6 +7,7 @@ from cliente_app.models import Cliente as ClienteModel
 from coletor_app.models import Coletor as ColetorModel
 from django.conf import settings
 from django_user_agents.utils import get_user_agent
+from django.db.models.functions import Lower
 
 #----------------------------------------
 
@@ -105,7 +106,7 @@ def melhor_rota(request):
 
         base_url = "https://www.google.com/maps/dir/"
         rota_url = base_url + "/".join(rota)
-        print(rota_url)
+        print(rota)
         context = {
             "user_agent": get_user_agent(request),
             'rota_url': rota_url,
@@ -126,29 +127,27 @@ def melhor_rota(request):
         'bairro_selecionado': bairro_id,
     }
     return render(request, 'melhor_rota.html', context)
-
 @has_role_or_redirect(Coletor)
 def esvaziar_lixeiras(request):
     if request.method == "POST":
         enderecos = request.POST.getlist('enderecos')
-        coletor=ColetorModel.objects.get(usuario=request.user)
-        coletor.coletas_realizadas+=1
-        lixeiras = Lixeira.objects.filter(localizacao__in=enderecos)
+
+        # Desconsiderar o primeiro endereço, que é a localização atual
+        enderecos = enderecos[1:]
+
+        # Converter todos os endereços para minúsculas para comparação consistente
+        enderecos = [endereco.lower().strip() for endereco in enderecos]
+
+        # Filtrar lixeiras com localizações em minúsculas
+        lixeiras = Lixeira.objects.annotate(localizacao_lower=Lower('localizacao')).filter(localizacao_lower__in=enderecos)
         for lixeira in lixeiras:
-            peso_coletado=+lixeira.estado_atual
             lixeira.estado_atual = 0
-            lixeira.coleta_realizada=True
+            lixeira.coleta_realizada = True
             lixeira.save()
             Lotada.objects.filter(lixeira=lixeira).delete()
-        coletor.peso_coletado+=peso_coletado
-        coletor.save()
-
-
-
 
         messages.success(request, "Lixeiras esvaziadas com sucesso.")
-        return render(request, 'coletor_home.html', {"user_agent":get_user_agent(request)})
+        return redirect('melhor_rota')
 
     messages.error(request, "Nenhuma lixeira foi selecionada para esvaziar.")
-    return render(request, 'melhor_rota.html', {"user_agent":get_user_agent(request)})
-
+    return redirect('melhor_rota')

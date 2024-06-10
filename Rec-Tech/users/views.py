@@ -45,7 +45,7 @@ def cadastro(request):
             return redirect("cadastro")
 
         # Mensagem de sucesso
-        messages.success(request, "Usuário cadastrado com sucesso. Agora faça login.")
+        messages.success(request, "Usuário cadastrado com sucesso! Agora faça login.")
         return redirect("login")  # Redireciona para a página de login
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

@@ -47,7 +47,9 @@
   transition: background-color 0.3s;
   border-radius: 20px;
   padding: 10px 20px;
-  width: 20%; /* Ajuste a largura do botão conforme desejado */
+  box-shadow: 0 4px 6px #807f7f !important; /* Ajuste do box-shadow */
+
+  width: 49%; /* Ajuste a largura do botão conforme desejado */
   margin: 0 auto; /* Centraliza o botão */
 }
 
