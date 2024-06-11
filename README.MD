@@ -110,7 +110,7 @@ Bem-vindo ao repositório da nossa aplicação de gestão de resíduos sólidos!
   <li>
     <a href="https://youtu.be/4nb0235yI1w">Screencast Uso do Sistema</a>
   </li>
-
+  <li>
     <a href="https://youtu.be/99X_G4e0rmU">Screencast Pipeline CI</a>
   </li>
   <li>
