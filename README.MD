@@ -50,11 +50,19 @@ Bem-vindo ao repositório da nossa aplicação de gestão de resíduos sólidos!
 
 ## ⚙ Tecnologias Utilizadas
 
-- **Linguagem de Programação**: O aplicativo é desenvolvido usando Python, HTML e CSS.
-- **Banco de Dados**: Utilizamos um banco de dados para armazenar informações de usuários, produtos, transações e outros dados relevantes, usando o padrão do Django, o SQLite no repositório local. Para o deploy, utilizamos PostgreSQL.
-- **Framework de Desenvolvimento**: Utilizamos o Django para acelerar o desenvolvimento e Bootstrap na parte do frontend.
-- **Frontend**: A interface do usuário é desenvolvida utilizando tecnologias como HTML, CSS e o framework mencionado anteriormente, o Bootstrap.
-- **Organização**: Para nos organizarmos e seguirmos os princípios de desenvolvimento de software utilizamos o Jira.
+- **Linguagem de Programação**:![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+
+
+
+- **Banco de Dados**: ![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)
+
+
+- **Framework de Desenvolvimento**: ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
+
+- **Frontend**: ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)![HTML](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+
+- **Organização**:![Jira](https://img.shields.io/badge/Jira-0052CC?style=for-the-badge&logo=jira&logoColor=white)
+
 
 ## 🖇️ Links Importantes
 
