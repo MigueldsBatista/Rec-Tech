@@ -43,12 +43,14 @@ jobs:
 
       - name: Cleaning testing files
         run: |
-          rm cypress.config.js
+          ls 
           rm package-lock.json
           rm package.json
           rm -rf cypress
           rm -rf node_modules
-          cd ..
+          cd .. 
+        # rm cypress.config.js
+       
       
   
 
