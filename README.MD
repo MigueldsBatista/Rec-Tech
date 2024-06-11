@@ -36,6 +36,7 @@ Bem-vindo ao repositório da nossa aplicação de gestão de resíduos sólidos!
 - **Solicitação de Manutenção de Lixeiras**: Permite que moradores solicitem manutenção para as lixeiras próximas a seus domicílios.
 - **Visualização da Quantidade de Lixo**: Moradores podem monitorar a quantidade de lixo acumulada em seus domicílios.
 - **Agendamento de Manutenção Domiciliar**: Moradores da região metropolitana do Recife podem agendar manutenções domiciliares de resíduos sólidos de forma conveniente através da aplicação.
+- **Avaliação das coletas**: Morados podem avaliar como foi a ultima coleta que ocorreu em seu domicílio
 
 ### Para Coletores
 - **Seleção de Bairros e Tipo de Resíduo**: Coletores podem selecionar os bairros ou tipos de resíduos a serem coletados, otimizando suas rotas diárias.
@@ -46,7 +47,7 @@ Bem-vindo ao repositório da nossa aplicação de gestão de resíduos sólidos!
 - **Monitoramento do Peso dos Resíduos**: Administradores podem visualizar o peso do lixo de cada domicílio cadastrado.
 - **Cadastro de Novas Lixeiras**: Possibilidade de cadastrar novos pontos de resíduos sólidos na aplicação.
 - **Avisos Importantes**: Visualização e gerenciamento de avisos importantes relacionados aos pontos de coleta.
-- **Notificações por Email**: Administradores recebem notificações de manutenção e coleta diretamente em seus emails.
+- **Feedbacks sobre as coletas**: Administradores tem acesso a um gráfico de satisfação preenchido com a avaliação dos clietes.
 
 ## ⚙ Tecnologias Utilizadas
 
