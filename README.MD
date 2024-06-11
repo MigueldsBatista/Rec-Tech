@@ -114,7 +114,7 @@ Bem-vindo ao repositório da nossa aplicação de gestão de resíduos sólidos!
     <a href="https://youtu.be/99X_G4e0rmU">Screencast Pipeline CI</a>
   </li>
   <li>
-    <a href="https://rec-tech.azurewebsites.net/admin_app/home/">Link do site</a> (nomes de usuários para login "admin", "coletor", "cliente". Todas as senhas são 123)
+    <a href="https://rec-tech.azurewebsites.net/admin_app/home/">Link do site</a> <br> ⬑(nomes de usuários para login "admin", "coletor", "cliente". Todas as senhas são 123)
   </li>
 
 <li>
