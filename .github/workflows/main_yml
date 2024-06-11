@@ -1,0 +1,54 @@
+
+name: CI pipeline  - Rec & Tech
+on:
+  push:
+    branches:
+      - prod
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python version
+        uses: actions/setup-python@v1
+        with:
+          python-version: '3.12'
+
+      - name: Create and start virtual environment
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+      
+      - name: Install dependencies
+        run: |
+          cd Rec-Tech
+          pip install -r requirements.txt
+          npm ci
+          cd ..
+          
+      - name: Run local server
+        run: |
+          cd Rec-Tech
+          python manage.py migrate
+          python manage.py runserver &
+          sleep 5
+        - name: Run E2E tests
+          run: |
+          npx cypress run
+
+      - name: Cleaning testing files
+        run: |
+          rm cypress.config.js
+          rm package-lock.json
+          rm package.json
+          rm -rf cypress
+          rm -rf node_modules
+          cd ..
+      
+  
+
+ 
