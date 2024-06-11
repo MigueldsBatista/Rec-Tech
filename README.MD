@@ -68,6 +68,8 @@ Bem-vindo ao repositório da nossa aplicação de gestão de resíduos sólidos!
 - [Link do Site](https://rec-tech.azurewebsites.net/login/)
 - [Relatório de Pair Programming](https://docs.google.com/document/d/1OPxina02W3SsS_ip94wldSsZ5e1cSyig4VLWCAaXy0I/edit?usp=sharing)
 - [Link do nosso Miro](https://miro.com/app/board/uXjVNnYqUvs=/?share_link_id=733107696943)
+- [Link do google sites](https://sites.google.com/d/15hLu5PH3fhotVKLIyXUwvS0QxRJmX3iT/p/17LwYVtuR0Y85XKhpG6_HFQh0d-CtC9mW/edit?pli=1)
+
 
 ## ♟️ Entregas
 
