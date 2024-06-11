@@ -65,7 +65,7 @@ Bem-vindo ao repositório da nossa aplicação de gestão de resíduos sólidos!
 ## ♟️ Entregas
 
 <details>
-<summary>SR1 1</summary>
+<summary>SR1</summary>
 <ul>
   <li>
     <a href="https://github.com/MigueldsBatista/Rec-Tech/blob/main/Diagrama%20Rec-Tech">Diagrama de Atividades</a>
@@ -83,7 +83,7 @@ Bem-vindo ao repositório da nossa aplicação de gestão de resíduos sólidos!
 </details>
 
 <details>
-<summary>SR2 2</summary>
+<summary>SR2</summary>
 <ul>
   <li>
     <a href="https://github.com/MigueldsBatista/Rec-Tech/blob/main/Diagrama%20Rec-Tech">Diagrama de Atividades</a>
