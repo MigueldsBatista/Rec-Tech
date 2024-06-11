@@ -9,3 +9,4 @@ tzdata
 whitenoise
 django-role-permissions
 googlemaps
+django_user_agents

@@ -1,0 +1,46 @@
+.custom-profile-card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .custom-profile-header {
+    margin-bottom: 20px;
+  }
+  
+  .custom-profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #518C55;
+  }
+  
+  .custom-profile-body p {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 3px solid #518C55;
+    border-radius: 20px;
+  }
+  
+.lixeira-chart-container{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+@media screen and (max-width: 768px) {
+    .lixeira-chart-container{
+flex-direction: column;
+    }
+
+
+}
+  .lixeiraChart{
+    
+    width: 300px !important;
+    height: 300px !important;
+  }

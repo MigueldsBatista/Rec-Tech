@@ -1,44 +1,95 @@
+<p align="center">
+  <img
+    src="https://img.shields.io/github/last-commit/MigueldsBatista/conecta-cesar"
+    alt="Last commit"
+  />
+</p>
+
+<p align="center">
+  <img
+    src="https://img.shields.io/github/repo-size/MigueldsBatista/Rec-Tech"
+    alt="Repository Size"
+  />
+  <img
+    src="https://img.shields.io/github/languages/count/MigueldsBatista/Rec-Tech"
+    alt="Language Count"
+  />
+  <img
+    src="https://img.shields.io/github/commit-activity/t/MigueldsBatista/Rec-Tech"
+    alt="Commit Activity"
+  />
+  <a href="LICENSE"
+    ><img
+      src="https://img.shields.io/github/license/MigueldsBatista/Rec-Tech"
+      alt="License"
+  /></a>
+</p>
+
 # Plataforma de Gestão de Resíduos Sólidos
 
 Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropolitana do Recife, fornecendo uma plataforma eficiente e intuitiva para acompanhamento e análise dos dados de coleta de lixo. Abaixo estão as principais funcionalidades e links importantes do projeto.
 
-## ⚙️ Histórias
+## ⚙️ Principais Funcionalidades
 
-1. Eu, como administrador, quero ser capaz de visualizar o peso atual do lixo de cada domicílio cadastrado;
-2. Eu, como administrador do sistema, desejo poder cadastrar novas lixeiras como pontos coleta de resíduos sólidos à nossa aplicação web;
-3. Eu, como motorista de coleta de lixo, quero ter acesso a uma aplicação que me mostre as rotas mais eficientes para coleta.
-4. Eu, como administrador, desejo receber alertas sobre eventos importantes relacionados à coleta.
-5. Eu, como morador da região metropolitana do Recife e cliente, desejo agendar a manutenção domiciliar de resíduos sólidos de forma conveniente pela aplicação web.
+## ⚙ Tecnologias Utilizadas
 
-### Validações
-
-- História 1: Visualização do Peso
-  - Validação: "Eu, como administrador, irei cadastrar a quantidade de lixo para determinada residência e o sistema deve mostra-la com o identificador e o peso do lixo."
-
-- História 2: Cadastro de Novas Lixeiras
-  - Validação: "Eu, como administrador do sistema, após preencher o formulário de cadastro de um novo ponto de coleta, submeto as informações. O sistema valida se todos os campos necessários foram preenchidos corretamente e confirma se o ponto de coleta foi cadastrado com sucesso no banco de dados."
-
-- História 3: Visualização das Rotas de Coleta
-  - Validação: "Eu, como motorista de coleta de lixo, utilizo a aplicação para visualizar as rotas de coleta do dia. Espero que o sistema me apresente um mapa com as rotas otimizadas, indicando quais lixeiras visitar primeiro com base na localização e no volume de lixo acumulado em cada uma."
-
-- História 4: Recebimento de Avisos
-  - Validação: "Eu, como administrador, configuro no sistema para receber notificações via e-mail sempre que um veículo de coleta apresentar defeito ou sair de sua rota planejada. Espero que o sistema envie um alerta imediato para o meu e-mail cadastrado com detalhes do incidente, permitindo que eu tome medidas corretivas rapidamente."
-
-- História 5: Agendamento de Manutenções
-  - Validação: "Eu, como morador da região metropolitana do Recife, acesso a aplicação web para agendar um serviço de coleta de resíduos sólidos. Espero encontrar uma interface simples que me permita escolher a data e o tipo de resíduo a ser coletado. Após preencher essas informações, submeto o agendamento e espero receber uma confirmação imediata na tela e por e-mail, indicando que o serviço está agendado para a data escolhida."
+- **Linguagem de Programação:** O aplicativo é desenvolvido usando o Python, HMTL e CSS.
+- **Banco de Dados:** Utilizamos um banco de dados para armazenar informações de usuários, produtos, transações e outros dados relevante, usando o padrão do Django o SQLite no repositório local. Para o de deploy ultilizamos PostgressSQL 
+- **Framework de Desenvolvimento:** Utilizamos o Django, para acelerar o desenvolvimento e Boostrap na parte do frontend.
+- **Frontend:** A interface do usuário é desenvolvida utilizando tecnologias como HTML, CSS e o framework mencionando anteriormente, o Boostrap.
+- **Organização:** Para nos organizarmos e seguirmos os principios de desenvolvimento de software ultilizamos o jira
 
 ## 🖇️ Links Importantes
 
 - [Link do Site](https://rec-tech.azurewebsites.net/login/)
 - [Relatório de Pair Programming](https://docs.google.com/document/d/1OPxina02W3SsS_ip94wldSsZ5e1cSyig4VLWCAaXy0I/edit?usp=sharing)
 - [Link do nosso Miro](https://miro.com/app/board/uXjVNnYqUvs=/?share_link_id=733107696943)
-- [Link do Figma](https://www.figma.com/file/3p1WqK2tPZbuOeAHF0nyrV/G5?type=design&node-id=12-82&mode=design&t=sHjEHd3tyCpjLTf5-0)
-- [Link do Screencast Deployment](https://youtu.be/mOC6_9p8hqs)
-- [Link do Screencast Wireframe](https://youtu.be/ZPDNafSxDCE)
 
-## Primeira Entrega
-### Diagrama de Atividades
-![Diagrama de Atividades](https://github.com/MigueldsBatista/Rec-Tech/blob/main/Rec-Tech/static/images/diagrama%20Rec-Tech.png?raw=true)
+## ♟️ Entregas
+<details>
+<summary>SR1 1</summary>
+<ul>
+  <li>
+    <a href="https://github.com/MigueldsBatista/Rec-Tech/blob/main/Diagrama%20Rec-Tech">Diagrama de Atividades</a>
+  </li>
+  <li>
+    <a href="https://www.figma.com/file/3p1WqK2tPZbuOeAHF0nyrV/G5?type=design&node-id=12-82&mode=design&t=sHjEHd3tyCpjLTf5-      0">Protótipo de Baixa Fidelidade</a>
+  </li>
+  <li>
+    <a href="https://youtu.be/ZPDNafSxDCE">Screencast Wireframe</a>
+  </li>
+  <li>
+    <a href="https://youtu.be/mOC6_9p8hqs">Screencast Deployment</a>
+  </li>
+</ul>
+</details>
+<details>
+<summary>SR2 2</summary>
+<ul>
+
+  <li>
+    <a href="https://github.com/MigueldsBatista/Rec-Tech/blob/main/Diagrama%20Rec-Tech">Diagrama de Atividades</a>
+  </li>
+  <li>
+    <a href="https://docs.google.com/document/d/1OPxina02W3SsS_ip94wldSsZ5e1cSyig4VLWCAaXy0I/edit?usp=sharing">Relatório de Programação em Par</a>
+  </li>
+  <li>
+    <a href="https://www.figma.com/design/3p1WqK2tPZbuOeAHF0nyrV/G5?node-id=361-541&t=fu7SRq64kTerCE9c-0">Protótipo de Media</a>
+  </li>
+  <li>
+    <a href="">Screencast Protótipo</a>
+  </li>
+  <li>
+    <a href="">Screencast Testes</a>
+  </li>
+  <li>
+    <a href="">Screencast Uso do sistema</a>
+  </li>
+  <li>
+    <a href="">Screencast pipeline CI</a>
+  </li>
+  
+</details>
 
 ## 👩‍💻 Membros
 

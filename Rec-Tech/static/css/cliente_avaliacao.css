@@ -1,0 +1,70 @@
+
+
+.star-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto;
+  }
+  
+  .big-container{
+    margin-top: 30px; /* Espaçamento maior em relação ao topo */
+
+  }
+  .star {
+    width: 1.5em;
+    height: 1.5em;
+    fill: gray; /* Estrela vazia */
+    transition: fill 0.3s;
+  }
+  
+  .custom-form-container {
+    padding: 10px;
+    border-radius: 20px;
+    background-color: #C2E984;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .custom-form-container textarea{
+    border-radius: 20px;
+    padding: 10px;
+  }
+
+  .custom-form-container button{
+    border-radius: 20px;
+    padding: 10px;
+    background-color: #ADE25A ;
+    border: none;
+    box-shadow: 0 4px 6px #807f7f !important; /* Ajuste do box-shadow */
+    cursor: pointer;
+  }
+  .custom-form-container button:hover{
+    background-color: #8eb450;
+
+  }
+  .button-wrap{
+    display: flex;
+    justify-content: center;
+    
+  }
+  .alert{
+    padding: 10px !important;
+    border-radius: 20px !important;
+    width: 40% !important;
+    display: flex !important;
+    justify-content: center !important;
+    margin: 0 auto !important;
+}
+
+
+
+  @media screen and (max-width: 768px) {
+    .custom-form-container {
+      width: 90%; /* Adaptação para telas menores */
+    }
+  }

@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as django_login#para evitar conflito
@@ -6,7 +7,9 @@ from rolepermissions.roles import assign_role
 from rolepermissions.checkers import has_role
 from rt_project.roles import Admin, Cliente, Coletor
 from django.contrib import messages
-from django.views.decorators.csrf import csrf_protect  
+from admin_app.models import Admin as AdminModel
+from cliente_app.models import Cliente as ClienteModel
+from coletor_app.models import Coletor as ColetorModel
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 def cadastro(request):
@@ -29,16 +32,20 @@ def cadastro(request):
 
         if user_type == 'admin':
             assign_role(user, Admin)
+            AdminModel.objects.create(usuario=user, email=user_email)
+            
         elif user_type == 'cliente':
             assign_role(user, Cliente)
+            ClienteModel.objects.create(usuario=user, email=user_email)
         elif user_type == 'coletor':
             assign_role(user, Coletor)
+            ColetorModel.objects.create(usuario=user, email=user_email)
         else:
             messages.error(request, "Papel do usuário não especificado. Selecione 'admin', coletor ou 'cliente'.")
             return redirect("cadastro")
 
         # Mensagem de sucesso
-        messages.success(request, "Usuário cadastrado com sucesso. Agora faça login.")
+        messages.success(request, "Usuário cadastrado com sucesso! Agora faça login.")
         return redirect("login")  # Redireciona para a página de login
 
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -56,12 +63,13 @@ def login(request):
             django_login(request, user)
         
             if has_role(user, Admin):
-                return render(request, "admin.html")
+                return redirect("admin_home")
             
             elif has_role(user, Cliente):
-                return render(request, "cliente.html")  
+                return redirect("cliente_home")  
+            
             elif has_role(user, Coletor):
-                return render(request, "melhor_rota.html")  
+                return redirect('coletor_home')
             else:
                 messages.error(request, "O usuário não tem um papel definido.")
                 return redirect("login")  # Volta para a página de login

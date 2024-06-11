@@ -1,0 +1,114 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
+  }
+  .alert{
+    border-radius: 20px !important;
+  }
+  .cadastro-img-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .cadastro-form {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .cadastro-form input,
+  .cadastro-form select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #518C55;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+  }
+  
+  .cadastro-form input::placeholder,
+  .cadastro-form select {
+    padding-left: 2px;
+  }
+  
+  .user-type-label {
+    text-align: left;
+    display: block;
+    margin-bottom: 5px;
+    color: #518C55;
+    font-weight: bold;
+  }
+  
+  .cadastro-button {
+    background-color: #ADE25A;
+    font-weight: bold;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 20px;
+    padding: 10px 20px;
+    width: 40%;
+    box-shadow: 0 4px 6px #807f7f; /* Ajuste do box-shadow */
+  }
+  
+  .cadastro-button:hover {
+    background-color: #86b44a;
+  }
+  
+  .login-link-container {
+    display: block;
+    margin-top: 10px;
+  }
+  
+  .login-link {
+    color: #518C55;
+    text-decoration: none;
+  }
+  
+
+  footer {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  footer p {
+    color: #ffffff;
+  }
+  @media (max-width: 768px) {
+    body {
+        height: auto;
+        padding-top: 5%;
+        padding-bottom: 20px;
+    }
+    
+    .cadastro-form {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    .cadastro-form input,
+    .cadastro-form select {
+        font-size: 16px;
+        padding-left: 20px; /* Adicionado para ajustar o texto mais para a direita */
+
+    }
+    
+    .cadastro-button {
+        width: 60%;
+    }
+    
+    .cadastro-img-container img {
+        width: 70%;
+    }
+}

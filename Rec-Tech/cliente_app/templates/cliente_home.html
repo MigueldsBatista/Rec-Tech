@@ -1,0 +1,75 @@
+{% extends "cliente_main.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static "css/cliente_home.css" %}">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Adicionando a CDN do Chart.js -->
+<div class="container mt-5">
+    <div class="custom-profile-card">
+        <div class="custom-profile-header text-center">
+            <img src="{% static "images/profilepic.webp" %}" alt="Foto de perfil" class="custom-profile-img">
+        </div>
+        <div class="custom-profile-body text-center">
+            <p><strong>Nome de usuário:</strong> {{ cliente.usuario.username }}</p>
+            <p><strong>Email:</strong> {{ cliente.usuario.email }}</p>
+        </div>
+    </div>
+</div>
+
+{% if lixeiras %}
+            <div class="lixeira-chart-container">
+
+        {% for lixeira in lixeiras %}
+        
+            <canvas class="lixeiraChart" id="lixeiraChart{{ forloop.counter }}"></canvas>
+        {% endfor %}
+    </div>
+{% else %}
+    <p class="text-center">Nenhuma Lixeira associada à conta encontrada</p>
+{% endif %}
+
+<script>
+    var lixeirasData = {{ lixeiras|safe }};
+
+    // cliente_perfil.js
+    document.addEventListener('DOMContentLoaded', function() {
+        lixeirasData.forEach(function(lixeira, index) {
+            var progresso = lixeira.progresso;
+            var localizacao = lixeira.localizacao;
+            var residuo = lixeira.residuo;
+            var titulo = `${localizacao} - ${residuo}`;
+
+            var ctx = document.getElementById('lixeiraChart' + (index + 1)).getContext('2d');
+            var lixeiraChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Progresso', 'Restante'],
+                    datasets: [{
+                        label: 'Progresso',
+                        data: [progresso, 100 - progresso],
+                        backgroundColor: [
+                            '#ADE25A', // Progresso
+                            '#E4E4E4'  // Restante
+                        ],
+                        borderColor: '#fff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    cutout: '80%', // Define o tamanho do buraco no meio do gráfico
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: titulo, // Exibe a localização da lixeira como título do gráfico
+                            font: {
+                                size: 22 // Tamanho da fonte do título
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    });
+</script>
+{% endblock content %}

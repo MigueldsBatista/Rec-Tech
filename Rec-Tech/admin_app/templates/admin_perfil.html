@@ -1,0 +1,47 @@
+{% extends "admin_main.html" %}
+{% load static %}
+
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-card">
+            <h2>Perfil do Usuário</h2>
+            <img src="default_profile.jpg" alt="foto de perfil" class="profile-pic" id="profile-pic">
+            <form id="profile-form">
+                <label for="profile-pic-input" class="custom-file-upload">
+                    Alterar Foto de Perfil
+                </label>
+                <input type="file" id="profile-pic-input" accept="image/*">
+                <button type="button" id="save-button">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>
+<script>
+    document.getElementById('profile-pic-input').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('profile-pic').src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+    
+    document.getElementById('save-button').addEventListener('click', function() {
+        alert('Foto de perfil salva com sucesso!');
+    });
+    
+</script>
+{% endblock content %}
+

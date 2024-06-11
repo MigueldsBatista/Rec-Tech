@@ -1,0 +1,71 @@
+{% extends 'admin_main.html' %}
+
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/admin_avaliacao.css' %}" type="text/css">
+    
+{% if user_agent.is_mobile%}
+<div class="text-center" style="margin-top: 50% !important;">
+ <div class="inline-flex-container">
+   
+<h2>{{ media_geral }}</h2>
+<svg  class="star-icon" stroke="black"xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16">
+    <path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.56.56 0 0 0-.163-.505L1.71 6.745l4.052-.576a.53.53 0 0 0 .393-.288L8 2.223l1.847 3.658a.53.53 0 0 0 .393.288l4.052.575-2.906 2.77a.56.56 0 0 0-.163.506l.694 3.957-3.686-1.894a.5.5 0 0 0-.461 0z"/>
+  </svg>
+</div>
+<h1 >Avaliação Geral das coletas</h1>
+<canvas class="bairroChart" id="bairroChart" width="300" height="200" ></canvas>
+</div>
+{%else%}
+<div class="text-center">
+<h2>{{ media_geral }}</h2>
+
+<h1>Avaliação Geral das coletas</h1>
+<canvas class="bairroChart" id="bairroChart" width="390" height="140"></canvas>
+</div>
+{%endif%}
+
+<!-- Adicionando o script do Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Obtendo os dados das notas do template Django
+    var notas = {
+        nota1: {{ contagem_notas.nota1 }},
+        nota2: {{ contagem_notas.nota2 }},
+        nota3: {{ contagem_notas.nota3 }},
+        nota4: {{ contagem_notas.nota4 }},
+        nota5: {{ contagem_notas.nota5 }}
+    };
+
+    // Configurando os dados para o gráfico
+    var ctx = document.getElementById('bairroChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Nota 1', 'Nota 2', 'Nota 3', 'Nota 4', 'Nota 5'],
+            datasets: [{
+                label: 'Contagem de Notas',
+                data: [notas.nota1, notas.nota2, notas.nota3, notas.nota4, notas.nota5],
+                backgroundColor: [
+                'rgba(255, 206, 86, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(255, 206, 86, 1)',
+                ],
+
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+{% endblock %}

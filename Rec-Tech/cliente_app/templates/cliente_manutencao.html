@@ -1,0 +1,39 @@
+{% extends "cliente_main.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static "css/cliente_manutencao.css" %}">
+    <div class="custom-help-container">
+        <h2>AJUDA COM A LIXEIRA</h2>
+        <form method="POST" id="form">
+            {% csrf_token %}
+            <label for="data_manutencao">Data:</label>
+            <input type="date" name="data_manutencao" id="data_manutencao" required>
+            <label for="tempo_manutencao">Horário:</label>
+            <input type="time" name="tempo_manutencao" id="tempo_manutencao" required>
+            <label for="lixeira">Lixeira:</label>
+            <select name="lixeira" id="lixeira-manutencao" class="custom-select">
+                {% for lixeira in lixeiras %}
+                <option value="{{lixeira.id}}">{{lixeira.localizacao}}</option>
+                {% endfor %}
+            </select>
+            <label for="motivo_manutencao">Motivo:</label>
+            <input id="motivo_manutencao" name="motivo_manutencao" placeholder="Motivo" required></input>
+            <button type="submit" class="custom-button" id="botao">ENVIAR</button>
+        </form>
+
+        {% if messages %}
+        {% for message in messages %}
+          {% if message.tags == 'success' %}
+            <div class="alert alert-success" role="alert">{{ message }}</div> <!-- Exibe alerta verde -->
+          {% else %}
+            <div class="alert alert-danger" role="alert">{{ message }}</div> <!-- Exibe alerta vermelho -->
+        
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+    </div>
+
+
+{% endblock content %}

@@ -1,0 +1,81 @@
+{% extends "admin_main.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/admin_bairros.css' %}">
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{% if user_agent.is_mobile%}
+<div class="mobile-class">
+<h1 class="green-color">LIXO POR BAIRRO</h1>
+
+<canvas class="bairroChart" id="bairroChart" width="300" height="200"></canvas>
+</div>
+{%else%}
+<h1 class="green-color">LIXO POR BAIRRO</h1>
+
+<canvas class="bairroChart" id="bairroChart" width="400" height="150"></canvas>
+
+{%endif%}
+<!-- O seu script JavaScript para gerar os gráficos de rosca para cada bairro -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var ctx = document.getElementById('bairroChart').getContext('2d');
+        var bairros = {{ bairros|safe }};
+        
+        var labels = [];
+        var reciclaveisData = [];
+        var organicosData = [];
+        var naoReciclaveisData = [];
+
+        bairros.forEach(function(bairro) {
+            labels.push(bairro.nome);
+            reciclaveisData.push(bairro.sum_reciclaveis);
+            organicosData.push(bairro.sum_organicos);
+            naoReciclaveisData.push(bairro.sum_nao_reciclaveis);
+        });
+
+        var bairroChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Recicláveis',
+                        data: reciclaveisData,
+                        backgroundColor: '#ADCD5C',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Orgânicos',
+                        data: organicosData,
+                        backgroundColor: '#518D55',
+                        borderColor: 'rgba(153, 102, 255, 1)',
+                        borderWidth: 1
+                    },
+                    {
+                        label: 'Não Recicláveis',
+                        data: naoReciclaveisData,
+                        backgroundColor: '#A7C4A9',
+                        borderColor: 'rgba(255, 159, 64, 1)',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        stacked: true
+                    },
+                    y: {
+                        stacked: true,
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    });
+</script>
+{% endblock content %}

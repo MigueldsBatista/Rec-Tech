@@ -1,0 +1,19 @@
+
+.star-icon{
+    fill: yellow;
+}
+.mobile-class{
+    margin-top: 50% !important;
+   }
+   .inline-flex-container {
+    display: flex;
+    align-items: center; /* Alinha verticalmente ao centro */
+    justify-content: center; /* Alinha horizontalmente ao centro */
+}
+
+.inline-flex-container h2 {
+    margin-right: 8px; /* Espaçamento entre o h2 e o ícone */
+}
+body{
+overflow: hidden; 
+}

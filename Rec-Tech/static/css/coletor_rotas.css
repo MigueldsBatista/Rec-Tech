@@ -1,0 +1,106 @@
+/* Estilização para o formulário de filtragem */
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .form-container h1 {
+    text-align: center;
+    color: #518C55;
+  }
+  
+  .form-container label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+ 
+  .form-container select,
+  .form-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px !important;
+    margin-bottom: 15px;
+    border: 2px solid #518C55;
+    border-radius: 5px;
+    background-color: #fff;
+    box-sizing: border-box;
+  }
+  
+  .form-container button[type="submit"] {
+    background-color: #ADE25A;
+    font-weight: bold;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 20px;
+    padding: 10px 20px;
+    width: 40%;
+    margin: 0 auto;
+    display: block;
+  }
+  
+  .form-container button[type="submit"]:hover {
+    background-color: #8eb450;
+  }
+  
+  /* Estilização para a lista de endereços */
+  .address-list {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+  
+  .address-list-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    background-color: #D1EFA2;
+  }
+
+  .adress-container{
+    align-items: center;
+    background-color: #D1EFA2;
+    border-radius: 20px;
+  }
+  
+.alert{
+  border-radius: 20px !important;
+  padding: 10px !important;
+}
+  .rota-button{
+    background-color: #5ae2e2;
+    font-weight: bold;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
+    border-radius: 20px;
+    padding: 10px 20px;
+    width: 40%;
+    margin: 0 auto;
+    display: block;
+    text-decoration: none;
+    }
+
+  .endereco-wrap {
+      flex: 1;
+      text-align: left;
+  }
+  
+  .endereco {
+      flex: 1;
+      text-align: center;
+  }

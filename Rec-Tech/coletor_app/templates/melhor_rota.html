@@ -1,0 +1,96 @@
+{% extends "coletor_main.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/coletor_rotas.css' %}">
+
+<div class="form-container">
+    <h1>ROTAS DE COLETA</h1>
+
+    <form method="get">
+        <select name="tipo_residuo" id="tipo_residuo" placeholder="Tipo de Resíduo">
+            <option value="">Tipos de resíduos /Todos</option>
+            <option value="reciclaveis" {% if request.GET.tipo_residuo == 'reciclaveis' %}selected{% endif %}>Recicláveis</option>
+            <option value="organicos" {% if request.GET.tipo_residuo == 'organicos' %}selected{% endif %}>Orgânicos</option>
+            <option value="nao_reciclaveis" {% if request.GET.tipo_residuo == 'nao_reciclaveis' %}selected{% endif %}>Não Recicláveis</option>
+        </select>
+    
+        <select name="domicilio" id="domicilio" placeholder="Domicílio">
+            <option value="">Domicílios /Todos</option>
+            <option value="condominio" {% if request.GET.domicilio == 'condominio' %}selected{% endif %}>Condomínio</option>
+            <option value="hospital" {% if request.GET.domicilio == 'hospital' %}selected{% endif %}>Hospital</option>
+            <option value="escola" {% if request.GET.domicilio == 'escola' %}selected{% endif %}>Escola/Universidade</option>
+            <option value="restaurante" {% if request.GET.domicilio == 'restaurante' %}selected{% endif %}>Restaurante</option>
+        </select>
+    
+        <select name="bairro" id="bairro" placeholder="Bairro">
+            <option value="">Bairros /Todos</option>
+            {% for bairro in bairros %}
+                <option value="{{ bairro.id }}" {% if request.GET.bairro == bairro.id|stringformat:"s" %}selected{% endif %}>{{ bairro.nome }}</option>
+            {% endfor %}
+        </select>
+        
+        <button type="submit" id="botao-filtrar">Filtrar</button>
+    </form>
+    
+
+    {% for endereco in enderecos_brutos %}
+        <div class="adress-container"><p class="text-center">{{ endereco }}</p></div>
+    {% endfor %}
+
+    <form method="POST" action="{% url 'melhor_rota' %}" class="mt-3">
+        {% csrf_token %}
+        <input type="hidden" name="tipo_residuo" value="{{ request.GET.tipo_residuo }}">
+        <input type="hidden" name="domicilio" value="{{ request.GET.domicilio }}">
+        <input type="hidden" name="bairro" value="{{ request.GET.bairro }}">
+
+        <input placeholder="Localização Atual" type="text" name="localizacao_atual" id="localizacao_atual" required class="form-control" />
+
+        <button type="submit" id="botao-rota">Calcular Rota</button>
+    </form>
+
+    {% if rota_url %}
+        <h2 class="text-center">Melhor Rota</h2>
+        <a href="{{ rota_url }}" target="_blank" class="rota-button">Google Maps</a>
+        <ul class="address-list">
+            {% for endereco in melhor_permutacao %}
+                <li class="address-list-item">
+                    <span class="endereco-wrap">Endereço: {{ forloop.counter }}</span>
+                    <span class="endereco">{{ endereco }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <form method="POST" action="{% url 'esvaziar_lixeiras' %}">
+            {% csrf_token %}
+            {% for endereco in melhor_permutacao %}
+                <input type="hidden" name="enderecos" value="{{ endereco }}">
+            {% endfor %}
+            <button type="submit" onclick="return confirmColeta()" id="botao-finalizar" >Coleta Finalizada</button>
+        </form>
+    {% endif %}
+
+
+
+    {% if messages %}
+        {% for message in messages %}
+          {% if message.tags == 'success' %}
+            <div class="alert alert-success" role="alert">{{ message }}</div> <!-- Exibe alerta verde -->
+          {% else %}
+            <div class="alert alert-danger" role="alert">{{ message }}</div> <!-- Exibe alerta vermelho -->
+        
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+</div>
+
+<script>
+    function confirmSubmit() {
+        return confirm("Você será redirecionado para outra página, deseja continuar?");
+    }
+
+    function confirmColeta(){
+        return confirm("Você deseja realmente finalizar a coleta?")
+    }
+    </script>
+{% endblock content %}

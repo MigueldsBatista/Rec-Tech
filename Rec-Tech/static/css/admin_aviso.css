@@ -1,0 +1,35 @@
+    .custom-card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 5px;
+        margin-bottom: 20px;
+        background-color: #f9f9f9;
+        display: inline-block;
+        vertical-align: top; /* Alinhamento ao topo */
+        box-sizing: border-box;
+        background-color: #D1EFA2;
+    }
+
+    /* Estilos para os ícones SVG */
+
+
+    .lixo-cheio-icon {
+        fill: red; /* Cor azul para indicar manutenção */
+    }
+.manutencao-icon{
+    fill: red;
+}
+
+    /* Centralizar conteúdo */
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+        max-width: 600px;
+    }
+
+    /* Estilos para os títulos */
+    h1, h2 {
+        margin-top: 40px;
+    }

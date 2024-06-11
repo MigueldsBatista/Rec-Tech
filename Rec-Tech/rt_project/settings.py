@@ -53,7 +53,9 @@ else:
 # Application definition
 
 INSTALLED_APPS = [
-    'rt_app',
+    'coletor_app',
+    'admin_app',
+    'cliente_app',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -62,7 +64,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     #Adicionar whitenoise na lista de aplicativos instalados
     "whitenoise.runserver_nostatic",
-    'users'
+    'users',
 ]
 
 MIDDLEWARE = [
