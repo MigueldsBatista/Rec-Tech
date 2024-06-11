@@ -43,13 +43,14 @@ jobs:
 
       - name: Cleaning testing files
         run: |
-          ls 
+          ls
+          cd Rec-Tech
           rm package-lock.json
           rm package.json
           rm -rf cypress
           rm -rf node_modules
+          rm cypress.config.js
           cd .. 
-        # rm cypress.config.js
        
       
   
