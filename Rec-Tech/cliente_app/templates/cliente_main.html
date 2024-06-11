@@ -38,7 +38,7 @@
                         <a href="{% url 'login' %}" class="custom-nav-item bold-text" id="cliente-perfil">PERFIL</a>
                       </li>
                     <li class="nav-item">
-                      <a href="{%url 'cliente_manutencao'%}" class="custom-nav-item bold-text" id="filtro_lixeira">MANUTENÇÃO</a>
+                      <a href="{%url 'cliente_manutencao'%}" class="custom-nav-item bold-text" id="agendar_manutencao" >MANUTENÇÃO</a>
                     </li>
                     <li class="nav-item">
                       <a href="{% url 'cliente_avaliacao' %}" class="custom-nav-item bold-text" id="avaliar_coleta">AVALIAR COLETA</a>
@@ -54,7 +54,7 @@
   {%else%}
   <nav class="custom-navbar">
    <a href="{% url 'cliente_home' %}" class="custom-nav-item bold-text" id="cliente-perfil">PERFIL</a>
-       <a href="{%url 'cliente_manutencao'%}" class="custom-nav-item bold-text" id="filtro_lixeira">MANUTENÇÃO</a>
+       <a href="{%url 'cliente_manutencao'%}" class="custom-nav-item bold-text" id="agendar_manutencao">MANUTENÇÃO</a>
  
     <a href="{% url 'cliente_avaliacao' %}" class="custom-nav-item bold-text" id="avaliar_coleta">AVALIAR COLETA</a>
 

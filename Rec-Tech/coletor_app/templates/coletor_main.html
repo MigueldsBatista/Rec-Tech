@@ -40,7 +40,7 @@
                       <a href="{% url 'coletor_home' %}" class="custom-nav-item bold-text" id="perfil">PERFIL</a>
                     </li>
                   <li class="nav-item">
-                    <a href="{% url 'melhor_rota' %}" class="custom-nav-item bold-text" id="vizualizar_lixeira">ROTAS DE COLETA</a>
+                    <a href="{% url 'melhor_rota' %}" class="custom-nav-item bold-text" id="melhor_rota">ROTAS DE COLETA</a>
                   </li>
 
                   <li class="nav-item">
@@ -54,7 +54,7 @@
 {%else%}
   <nav class="custom-navbar">
     <a href="{% url 'coletor_home' %}" class="custom-nav-item bold-text" id="perfil">PERFIL</a>
-    <a href="{% url 'melhor_rota' %}" class="custom-nav-item bold-text" id="vizualizar_lixeira">ROTAS DE COLETA</a>
+    <a href="{% url 'melhor_rota' %}" class="custom-nav-item bold-text" id="melhor_rota">ROTAS DE COLETA</a>
     <a href="{% url 'login' %}" class="custom-nav-item bold-text" id="sair">SAIR</a>
   </nav>
   {%endif%}

@@ -74,7 +74,11 @@
     background-color: #D1EFA2;
     border-radius: 20px;
   }
-
+  
+.alert{
+  border-radius: 20px !important;
+  padding: 10px !important;
+}
   .rota-button{
     background-color: #5ae2e2;
     font-weight: bold;

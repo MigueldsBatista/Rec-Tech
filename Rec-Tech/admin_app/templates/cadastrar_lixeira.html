@@ -48,10 +48,10 @@
     </select>
 
     <label for="capacidade_maxima">Capacidade Máxima (kg):</label>
-    <input type="number" name="capacidade_maxima" id="capacidade_maxima" placeholder="Capacidade máxima em kg" required>
+    <input type="number"   min="0" step="0.01" name="capacidade_maxima" id="capacidade_maxima" placeholder="Capacidade máxima em kg" required>
 
     <label for="estado_atual">Estado Atual (kg):</label>
-    <input type="number" name="estado_atual" id="estado_atual" placeholder="Estado atual em kg" required>
+    <input type="number"min="0" step="0.01" name="estado_atual" id="estado_atual" placeholder="Estado atual em kg" required>
 
     <button type="submit">Cadastrar</button>
   </form>

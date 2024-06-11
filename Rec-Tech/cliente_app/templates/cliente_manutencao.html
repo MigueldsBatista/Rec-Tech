@@ -12,25 +12,28 @@
             <label for="tempo_manutencao">Horário:</label>
             <input type="time" name="tempo_manutencao" id="tempo_manutencao" required>
             <label for="lixeira">Lixeira:</label>
-            <select name="lixeira" class="custom-select">
+            <select name="lixeira" id="lixeira-manutencao" class="custom-select">
                 {% for lixeira in lixeiras %}
                 <option value="{{lixeira.id}}">{{lixeira.localizacao}}</option>
                 {% endfor %}
             </select>
             <label for="motivo_manutencao">Motivo:</label>
             <input id="motivo_manutencao" name="motivo_manutencao" placeholder="Motivo" required></input>
-            <button type="submit" class="custom-button">ENVIAR</button>
+            <button type="submit" class="custom-button" id="botao">ENVIAR</button>
         </form>
 
         {% if messages %}
-        <div class="custom-alert-container">
-            {% for message in messages %}
-            <div class="custom-alert {% if message.tags == 'success' %}custom-alert-success{% else %}custom-alert-danger{% endif %}"
-                role="alert">
-                {{ message }}
-            </div>
-            {% endfor %}
-        </div>
-        {% endif %}
+        {% for message in messages %}
+          {% if message.tags == 'success' %}
+            <div class="alert alert-success" role="alert">{{ message }}</div> <!-- Exibe alerta verde -->
+          {% else %}
+            <div class="alert alert-danger" role="alert">{{ message }}</div> <!-- Exibe alerta vermelho -->
+        
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
     </div>
+
+
 {% endblock content %}

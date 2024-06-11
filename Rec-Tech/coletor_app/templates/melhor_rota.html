@@ -30,7 +30,7 @@
             {% endfor %}
         </select>
         
-        <button type="submit">Filtrar</button>
+        <button type="submit" id="botao-filtrar">Filtrar</button>
     </form>
     
 
@@ -46,7 +46,7 @@
 
         <input placeholder="Localização Atual" type="text" name="localizacao_atual" id="localizacao_atual" required class="form-control" />
 
-        <button type="submit">Calcular Rota</button>
+        <button type="submit" id="botao-rota">Calcular Rota</button>
     </form>
 
     {% if rota_url %}
@@ -66,13 +66,22 @@
             {% for endereco in melhor_permutacao %}
                 <input type="hidden" name="enderecos" value="{{ endereco }}">
             {% endfor %}
-            <button type="submit" onclick="return confirmColeta()" >Coleta Finalizada</button>
+            <button type="submit" onclick="return confirmColeta()" id="botao-finalizar" >Coleta Finalizada</button>
         </form>
     {% endif %}
 
-    {% if error %}
-        <div class="alert">{{ error }}</div>
-    {% endif %}
+
+
+    {% if messages %}
+        {% for message in messages %}
+          {% if message.tags == 'success' %}
+            <div class="alert alert-success" role="alert">{{ message }}</div> <!-- Exibe alerta verde -->
+          {% else %}
+            <div class="alert alert-danger" role="alert">{{ message }}</div> <!-- Exibe alerta vermelho -->
+        
+          {% endif %}
+        {% endfor %}
+      {% endif %}
 </div>
 
 <script>

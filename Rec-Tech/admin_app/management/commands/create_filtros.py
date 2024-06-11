@@ -9,17 +9,18 @@ from django.db import IntegrityError
 from django.utils import timezone
 
 class Command(BaseCommand):
-
+    
     def handle(self, *args, **kwargs):
         bairros = [
-            "Boa Viagem", "Casa Forte", "Espinheiro", "Graças", 
-            "Pina", "Santo Amaro", "Torre", "Várzea", "Ibura", 
-            "Afogados", "Madalena", "Recife Antigo"
+            "Boa Viagem", "Casa Forte", "Espinheiro"
         ]
-
-        tipos_residuo = ["organicos", "reciclaveis", "nao_reciclaveis"]
-        tipos_residencia = ["hospital", "restaurante", "escola"]
-
+        tipos_residuo = [
+            "organicos", "reciclaveis", "nao_reciclaveis"
+        ]
+        domicilios = [
+            "hospital", "escola", "restaurante"
+        ]
+        
         try:
             # Criar coletor padrão, admin padrão e cliente padrão para facilitar testes
             coletor_user = User.objects.create_user(username='coletor', password='123')
@@ -44,40 +45,35 @@ class Command(BaseCommand):
             assign_role(cliente_user, Cliente)
 
             # Loop para criar bairros, clientes e lixeiras
-            for j in range(3):
-                tipo_residuo = tipos_residuo[j]
-                tipo_residencia = tipos_residencia[j]
+            for i in range(3):
+                bairro, created = Bairro.objects.get_or_create(nome=bairros[i])
+                
+                # Verifica se a lixeira já existe
+                lixeira_exists = Lixeira.objects.filter(
+                    bairro=bairro,
+                    localizacao=f'localizacao-{i}',
+                    tipo_residuo=tipos_residuo[i],
+                    capacidade_maxima=1000,
+                    estado_atual=500,
+                    cliente=cliente
+                ).exists()
 
-                for i in range(j * 4, (j + 1) * 4):
-                    bairro, created = Bairro.objects.get_or_create(nome=bairros[i])
-
-                    # Verifica se a lixeira já existe
-                    lixeira_exists = Lixeira.objects.filter(
+                if not lixeira_exists:
+                    Lixeira.objects.create(
+                        domicilio=domicilios[i],
                         bairro=bairro,
-                        localizacao=f'av 17 de agosto 25{i}',
-                        tipo_residuo=tipo_residuo,
+                        localizacao=f'localizacao-{i}',
+                        tipo_residuo=tipos_residuo[i],
                         capacidade_maxima=1000,
-                        estado_atual=850,
+                        estado_atual=500,
                         cliente=cliente
-                    ).exists()
-
-                    # Cria a lixeira se não existir
-                    if not lixeira_exists:
-                        Lixeira.objects.create(
-                            domicilio=tipo_residencia,
-                            bairro=bairro,
-                            localizacao=f'av 17 de agosto 25{i}',
-                            tipo_residuo=tipo_residuo,
-                            capacidade_maxima=1000,
-                            estado_atual=850,
-                            cliente=cliente
-                        )
-                    else:
-                        self.stdout.write(self.style.WARNING(f'Lixeira em {bairro.nome} (endereco{i}) já existe.'))
-
+                    )
+                else:
+                    self.stdout.write(self.style.WARNING(f'Lixeira em {bairro.nome} (localizacao-{i}) já existe.'))
+            
             # Cria registros de manutenção para as lixeiras do cliente padrão
             lixeiras = Lixeira.objects.filter(cliente=cliente)
-            for lixeira in lixeiras[:3]:  # manutenção para três lixeiras e coleta realizada
+            for lixeira in lixeiras:
                 lixeira.coleta_realizada = True
                 lixeira.save()
                 Manutencao.objects.create(

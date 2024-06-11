@@ -17,10 +17,11 @@
 </div>
 
 {% if lixeiras %}
-        {% for lixeira in lixeiras %}
             <div class="lixeira-chart-container">
-                <canvas class="lixeiraChart" id="lixeiraChart{{ forloop.counter }}"></canvas>
-                
+
+        {% for lixeira in lixeiras %}
+        
+            <canvas class="lixeiraChart" id="lixeiraChart{{ forloop.counter }}"></canvas>
         {% endfor %}
     </div>
 {% else %}
@@ -31,42 +32,44 @@
     var lixeirasData = {{ lixeiras|safe }};
 
     // cliente_perfil.js
-document.addEventListener('DOMContentLoaded', function() {
-    lixeirasData.forEach(function(lixeira, index) {
-        var progresso = lixeira.progresso;
-        var localizacao = lixeira.localizacao;
-        var residuo= lixeira.residuo
-        var titulo = `${localizacao} - ${residuo}`;
+    document.addEventListener('DOMContentLoaded', function() {
+        lixeirasData.forEach(function(lixeira, index) {
+            var progresso = lixeira.progresso;
+            var localizacao = lixeira.localizacao;
+            var residuo = lixeira.residuo;
+            var titulo = `${localizacao} - ${residuo}`;
 
-        var ctx = document.getElementById('lixeiraChart' + (index + 1)).getContext('2d');
-        var lixeiraChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Progresso', 'Restante'],
-                datasets: [{
-                    label: 'Progresso',
-                    data: [progresso, 100 - progresso],
-                    backgroundColor: [
-                        '#ADE25A', // Progresso
-                        '#E4E4E4'  // Restante
-                    ],
-                    borderColor: '#fff',
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                cutout: '80%', // Define o tamanho do buraco no meio do gráfico
-                plugins: {
-                    title: {
-                        display: true,
-                        text: titulo // Exibe a localização da lixeira como título do gráfico
+            var ctx = document.getElementById('lixeiraChart' + (index + 1)).getContext('2d');
+            var lixeiraChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Progresso', 'Restante'],
+                    datasets: [{
+                        label: 'Progresso',
+                        data: [progresso, 100 - progresso],
+                        backgroundColor: [
+                            '#ADE25A', // Progresso
+                            '#E4E4E4'  // Restante
+                        ],
+                        borderColor: '#fff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    cutout: '80%', // Define o tamanho do buraco no meio do gráfico
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: titulo, // Exibe a localização da lixeira como título do gráfico
+                            font: {
+                                size: 22 // Tamanho da fonte do título
+                            }
+                        }
                     }
                 }
-            }
+            });
         });
     });
-});
-
 </script>
 {% endblock content %}

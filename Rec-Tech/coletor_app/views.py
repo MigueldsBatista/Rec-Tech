@@ -79,13 +79,13 @@ def melhor_rota(request):
         if not localizacao_atual or not localizacoes:
             context = {
                 "user_agent": get_user_agent(request),
-                'error': "Localização atual e pelo menos um endereço são necessários.",
                 'enderecos_brutos': enderecos_brutos,
                 'bairros': bairros,
                 'tipo_residuo_selecionado': tipo_residuo,
                 'domicilio_selecionado': domicilio,
                 'bairro_selecionado': bairro_id,
             }
+            messages.error(request, "Localização atual e pelo menos um endereço são necessários.")
             return render(request, 'melhor_rota.html', context)
 
         def calcular_distancia(origem, destino):
@@ -154,7 +154,7 @@ def esvaziar_lixeiras(request):
         coletor.peso_coletado=coletor.peso_coletado+peso_total
         coletor.save()
 
-        messages.success(request, "Lixeiras esvaziadas com sucesso.")
+        messages.success(request, "Coleta finalizada com sucesso, obrigado pela sua contribuição!")
         return redirect('melhor_rota')
 
     messages.error(request, "Nenhuma lixeira foi selecionada para esvaziar.")
