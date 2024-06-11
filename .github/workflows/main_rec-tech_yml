@@ -3,7 +3,7 @@ name: CI pipeline  - Rec & Tech
 on:
   push:
     branches:
-      - prod
+      - main
   workflow_dispatch:
 
 jobs:
