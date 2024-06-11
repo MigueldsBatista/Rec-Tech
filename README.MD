@@ -82,6 +82,12 @@ Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropoli
   <li>
     <a href="">Screencast Testes</a>
   </li>
+  <li>
+    <a href="">Screencast Uso do sistema</a>
+  </li>
+  <li>
+    <a href="">Screencast pipeline CI</a>
+  </li>
   
 </details>
 
