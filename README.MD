@@ -47,7 +47,7 @@ Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropoli
 
 ## ♟️ Entregas
 <details>
-<summary>Entrega 1</summary>
+<summary>SR1 1</summary>
 <ul>
   <li>
     <a href="https://github.com/MigueldsBatista/Rec-Tech/blob/main/Diagrama%20Rec-Tech">Diagrama de Atividades</a>
@@ -64,8 +64,12 @@ Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropoli
 </ul>
 </details>
 <details>
-<summary>Entrega 2</summary>
+<summary>SR2 2</summary>
 <ul>
+
+  <li>
+    <a href="https://github.com/MigueldsBatista/Rec-Tech/blob/main/Diagrama%20Rec-Tech">Diagrama de Atividades</a>
+  </li>
   <li>
     <a href="https://docs.google.com/document/d/1OPxina02W3SsS_ip94wldSsZ5e1cSyig4VLWCAaXy0I/edit?usp=sharing">Relatório de Programação em Par</a>
   </li>
