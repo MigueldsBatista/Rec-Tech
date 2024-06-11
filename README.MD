@@ -80,14 +80,18 @@ Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropoli
     <a href="">Screencast Protótipo</a>
   </li>
   <li>
-    <a href="">Screencast Testes</a>
+    <a href="https://youtu.be/jAhIu5defig">Screencast Testes</a>
   </li>
   <li>
-    <a href="">Screencast Uso do sistema</a>
+    <a href="https://youtu.be/4nb0235yI1w">Screencast Uso do sistema</a>
   </li>
   <li>
-    <a href="">Screencast pipeline CI</a>
+    <a href="https://youtu.be/99X_G4e0rmU">Screencast pipeline CI</a>
   </li>
+
+<li>
+<a href="https://rec-tech.azurewebsites.net/admin_app/home/"> Link do site</a> (nomes de usuários para login "admin", "coletor", "cliente". Todas as senhas são 123)
+</li>
   
 </details>
 
