@@ -104,3 +104,8 @@ Nosso projeto visa melhorar a gestão de resíduos sólidos na região metropoli
 - Rafael Barros - ralb@cesar.school 📩
 - Tiago Gurgel - tgafa@cesar.school 📩
 - Vinícius Diniz - vdas@cesar.school 📩
+
+<a href="https://github.com/MigueldsBatista/Rec-Tech/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=MigueldsBatista/Rec-Tech" />
+</a>
+
