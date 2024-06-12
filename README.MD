@@ -86,7 +86,7 @@ Bem-vindo ao repositório da nossa aplicação de gestão de resíduos sólidos!
     <a href="https://youtu.be/ZPDNafSxDCE">Screencast Wireframe</a>
   </li>
   <li>
-    <a href="https://youtu.be/mOC6_9p8hqs">Screencast Deployment</a>
+    <a href="https://youtu.be/mOC6_9p8hqs">Screencast Uso do sistema</a>
   </li>
 </ul>
 </details>
@@ -115,6 +115,9 @@ Bem-vindo ao repositório da nossa aplicação de gestão de resíduos sólidos!
   <li>
     <a href="https://youtu.be/jAhIu5defig">Screencast Testes</a>
   </li>
+<li>
+<a href="https://youtu.be/bpdRl5FI_mE">Screencast Build & Deploy</a>
+</li>
   <li>
     <a href="https://youtu.be/4nb0235yI1w">Screencast Uso do Sistema</a>
   </li>
